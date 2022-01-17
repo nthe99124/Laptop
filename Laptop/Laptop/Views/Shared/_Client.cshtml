@@ -1,0 +1,522 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiến Thế - Cửa hàng buôn bán Laptop uy tín</title>
+
+    <link rel="shortcut icon" type="image/png" href="~/Content/image/LogoLap.png" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/client/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/client/css/family=open+san.css" rel="stylesheet" />
+    <link href="~/Content/client/css/Family=muli.css" rel="stylesheet" />
+    <link href="~/Content/client/css/flag-icon.css" rel="stylesheet" />
+    @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.1.0/css/flag-icon.min.css" rel="stylesheet">*@
+    <link href="~/Content/client/css/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/css/themify-icons.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <link href="~/Content/css/slicknav.min.css" rel="stylesheet" />
+    <link href="~/Content/css/nice-select.css" rel="stylesheet" />
+    <link href="~/Content/css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="~/Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/css/style_menu.css" rel="stylesheet" />
+    <link href="~/Content/css/elegant-icons.css" rel="stylesheet" />
+    <link href="~/Content/css/mystyle.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/client/css/jquery.fancybox.min.css" rel="stylesheet" />
+
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+
+
+    <script>
+        $(document).ready(function () {
+            $('#hoverimg').mouseover(function () {
+                $('#div_gen').fadeIn(500);
+            }).mouseout(function () {
+                $('#div_gen').fadeOut(500);
+            });
+        });
+    </script>
+    <script>
+        function editmk() {
+            var mkcu = $("#passcu").val();
+            var mk1 = $("#passmoi1").val();
+            var mk2 = $("#passmoi2").val();
+            @*if (mkcu == "") {
+                alert('Bạn cần nhập mật khẩu');
+            }*@
+            if (mk1!=mk2) {
+                alert('Bạn cần nhập mật khẩu mới giống nhau');
+            }
+        }
+    </script>
+    <style>
+    #test {
+    }
+    .image {
+        opacity: 100;
+        display: block;
+        width: 100%;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 25%;
+        color:black;
+        left: 50%;
+        right:-60%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    .text_hover
+    {
+        display:none;
+    }
+    #test:hover .image {
+        opacity: 0.2;
+    }
+
+    #test:hover .middle {
+        opacity: 1;
+    }
+    #test:hover .text_hover {
+        display:block;
+        margin-top:-40px;
+        margin-left:150px;
+        color:black;
+        font-size:15px;
+        @*background-color:orange;
+        border: 10px solid orange;*@
+        border-radius:10px
+
+    }
+
+    .text {
+        background-color: orange;
+        border: 5px solid orange;
+        border-radius:5px;
+        color: white;
+        font-size: 20px;@*
+        padding: 5px 5px;*@
+    }
+
+    </style>
+    
+</head>
+<body>
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v10.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <!-- Your Plugin chat code -->
+    <div class="fb-customerchat"
+         attribution="page_inbox"
+         page_id="101733825369242">
+    </div>
+    <!-- Header Section Begin -->
+    <header class="header-section" style="margin-top:-50px;margin-bottom:20px">
+        <div  class="header-top" style="border:10px solid orange;font-size:15px; background-color:orange; margin-bottom:10px;">
+            <div class="col-2">
+            </div>
+            <div class="col-1">
+                <i class="fa fa-phone" style="color:blue;text-align:right"> 0344039457</i>
+            </div>
+            <div class="col-2">
+                <i class="fa fa-envelope" style="color:blue"> <a href="mailto:dotheky1999@gmail.com">nthe99124@gmail.com</a></i>
+            </div>
+            <div class="col-3">
+
+            </div>
+            <div class="col-2" style="color:gray;text-align:right">
+                <a href="https://www.facebook.com/nguyen.the.52090008/" rel="nofollow" target="_blank" style="margin-right:20px">
+                    <i class="fa fa-facebook"></i>
+                </a>
+                <a href="http://google.com" rel="nofollow" target="_blank" style="margin-right:20px">
+                    <i class="fa fa-google-plus"></i>
+                </a>
+                <a href="http://twitter.com" rel="nofollow" target="_blank" style="margin-right:20px">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="http://vk.com" rel="nofollow" target="_blank" style="margin-right:20px">
+                    <i class="fa fa-vk"></i>
+                </a>
+                <a href="https://www.instagram.com/dotheky1999/" rel="nofollow" target="_blank">
+                    <i class="fa fa-instagram"></i>
+                </a>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        <div class="header-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-2">
+                        <div class="mail-service" style="width:180px">
+                            <i><a href="#"><img src="~/Content/image/LogoLap.png" alt="Laptop Tiến Thế"></a></i>
+                            <p style="text-align:center">LaptopTienThe.com</p>
+                        </div>
+                    </div>
+                    <div class="col-4" style="text-align:center">
+                        <br />
+                        <p>Laptop Tiến Thế</p>
+                        <p><b>Uy tín tạo thương hiệu</b></p>
+                        <p><b>Địa chỉ:</b> Số 118 - NGÕ 136 - BẮC TL - Hà Nội</p>
+                    </div>
+                    <div class="col-4" style="text-align: right">
+                        <br />
+                        <p>
+                            @{
+                                if (Session["User"] == null)
+                                {
+                                    <div class="row" style=" margin-top: 16px;">
+                                        <div class="col" style="text-align: center">
+                                            <br />
+                                            <br />
+                                            <a href="/_clientLogin/Index" style="font-size:17px;color:black;margin-left:190px"><i class="fa fa-lock">Đăng nhập</i></a>
+                                        </div>
+                                        <div class="col" style="text-align: center">
+                                            <br />
+                                            <br />
+                                            <a href="/_clientLogin/register" style="font-size:17px;color:black;margin-left:16px"><i class="fa fa-lock">Đăng ký</i></a>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <nav class="nav-menu mobile-menu" style="margin-top: 40px;">
+                                        <div class="row">
+                                            <div class="col" style="text-align: center">
+                                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="font-size:17px;color:black;width: 165px;text-align:center">
+                                                    <i class="fa fa-lock">@Session["Name"].ToString()</i>
+                                                </a>
+                                                <ul class="dropdown-menu" style="border-top:10px solid #e6e6e6;border-bottom:10px solid #e6e6e6;top:34px;
+                                                margin-left: 15px;right: 13px;text-align:center ;background-color:#e6e6e6">
+                                                    <li>
+                                                        <a href="/_clientCustomer/AccountDetail" style="font-size:17px;font-family:'Times New Roman', Times, serif">Thông tin tài khoản</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/_clientFavoriteList/Index" style="font-size:17px;font-family:'Times New Roman', Times, serif">Danh sách yêu thích</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="/_clientLogin/logout" style="font-size:17px;font-family:'Times New Roman', Times, serif">Đăng xuất</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="col">
+
+                                                <a href="/_clientLogin/logout" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                                   style="font-size:17px;width: 155px;font-family:'Times New Roman', Times, serif">Đổi mật khẩu</a>
+                                                <ul class="dropdown-menu" style="border-top:10px solid #e6e6e6;border-bottom:10px solid #e6e6e6;top:34px;
+                                                        margin-left: 15px;right: 13px;text-align:center ;background-color:#e6e6e6">
+                                                    <li style="text-align:center">
+                                                        <form action="/_clientCustomer/DoiMK" method="post">
+                                                            <input required="" type="text" class="form-control" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" style="width:150px;margin-left:2px" name="passcu" placeholder="Mật khẩu cũ" />
+                                                            <input required="" type="text" class="form-control" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" name="passmoi1" id="passmoi1" placeholder="Mật khẩu mới" style="margin-top:10px;margin-bottom:10px;width:150px;margin-left:2px" />
+                                                            <input required="" type="text" class="form-control" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" style="width:150px;margin-left:2px" name="passmoi2" id="passmoi2" placeholder="Nhập lại mật khẩu mới" />
+                                                            <button type="submit" style="margin-top:10px;background-color:cornflowerblue;
+                                                                    border:1px solid cornflowerblue;border-radius:20px" onclick="editmk()">
+                                                                Đổi mật khẩu
+                                                            </button>
+                                                        </form>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </nav>
+                                }
+                            }
+
+
+                        </p>
+                    </div>
+                    <div class="col-1">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                            <a href="/_clientCart/Index" class="fa fa-shopping-cart" style="color:black; font-size:17px;margin-left:-18px;margin-top: 4px;"> Giỏ hàng</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <nav class="nav-menu mobile-menu">
+                    <ul style="background-color:#31b3e4">
+                        <li class="col-2" style="left:-9px">
+                            <a href="/Home/Index" style="color:black;width:200px;border-left:10px">
+                                <i class="fa fa-home"></i>&nbsp;&nbsp;Trang chủ
+                            </a>
+                        </li>
+                        @*Sản phẩm*@
+                        <li class="col-2">
+                            <a style="color:black;width:200px">
+                                <i class="fa fa-laptop"></i>&nbsp;&nbsp;Sản phẩm
+                            </a>
+                            <ul class="dropdown" style="left:15px;font-size:17px;text-align:center ;background-color:orange">
+                                <li>
+                                    <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color:black">Hãng</a>
+                                    <ul class="dropdown-menu" style="left:200px;right:-150px;top:0px; background-color:orange ;font-size:17px;text-align:center">
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=Acer">Acer</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=Asus">Asus</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=Dell">Dell</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=HP">HP</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=Macbook">Macbook</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=MSI">MSI</a></li>
+                                        <li><a style="color:black" href="/_clientProductDetail/brand?brand=Lenovo">Lenovo</a></li>
+                                    </ul>
+                                </li>
+                                <li><a style="color:black" href="/_clientProductDetail/phanloai?group=Học tập - Văn phòng">Học tập - Văn phòng</a></li>
+                                <li><a style="color:black" href="/_clientProductDetail/phanloai?group=Đồ họa - Kỹ thuật">Đồ họa - Kỹ thuật</a></li>
+                                <li><a style="color:black" href="/_clientProductDetail/phanloai?group=Laptop Gaming">Laptop Gaming</a></li>
+                                <li><a style="color:black" href="/_clientProductDetail/phanloai?group=Cao cấp - Sang trọng">Cao cấp - Sang trọng</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-2">
+                            <a href="/_clientNew/Index" style="color:black;width:200px;text-align:center"><i class="fa fa-android"></i>&nbsp;&nbsp;Tin tức</a>
+
+                        </li>
+                        <li class="col-2">
+                            <a href="#" style="color:black;width:200px;text-align:center">
+                                <i class="fa fa-address-book"></i>&nbsp;&nbsp;Blog
+                            </a>
+                        </li>
+                        <li class="col-2" style="width: 246px">
+                            <a style="color:black;width:200px;text-align:center">
+                                <i class="fa fa-briefcase"></i>&nbsp;&nbsp;Cẩm nang
+                            </a>
+                            <ul class="dropdown" style="left:15px;font-size:17px;text-align:center ;background-color:orange">
+                                <li><a style="color:black" href="/_clientBill/Bill_cus">Lịch sử mua hàng</a></li>
+                                <li><a style="color:black" href="/_clientFavoriteList/Index">Danh sách yêu thích</a></li>
+                                <li><a style="color:black" href="#">Tra cứu bảo hành</a></li>
+                            </ul>
+                        </li>
+                        <li class="col-2">
+                            <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="color:black;width:188px;text-align:center">
+                                <i class="fa fa-search"></i>&nbsp;&nbsp;Tìm kiếm
+                            </a>
+                            <ul class="dropdown-menu" style="width: 250px;border-top:2px solid #e6e6e6;border-radius:10px; border-bottom: 7px solid #e6e6e6; left: -46px; right: -18px; text-align: center; background-color: #e6e6e6">
+                                <li style="width:250px">
+                                    <form action="/_clientProductDetail/product" method="post">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input style="height:30px; border-radius:15px; width:160px" autofocus required="" class="form-control" placeholder="Nhập sản phẩm cần tìm" type="text" name="key" />
+                                                </div>
+                                                <div class="col">
+                                                    <button type="submit" style="height:30px; width:30px; border-radius:15px; background-color:#31b3e4; border-color:#31b3e4">
+                                                        <i class="fa fa-search"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Header End -->
+    <div class="container-fluid body-content">
+        <div class="container">
+            @RenderBody()
+
+        </div>
+        <div style="top:-100px">
+            <a class="back-to-top" href="#" style="font-size:100px;top:50%;left:95%;position:relative; position:fixed">
+                <img src="~/Content/client/top.png" />
+            </a>
+
+        </div>
+        <footer class="footer-section" style="margin-top:-50px">
+
+            <hr />
+            <div class="footer-top">
+                <div class="privacy">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col" style="background-color:aliceblue; margin:5px;border-radius:10px;margin-left: 20px;">
+                                <div class="row">
+                                    <div class="col" style="text-align-last:left">
+                                        <img src="~/Content/client/image/ico-service-1221b.png" style="width:100px;height:100px;margin-top: 14px;" />
+                                    </div>
+                                    <div class="col" style="margin-left: -162px; margin-top: 25px;">
+                                        <h3>Giao hàng miễn phí</h3>
+                                        <p>Miễn phí giao hàng trong nội thành Hà Nội</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col" style="background-color:aliceblue; margin:5px;border-radius:10px">
+                                <div class="row">
+                                    <div class="col" style="text-align-last:left">
+                                        <img src="~/Content/client/image/ico-service-2221b.png" style="width:100px;height:100px;margin-top: 14px;" />
+                                    </div>
+                                    <div class="col" style="margin-left: -162px; margin-top: 25px;">
+                                        <h3>Khuyến mại</h3>
+                                        <p>Khuyến mại sản phẩm nếu đơn hàng trên 20.000.000đ</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col" style="background-color:aliceblue; margin:5px;border-radius:10px;margin-right: 20px;">
+                                <div class="row">
+                                    <div class="col" style="text-align-last:left">
+                                        <img src="~/Content/client/image/ico-service-3221b.png" style="width:100px;height:100px;margin-top: 14px;" />
+                                    </div>
+                                    <div class="col" style="margin-left: -162px; margin-top: 13px;">
+                                        <h3>Hoàn trả lại tiền</h3>
+                                        <p>Nếu sản phẩm không đảm bảo chất lượng hoặc sản phẩm không đúng miêu tả</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="container">
+                    <div class="row" style="margin-top:30px">
+                        <div class="col-3" style="text-align:left;font-size:20px">
+                            <b>THÔNG TIN CÔNG TY</b>
+                            <p style="text-align:left;font-size:15px;margin-top:10px;color:black">
+                                CÔNG TY CỔ PHẦN TIẾN THẾ  <br />
+                                Số 118 - NGÕ 136 - BẮC TỪ LIÊM <br />    Hà Nội - Việt Nam<br />
+                                SĐT: 034.403.9457 <br />
+                                Email: <a href="mailto:nthe99124@gmail.com" style="color:black">nthe99124@gmail.com</a><br />
+                                Website: <a href="LaptopTienThe.somee.com" style="color:black">LaptopTienThe.com</a><br />
+                                Mã số doanh nghiệp: 012345678, cấp lần đầu ngày 10/01/2018<br />
+                                Sở KHĐT TP. Hà Nội cấp
+                            </p>
+                        </div>
+                        <div class="col-3" style="text-align:left;font-size:20px">
+                            <b>VỀ LAPTOP Tiến Thế</b>
+                            <p style="text-align:left;font-size:15px;margin-top:10px;color:black">
+                                Chăm sóc khách hàng<br />
+                                * Hotline: 034.403.9457<br />
+                                * Thời gian: 24/7<br />
+                                * Email: <a href="mailto:nthe99124@gmail.com" style="color:black">nthe99124@gmail.com</a><br />
+                            </p>
+                        </div>
+                        <div class="col-3" style="text-align:left;font-size:20px">
+                            <b>CHÍNH SÁCH</b>
+                            <p style="text-align:left;font-size:15px;margin-top:10px;color:black">
+                                <a href="#" style="color:black">Chính sách mua hàng từ xa</a><br />
+                                <a href="#" style="color:black">Chính sách đặt cọc sản phẩm</a><br />
+                                <a href="#" style="color:black">Chính sách giao nhận - đổi trả</a><br />
+                                <a href="#" style="color:black">Chính sách bảo hành</a><br />
+                                @*<a href="#" style="color:black">Chính sách bảo mật thông tin</a><br />
+                                <a href="#" style="color:black">Thỏa thuận sử dụng và quy định giao dịch chung</a><br />*@
+                            </p>
+                        </div>
+
+
+                        <div class="col-3" style="text-align:left;font-size:20px">
+                            <b>THANH TOÁN</b>
+                            <p style="text-align:left;font-size:15px;margin-top:10px;color:black">
+                                Thanh toán trực tuyến (Internet Banking)<br />
+                                Thanh toán khi nhận hàng (COD)
+                            </p><br />
+                            <div class="row" style="margin-left:-180px;margin-top:-7px">
+                                <div class="col-3">
+                                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.4189451983134!2d105.73889191542354!3d21.05592319222522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454fbd66cd973%3A0x7c1db751fbd028e9!2zMTE4IE5nw7UgMTM2IMSRxrDhu51uZyBD4bqndSBEaeG7hW4sIE1pbmggS2hhaSwgVOG7qyBMacOqbSwgSMOgIE7hu5lpLCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sus!4v1641575470118!5m2!1svi!2sus" width="400" height="125" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-reserved" style="background-color:orange;border:5px solid orange;border-bottom:20px solid orange;margin-top:15px">
+                <div class="col-lg-12">
+                    <div class="copyright-text" style="color:white">
+                        Bản quyền &copy; LaptopTienThe.com
+                    </div>
+                    <div class="footer-social" align="right" style="padding-left:200px">
+                        <a href="https://www.facebook.com/nguyen.the.52090008" style="color:white" target="_blank"><i class="fa fa-facebook" style="font-size:15px">  FACEBOOK </i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.instagram.com/" style="color:white" target="_blank"><i class="fa fa-instagram" style="font-size:15px">  INSTAGRAM </i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://twitter.com/" style="color:white" target="_blank"><i class="fa fa-twitter" style="font-size:15px" target="_blank">  TWITTER </i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://www.pinterest.com/" style="color:white" target="_blank"><i class="fa fa-pinterest" style="font-size:15px" target="_blank">  PINTEREST </i></a>
+                    </div>
+                    <div class="payment-pic">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Section End -->
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <script>
+        @*$(document).ready(function () {
+            $('#example').DataTable();
+        });*@
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ bản ghi 1 trang",
+                    "zeroRecords": "Không tìm thấy bản ghi",
+                    "info": "Trang _PAGE_ trên _PAGES_",
+                    "infoEmpty": "Không có bản ghi nào có sẵn",
+                    "infoFiltered": "(Được lọc từ tổng số _MAX_ bản ghi)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                },
+                "lengthMenu": [[5, 10, 15, -1], [5,10,15, "All"]]
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Content/client/js/jquery.fancybox.min.js"></script>
+</body>
+</html>

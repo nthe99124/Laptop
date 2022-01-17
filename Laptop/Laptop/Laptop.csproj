@@ -1,0 +1,809 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0220A2BA-C210-4F2C-87A2-477C921770E3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Laptop</RootNamespace>
+    <AssemblyName>Laptop</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44340</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\billController.cs" />
+    <Compile Include="Controllers\Bill_Detaill.cs" />
+    <Compile Include="Controllers\brandController.cs" />
+    <Compile Include="Controllers\colorController.cs" />
+    <Compile Include="Controllers\customertController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\loginAdminController.cs" />
+    <Compile Include="Controllers\newController.cs" />
+    <Compile Include="Controllers\newImageController.cs" />
+    <Compile Include="Controllers\productColorController.cs" />
+    <Compile Include="Controllers\productController.cs" />
+    <Compile Include="Controllers\productImageController.cs" />
+    <Compile Include="Controllers\slideController.cs" />
+    <Compile Include="Controllers\_clientBillController.cs" />
+    <Compile Include="Controllers\_clientCartController.cs" />
+    <Compile Include="Controllers\_clientCustomerController.cs" />
+    <Compile Include="Controllers\_clientFavoriteListController.cs" />
+    <Compile Include="Controllers\_clientLoginController.cs" />
+    <Compile Include="Controllers\_clientNewController.cs" />
+    <Compile Include="Controllers\_clientProductDetailController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\client_bill.cs" />
+    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\laptop.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>laptop.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\mau.cs" />
+    <Compile Include="Models\SoLuong.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\admin1\css\layout.css" />
+    <Content Include="Content\admin1\css\login.css" />
+    <Content Include="Content\admin1\datatables-bs4\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\admin1\datatables-bs4\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\admin1\datatables-bs4\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\admin1\datatables-bs4\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\admin1\datatables-responsive\css\responsive.bootstrap4.css" />
+    <Content Include="Content\admin1\datatables-responsive\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\admin1\datatables-responsive\js\dataTables.responsive.js" />
+    <Content Include="Content\admin1\datatables-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Content\admin1\datatables-responsive\js\responsive.bootstrap4.js" />
+    <Content Include="Content\admin1\datatables-responsive\js\responsive.bootstrap4.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ar-AR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ar-AR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ar-AR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-az-AZ.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-az-AZ.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-az-AZ.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-bg-BG.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-bg-BG.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-bg-BG.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ca-ES.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ca-ES.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ca-ES.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-cs-CZ.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-cs-CZ.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-cs-CZ.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-da-DK.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-da-DK.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-da-DK.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-de-DE.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-de-DE.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-de-DE.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-el-GR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-el-GR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-el-GR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-ES.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-ES.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-ES.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-EU.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-EU.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-es-EU.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fa-IR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fa-IR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fa-IR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fi-FI.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fi-FI.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fi-FI.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fr-FR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fr-FR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-fr-FR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-gl-ES.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-gl-ES.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-gl-ES.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-he-IL.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-he-IL.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-he-IL.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hr-HR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hr-HR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hr-HR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hu-HU.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hu-HU.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-hu-HU.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-id-ID.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-id-ID.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-id-ID.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-it-IT.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-it-IT.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-it-IT.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ja-JP.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ja-JP.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ja-JP.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ko-KR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ko-KR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ko-KR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LT.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LT.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LT.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LV.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LV.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-lt-LV.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-mn-MN.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-mn-MN.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-mn-MN.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nb-NO.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nb-NO.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nb-NO.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nl-NL.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nl-NL.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-nl-NL.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pl-PL.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pl-PL.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pl-PL.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-BR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-BR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-BR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-PT.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-PT.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-pt-PT.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ro-RO.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ro-RO.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ro-RO.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ru-RU.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ru-RU.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ru-RU.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sk-SK.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sk-SK.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sk-SK.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sl-SI.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sl-SI.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sl-SI.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS-Latin.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS-Latin.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS-Latin.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sr-RS.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sv-SE.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sv-SE.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-sv-SE.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ta-IN.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ta-IN.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-ta-IN.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-th-TH.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-th-TH.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-th-TH.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-tr-TR.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-tr-TR.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-tr-TR.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uk-UA.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uk-UA.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uk-UA.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uz-UZ.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uz-UZ.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-uz-UZ.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-vi-VN.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-vi-VN.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-vi-VN.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-CN.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-CN.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-CN.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-TW.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-TW.min.js" />
+    <Content Include="Content\admin1\summernote\lang\summernote-zh-TW.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\plugin\databasic\summernote-ext-databasic.css" />
+    <Content Include="Content\admin1\summernote\plugin\databasic\summernote-ext-databasic.js" />
+    <Content Include="Content\admin1\summernote\plugin\hello\summernote-ext-hello.js" />
+    <Content Include="Content\admin1\summernote\plugin\specialchars\summernote-ext-specialchars.js" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.css" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.js" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.min.css" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.min.js" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\summernote-lite.css" />
+    <Content Include="Content\admin1\summernote\summernote-lite.js" />
+    <Content Include="Content\admin1\summernote\summernote-lite.min.css" />
+    <Content Include="Content\admin1\summernote\summernote-lite.min.js" />
+    <Content Include="Content\admin1\summernote\summernote-lite.min.js.LICENSE.txt" />
+    <Content Include="Content\admin1\summernote\summernote.css" />
+    <Content Include="Content\admin1\summernote\summernote.js" />
+    <Content Include="Content\admin1\summernote\summernote.min.css" />
+    <Content Include="Content\admin1\summernote\summernote.min.js" />
+    <Content Include="Content\admin1\summernote\summernote.min.js.LICENSE.txt" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\admin\complex\chart.js\Chart.bundle.js" />
+    <Content Include="Content\admin\complex\chart.js\Chart.bundle.min.js" />
+    <Content Include="Content\admin\complex\chart.js\Chart.css" />
+    <Content Include="Content\admin\complex\chart.js\Chart.js" />
+    <Content Include="Content\admin\complex\chart.js\Chart.min.css" />
+    <Content Include="Content\admin\complex\chart.js\Chart.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\jquery.mapael.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\jquery.mapael.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\france_departments.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\france_departments.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\README.txt" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\usa_states.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\usa_states.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries_mercator.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries_mercator.min.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries_miller.js" />
+    <Content Include="Content\admin\complex\jquery-mapael\maps\world_countries_miller.min.js" />
+    <Content Include="Content\admin\complex\jquery-mousewheel\jquery.mousewheel.js" />
+    <Content Include="Content\admin\complex\jquery-mousewheel\LICENSE.txt" />
+    <Content Include="Content\admin\complex\jquery\core.js" />
+    <Content Include="Content\admin\complex\jquery\jquery.js" />
+    <Content Include="Content\admin\complex\jquery\jquery.min.js" />
+    <Content Include="Content\admin\complex\jquery\jquery.slim.js" />
+    <Content Include="Content\admin\complex\jquery\jquery.slim.min.js" />
+    <Content Include="Content\admin\complex\overlayScrollbars\css\OverlayScrollbars.css" />
+    <Content Include="Content\admin\complex\overlayScrollbars\css\OverlayScrollbars.min.css" />
+    <Content Include="Content\admin\complex\overlayScrollbars\js\jquery.overlayScrollbars.js" />
+    <Content Include="Content\admin\complex\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
+    <Content Include="Content\admin\complex\overlayScrollbars\js\OverlayScrollbars.js" />
+    <Content Include="Content\admin\complex\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <Content Include="Content\admin\complex\raphael\.eslintrc.js" />
+    <Content Include="Content\admin\complex\raphael\dev\banner.txt" />
+    <Content Include="Content\admin\complex\raphael\dev\raphael.amd.js" />
+    <Content Include="Content\admin\complex\raphael\dev\raphael.core.js" />
+    <Content Include="Content\admin\complex\raphael\dev\raphael.svg.js" />
+    <Content Include="Content\admin\complex\raphael\dev\raphael.vml.js" />
+    <Content Include="Content\admin\complex\raphael\dev\raphaelTest.html" />
+    <Content Include="Content\admin\complex\raphael\dev\test\index.html" />
+    <Content Include="Content\admin\complex\raphael\dev\test\svg\dom.js" />
+    <Content Include="Content\admin\complex\raphael\dev\test\vml\dom.js" />
+    <Content Include="Content\admin\complex\raphael\Gruntfile.js" />
+    <Content Include="Content\admin\complex\raphael\license.txt" />
+    <Content Include="Content\admin\complex\raphael\raphael.js" />
+    <Content Include="Content\admin\complex\raphael\raphael.min.js" />
+    <Content Include="Content\admin\complex\raphael\raphael.no-deps.js" />
+    <Content Include="Content\admin\complex\raphael\raphael.no-deps.min.js" />
+    <Content Include="Content\admin\complex\raphael\webpack.config.js" />
+    <Content Include="Content\admin\css\icons8-statue-of-liberty-50.png" />
+    <Content Include="Content\admin\css\login.css" />
+    <Content Include="Content\admin\dist\css\adminlte.css" />
+    <Content Include="Content\admin\dist\css\adminlte.min.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.components.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.components.min.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.core.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.core.min.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.extra-components.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.extra-components.min.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.pages.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.pages.min.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.plugins.css" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Content\admin\dist\img\AdminLTELogo.png" />
+    <Content Include="Content\admin\dist\img\avatar.png" />
+    <Content Include="Content\admin\dist\img\avatar04.png" />
+    <Content Include="Content\admin\dist\img\avatar2.png" />
+    <Content Include="Content\admin\dist\img\avatar3.png" />
+    <Content Include="Content\admin\dist\img\avatar5.png" />
+    <Content Include="Content\admin\dist\img\boxed-bg.jpg" />
+    <Content Include="Content\admin\dist\img\boxed-bg.png" />
+    <Content Include="Content\admin\dist\img\credit\american-express.png" />
+    <Content Include="Content\admin\dist\img\credit\cirrus.png" />
+    <Content Include="Content\admin\dist\img\credit\mastercard.png" />
+    <Content Include="Content\admin\dist\img\credit\mestro.png" />
+    <Content Include="Content\admin\dist\img\credit\paypal.png" />
+    <Content Include="Content\admin\dist\img\credit\paypal2.png" />
+    <Content Include="Content\admin\dist\img\credit\visa.png" />
+    <Content Include="Content\admin\dist\img\default-150x150.png" />
+    <Content Include="Content\admin\dist\img\icons.png" />
+    <Content Include="Content\admin\dist\img\logo.png" />
+    <Content Include="Content\admin\dist\img\Logoo.jpg" />
+    <Content Include="Content\admin\dist\img\person.jpg" />
+    <Content Include="Content\admin\dist\img\photo1.png" />
+    <Content Include="Content\admin\dist\img\photo2.png" />
+    <Content Include="Content\admin\dist\img\photo3.jpg" />
+    <Content Include="Content\admin\dist\img\photo4.jpg" />
+    <Content Include="Content\admin\dist\img\prod-1.jpg" />
+    <Content Include="Content\admin\dist\img\prod-2.jpg" />
+    <Content Include="Content\admin\dist\img\prod-3.jpg" />
+    <Content Include="Content\admin\dist\img\prod-4.jpg" />
+    <Content Include="Content\admin\dist\img\prod-5.jpg" />
+    <Content Include="Content\admin\dist\img\user1-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user2-160x160.jpg" />
+    <Content Include="Content\admin\dist\img\user3-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user4-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user5-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user6-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user7-128x128.jpg" />
+    <Content Include="Content\admin\dist\img\user8-128x128.jpg" />
+    <Content Include="Content\admin\dist\js\adminlte.js" />
+    <Content Include="Content\admin\dist\js\adminlte.min.js" />
+    <Content Include="Content\admin\dist\js\demo.js" />
+    <Content Include="Content\admin\dist\js\pages\dashboard.js" />
+    <Content Include="Content\admin\dist\js\pages\dashboard2.js" />
+    <Content Include="Content\admin\dist\js\pages\dashboard3.js" />
+    <Content Include="Content\admin\fontawesome-free\css\all.css" />
+    <Content Include="Content\admin\fontawesome-free\css\all.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\brands.css" />
+    <Content Include="Content\admin\fontawesome-free\css\brands.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\fontawesome.css" />
+    <Content Include="Content\admin\fontawesome-free\css\fontawesome.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\regular.css" />
+    <Content Include="Content\admin\fontawesome-free\css\regular.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\solid.css" />
+    <Content Include="Content\admin\fontawesome-free\css\solid.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\svg-with-js.css" />
+    <Content Include="Content\admin\fontawesome-free\css\svg-with-js.min.css" />
+    <Content Include="Content\admin\fontawesome-free\css\v4-shims.css" />
+    <Content Include="Content\admin\fontawesome-free\css\v4-shims.min.css" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Brand\Image\acer.png" />
+    <Content Include="Content\Brand\Image\asus.jpg" />
+    <Content Include="Content\Brand\Image\Dell.png" />
+    <Content Include="Content\Brand\Image\HP.png" />
+    <Content Include="Content\Brand\Image\lenovo.jpg" />
+    <Content Include="Content\Brand\Image\mac.png" />
+    <Content Include="Content\Brand\Image\msi.png" />
+    <Content Include="Content\client\css\bootstrap.min.css" />
+    <Content Include="Content\client\css\Family=muli.css" />
+    <Content Include="Content\client\css\family=open+san.css" />
+    <Content Include="Content\client\css\flag-icon.css" />
+    <Content Include="Content\client\css\flexslider.css" />
+    <Content Include="Content\client\css\font-awesome.min.css" />
+    <Content Include="Content\client\css\ion.rangeSlider.css" />
+    <Content Include="Content\client\css\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\client\css\jQuery.Brazzers-Carousel.css" />
+    <Content Include="Content\client\css\jquery.bxslider.css" />
+    <Content Include="Content\client\css\jquery.fancybox.css" />
+    <Content Include="Content\client\css\jquery.fancybox.min.css" />
+    <Content Include="Content\client\css\media.css" />
+    <Content Include="Content\client\css\style.css" />
+    <Content Include="Content\client\css\style_goi_y.css" />
+    <Content Include="Content\client\css\swiper.css" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\client\image\ico-service-1221b.png" />
+    <Content Include="Content\client\image\ico-service-2221b.png" />
+    <Content Include="Content\client\image\ico-service-3221b.png" />
+    <Content Include="Content\client\js\chosen.jquery.min.js" />
+    <Content Include="Content\client\js\fancybox\blank.gif" />
+    <Content Include="Content\client\js\fancybox\fancybox.js" />
+    <Content Include="Content\client\js\fancybox\fancybox_loading%402x.gif" />
+    <Content Include="Content\client\js\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\client\js\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\client\js\fancybox\fancybox_sprite%402x.png" />
+    <Content Include="Content\client\js\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\client\js\fancybox\helpers\fancybox_buttons.png" />
+    <Content Include="Content\client\js\fancybox\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\client\js\fancybox\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\client\js\fancybox\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\client\js\fancybox\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\client\js\fancybox\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\client\js\gmap.js" />
+    <Content Include="Content\client\js\ion.rangeSlider.min.js" />
+    <Content Include="Content\client\js\jquery-1.11.2.min.js" />
+    <Content Include="Content\client\js\jQuery.Brazzers-Carousel.js" />
+    <Content Include="Content\client\js\jquery.bxslider.min.js" />
+    <Content Include="Content\client\js\jquery.fancybox.min.js" />
+    <Content Include="Content\client\js\jquery.flexslider-min.js" />
+    <Content Include="Content\client\js\jquery.waypoints.min.js" />
+    <Content Include="Content\client\js\main.js" />
+    <Content Include="Content\client\js\plugins.js" />
+    <Content Include="Content\client\js\progressbar.min.js" />
+    <Content Include="Content\client\js\swiper.jquery.min.js" />
+    <Content Include="Content\client\top.png" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\datepicker.css" />
+    <Content Include="Content\css\elegant-icons.css" />
+    <Content Include="Content\css\flag-1.jpg" />
+    <Content Include="Content\css\flag-2.jpg" />
+    <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\jquery-ui.min.css" />
+    <Content Include="Content\css\mystyle.css" />
+    <Content Include="Content\css\nice-select.css" />
+    <Content Include="Content\css\owl.carousel.min.css" />
+    <Content Include="Content\css\slicknav.min.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\style_menu.css" />
+    <Content Include="Content\css\style_xemp.css" />
+    <Content Include="Content\css\themify-icons.css" />
+    <Content Include="Content\image\09_Dec190cdd16734a1a7230c91ba376f0f270.png" />
+    <Content Include="Content\image\12_Jan025c099a6aeb3480835c70cdf07b58f1.png" />
+    <Content Include="Content\image\31_Oct03b9eebfffecffd0c0e2fd7739963c11.jpg" />
+    <Content Include="Content\image\chip.jpg" />
+    <Content Include="Content\image\LogoLap.png" />
+    <Content Include="Content\image\mắt.png" />
+    <Content Include="Content\image\neen.jpg" />
+    <Content Include="Content\image\nềnwellcome.png" />
+    <Content Include="Content\News\Image\doanh-thu-quy-2-microsoft-hinh1_800x450-300x200.jpg" />
+    <Content Include="Content\News\Image\ezgif.com-gif-maker8_800x450-300x200.jpg" />
+    <Content Include="Content\News\Image\mondocongnghekhongthethieu8_1200x675-300x200.jpg" />
+    <Content Include="Content\Product\Image\09_Dec190cdd16734a1a7230c91ba376f0f270.png" />
+    <Content Include="Content\Product\Image\12_Jan025c099a6aeb3480835c70cdf07b58f1.png" />
+    <Content Include="Content\Product\Image\31_Oct03b9eebfffecffd0c0e2fd7739963c11.jpg" />
+    <Content Include="Content\Product\Image\5437_lenovo_thinkpad_x1_carbon_gen_7_20r10010us.jpg" />
+    <Content Include="Content\Product\Image\asus_tuf_1.jpg" />
+    <Content Include="Content\Product\Image\asus_tuf_a15_fa506ii_al016t.png" />
+    <Content Include="Content\Product\Image\dellxsp9500.png" />
+    <Content Include="Content\Product\Image\dell_g5_15_5500_1_2.jpg" />
+    <Content Include="Content\Product\Image\dell_gaming_g7_7500_g7500a_0.jpg" />
+    <Content Include="Content\Product\Image\dell_inspiron_13_5391_70197461__3_.png" />
+    <Content Include="Content\Product\Image\dell_inspiron_7559_i7.png" />
+    <Content Include="Content\Product\Image\dell_precision_5530.png" />
+    <Content Include="Content\Product\Image\dell_precision_5750.jpg" />
+    <Content Include="Content\Product\Image\dell_vostro_5402_gray.png" />
+    <Content Include="Content\Product\Image\dell_vostro_v5502a_gray_4.jpg" />
+    <Content Include="Content\Product\Image\dell_xps_13_9300_11.jpg" />
+    <Content Include="Content\Product\Image\dell_xps_15_9500_70221010.jpg" />
+    <Content Include="Content\Product\Image\dell_xps_9700_5.jpg" />
+    <Content Include="Content\Product\Image\g3_15_3500.png" />
+    <Content Include="Content\Product\Image\g3_3590.jpg" />
+    <Content Include="Content\Product\Image\HP.png" />
+    <Content Include="Content\Product\Image\hp_14.png" />
+    <Content Include="Content\Product\Image\hp_envy_13.jpg" />
+    <Content Include="Content\Product\Image\hp_envy_13_ba1028tu_2k0b2pa_3.jpg" />
+    <Content Include="Content\Product\Image\hp_omen_15.png" />
+    <Content Include="Content\Product\Image\hp_zbook_15_g6_2.jpg" />
+    <Content Include="Content\Product\Image\hp_zbook_firefly_14_g7_8vk70av_5.jpg" />
+    <Content Include="Content\Product\Image\lenovo_thinkpad_t14_g1_20s1sa0f00.png" />
+    <Content Include="Content\Product\Image\macbook_air_13_inch_2020___space_grey_2.jpg" />
+    <Content Include="Content\Product\Image\mac_air.png" />
+    <Content Include="Content\Product\Image\mac_pro.png" />
+    <Content Include="Content\Product\Image\mbp_2020_m1_gray_2.png" />
+    <Content Include="Content\Product\Image\msi_bravo.jpg" />
+    <Content Include="Content\Product\Image\msi_gf63.jpg" />
+    <Content Include="Content\Product\Image\msi_modern_1.png" />
+    <Content Include="Content\Product\Image\nitro_5_2020__4_.png" />
+    <Content Include="Content\Product\Image\pavilon_15.jpg" />
+    <Content Include="Content\Product\Image\pro_poster_5325__1_.jpg" />
+    <Content Include="Content\Product\Image\zenbook____nh_n___i_b___t.png" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\themify-icons.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\admin1\summernote\font\summernote.eot" />
+    <Content Include="Content\admin1\summernote\font\summernote.ttf" />
+    <Content Include="Content\admin1\summernote\font\summernote.woff" />
+    <Content Include="Content\admin1\summernote\font\summernote.woff2" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.js.map" />
+    <Content Include="Content\admin1\summernote\summernote-bs4.min.js.map" />
+    <Content Include="Content\admin1\summernote\summernote-lite.js.map" />
+    <Content Include="Content\admin1\summernote\summernote-lite.min.js.map" />
+    <Content Include="Content\admin1\summernote\summernote.js.map" />
+    <Content Include="Content\admin1\summernote\summernote.min.js.map" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.js.map" />
+    <Content Include="Content\admin\complex\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="Content\admin\complex\jquery\jquery.min.map" />
+    <Content Include="Content\admin\complex\jquery\jquery.slim.min.map" />
+    <Content Include="Content\admin\complex\raphael\bower.json" />
+    <Content Include="Content\admin\dist\css\adminlte.css.map" />
+    <Content Include="Content\admin\dist\css\adminlte.min.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.components.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.components.min.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.core.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.core.min.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.extra-components.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.extra-components.min.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.pages.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.pages.min.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.plugins.css.map" />
+    <Content Include="Content\admin\dist\css\alt\adminlte.plugins.min.css.map" />
+    <Content Include="Content\admin\dist\js\adminlte.js.map" />
+    <Content Include="Content\admin\dist\js\adminlte.min.js.map" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\admin\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\client\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\client\fonts\FontAwesome.otf" />
+    <Content Include="Content\client\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\client\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\client\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\client\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Models\laptop.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>laptop.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\laptop.dbml.layout">
+      <DependentUpon>laptop.dbml</DependentUpon>
+    </None>
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\chart.js" />
+    <Content Include="Scripts\dataTables.bootstrap4.min.js" />
+    <Content Include="Scripts\datatables.css" />
+    <Content Include="Scripts\datatables.js" />
+    <Content Include="Scripts\datatables.min.css" />
+    <Content Include="Scripts\datatables.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.flexslider.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\poper.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\bill\Bill_Detail.cshtml" />
+    <Content Include="Views\bill\Edit.cshtml" />
+    <Content Include="Views\bill\Index.cshtml" />
+    <Content Include="Views\brand\Create.cshtml" />
+    <Content Include="Views\brand\Edit.cshtml" />
+    <Content Include="Views\brand\Edit_cre.cshtml" />
+    <Content Include="Views\brand\Index.cshtml" />
+    <Content Include="Views\color\Edit.cshtml" />
+    <Content Include="Views\color\Index.cshtml" />
+    <Content Include="Views\customert\Edit.cshtml" />
+    <Content Include="Views\customert\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\layout.cshtml" />
+    <Content Include="Views\loginAdmin\Index.cshtml" />
+    <Content Include="Views\loginAdmin\login.cshtml" />
+    <Content Include="Views\newImage\Image.cshtml" />
+    <Content Include="Views\New\Create.cshtml" />
+    <Content Include="Views\New\Edit.cshtml" />
+    <Content Include="Views\New\Edit_cre.cshtml" />
+    <Content Include="Views\New\Index.cshtml" />
+    <Content Include="Views\productColor\Color.cshtml" />
+    <Content Include="Views\productImage\Image.cshtml" />
+    <Content Include="Views\product\Create.cshtml" />
+    <Content Include="Views\product\Edit.cshtml" />
+    <Content Include="Views\product\Edit_cre.cshtml" />
+    <Content Include="Views\product\Index.cshtml" />
+    <Content Include="Views\slide\Create.cshtml" />
+    <Content Include="Views\slide\Edit.cshtml" />
+    <Content Include="Views\slide\Edit_cre.cshtml" />
+    <Content Include="Views\slide\Index.cshtml" />
+    <Content Include="Views\_clientBill\Bill.cshtml" />
+    <Content Include="Views\_clientBill\Bill_cus.cshtml" />
+    <Content Include="Views\_clientBill\Bill_Detail.cshtml" />
+    <Content Include="Views\_clientBill\Buy.cshtml" />
+    <Content Include="Views\_clientBill\Confirm.cshtml" />
+    <Content Include="Views\_clientBill\pay.cshtml" />
+    <Content Include="Views\_clientCart\Add_To_Card.cshtml" />
+    <Content Include="Views\_clientCart\Bill.cshtml" />
+    <Content Include="Views\_clientCart\Buy.cshtml" />
+    <Content Include="Views\_clientCart\Delete.cshtml" />
+    <Content Include="Views\_clientCart\Index.cshtml" />
+    <Content Include="Views\_clientCart\pay.cshtml" />
+    <Content Include="Views\_clientCart\Update.cshtml" />
+    <Content Include="Views\_clientCart\Updatet.cshtml" />
+    <Content Include="Views\_clientCustomer\AccountDetail.cshtml" />
+    <Content Include="Views\_clientCustomer\AccountEdit.cshtml" />
+    <Content Include="Views\_clientCustomer\DoiMK.cshtml" />
+    <Content Include="Views\_clientCustomer\notification.cshtml" />
+    <Content Include="Views\_clientFavoriteList\Add.cshtml" />
+    <Content Include="Views\_clientFavoriteList\Delete.cshtml" />
+    <Content Include="Views\_clientFavoriteList\Index.cshtml" />
+    <Content Include="Views\_clientLogin\Index.cshtml" />
+    <Content Include="Views\_clientLogin\notification.cshtml" />
+    <Content Include="Views\_clientLogin\register.cshtml" />
+    <Content Include="Views\_clientNew\Index.cshtml" />
+    <Content Include="Views\_clientNew\NewDetail.cshtml" />
+    <Content Include="Views\_clientProductDetail\brand.cshtml" />
+    <Content Include="Views\_clientProductDetail\Dell.cshtml" />
+    <Content Include="Views\_clientProductDetail\Index.cshtml" />
+    <Content Include="Views\_clientProductDetail\phanloai.cshtml" />
+    <Content Include="Views\_clientProductDetail\product.cshtml" />
+    <Content Include="Views\_clientProductDetail\loctheogia.cshtml" />
+    <Content Include="Views\_clientProductDetail\brandloctheogia.cshtml" />
+    <Content Include="Views\_clientProductDetail\phanloailoctheogia.cshtml" />
+    <Content Include="Views\_clientProductDetail\productloctheogia.cshtml" />
+    <Content Include="Views\_clientBill\rate.cshtml" />
+    <Content Include="Views\Shared\_Admin.cshtml" />
+    <Content Include="Views\Home\Statistical.cshtml" />
+    <Content Include="Views\Home\Statistical_month.cshtml" />
+    <Content Include="Views\Shared\_Client.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\admin\image\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>55608</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44340/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

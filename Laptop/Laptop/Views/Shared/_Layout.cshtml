@@ -1,0 +1,82 @@
+﻿
+<!doctype html>
+<html lang="en">
+<!--
+
+Page    : index / MobApp
+Version : 1.0
+Author  : Colorlib
+URI     : https://colorlib.com
+
+ -->
+
+<head>
+    <title>Tiến Thế - Cửa hàng buôn bán Laptop uy tín</title>
+
+    <link rel="shortcut icon" type="image/png" href="~/Content/image/LogoLap.png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Mobland - Mobile App Landing Page Template">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Themify Icons -->
+    <link href="~/Content/themify-icons.css" rel="stylesheet" />
+    <!-- Owl carousel -->
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <!-- Main css -->
+</head>
+<body data-spy="scroll" data-target="#navbar" data-offset="30" style="background-image:url(/Content/image/neen.jpg); background-repeat:no-repeat ; background-size:100%">
+
+    <!-- Nav Menu -->
+
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    @*<nav class="navbar navbar-dark navbar-expand-lg">
+                            <a class="navbar-brand" href="index.html"><img src="images/logo.png" class="img-fluid" alt="logo"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                            <div class="collapse navbar-collapse" id="navbar">
+                                <ul class="navbar-nav ml-auto">
+                                    <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="#features">FEATURES</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="#pricing">PRICING</a> </li>
+                                    <li class="nav-item"> <a class="nav-link" href="#contact">CONTACT</a> </li>
+                                    <li class="nav-item"><a href="#" class="btn btn-outline-light my-3 my-sm-0 ml-lg-3">Download</a></li>
+                                </ul>
+                            </div>
+                        </nav>*@
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5" style="margin-top:8%">
+            <h1 style="text-align:center; width:100%; color:white; font-family:Butterfly ; opacity:0.8 ;font-size:120px">Laptoptheky.somee.com<br /></h1>
+            <h4 class="tagline" style="text-align:center;font-family:Butterfly;width:100%;opacity:0.9; color:red; font-size:70px">Welcome to laptop Thế Kỷ</h4>
+        </div>
+        <div class="img-holder mt-3">
+            <div class="container mt-5" style="text-align:center" >
+                @*@Html.ActionLink("Admin", "Index", "loginAdmin")
+                @Html.ActionLink("Client", "Index", "loginAdmin")*@
+                <div class="container">
+                    <a href="/loginAdmin/Index" style="color:snow; opacity:0.8 ;font-size:40px; margin-right:100px">Admin</a>
+                    <a href="/Home/Index" style="color:snow ;opacity:0.8;font-size:40px">Client</a>
+                </div>
+                
+            </div>
+            @*@Html.ActionLink("loginAdmin", "Index", "loginAdmin")*@
+            @*<img src="~/Content/image/IMG_20200912_091901.jpg" />*@ @RenderBody()
+        </div>
+    </header>
+</body>
+</html>

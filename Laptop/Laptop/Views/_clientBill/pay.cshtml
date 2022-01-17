@@ -1,0 +1,119 @@
+﻿
+@{
+    ViewBag.Title = "pay";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+<div class="container">
+    @if (Session["ID_cus"] == null)
+    {
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center"><b style="font-size:35px;color:red">Bạn cần đăng nhập để mua hàng!</b></div><br /><br />
+        </div>
+    }
+    else
+    {
+<form action="/_clientBill/Bill" method="post">
+    <div class="row" style="font-size:35px;height:70px">
+        <b style="">Thông tin khách hàng</b><br />
+    </div>
+    <div style="font-size:17px">
+        <div class="row" style="height:35px">
+            <div class="col-2">
+                <b>Tên khách hàng:</b>
+            </div>
+            <div class="col">
+                @Session["Name"]
+            </div>
+        </div>
+        <div class="row" style="height:35px">
+            <div class="col-2">
+                <b>Email:</b>
+            </div>
+            <div class="col">
+                @Session["email"]
+            </div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-2">
+                <b>Số điện thoại: </b>
+            </div>
+            <div class="col">
+                @Session["sdt"]
+            </div>
+        </div>
+        <div class="row" style="height:40px">
+            <div class="col-2">
+                <b>Địa chỉ nhận hàng:</b>
+            </div>
+            <div class="col">
+                @Session["add"]
+
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row" style="height:100px">
+        <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+            <br /> Ảnh sản phẩm
+        </div>
+        <div class="col-4" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+            <br />Tên sản phẩm
+        </div>
+        <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+            <br /> Màu sắc
+        </div>
+        <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue;">
+            <br /> Số lượng
+        </div>
+        <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+            <br /> Đơn giá
+        </div>
+
+    </div>
+
+    <div class="row" style="height:110px">
+        <div class="col-2" style="text-align:center; font-size:20px;border-left:1px solid white;background-color:aliceblue ">
+            <img src="@Session["image"]" alt="Lỗi ảnh" style="height:110px;width:110px" />
+        </div>
+        <div class="col-4" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+            <br /> @Session["Pro_name"]
+        </div>
+        <div class="col-2" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+            <br />@foreach (var item in @ViewBag.color)
+            {
+                @item.Pro_Color
+            }
+        </div>
+        <div class="col-2" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+            <br />@Session["quan"]
+        </div>
+        <div class="col-2" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+            <br /> @string.Format("{0:#,##0}", @Session["price"])đ
+        </div>
+    </div>
+    <br />
+    @*<div class="row">
+        <input type="checkbox" />Thanh toán tiền mặt
+        <input type="checkbox" value="" /> Chuyển khoản
+    </div>*@
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-2" style="text-align:center; font-size:23px">
+            <b>Tổng tiền</b>
+        </div>
+        <div class="col-2" style="text-align:center; font-size:23px">
+            @{
+                int a = 0;
+                a = Convert.ToInt32(Session["quan"]) * Convert.ToInt32(Session["price"]);
+            }
+            <b>@string.Format("{0:#,##0}", @a)đ</b>
+        </div>
+        <div class="col-2" style="font-size:20px;text-align:center">
+            <input type="submit" onclick="alert('Mua hàng thành công')" style="color:white;background-color:orange;
+                border:5px solid orange;border-radius:10px" value="Mua hàng" />
+        </div>
+    </div>
+</form>
+     }
+</div>

@@ -1,0 +1,679 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Tiến Thế - Cửa hàng buôn bán Laptop uy tín</title>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+
+    <link href="~/Content/admin/dist/css/adminlte.min.css" rel="stylesheet" />
+    <link href="~/Content/admin/fontawesome-free/css/all.min.css" rel="stylesheet" />
+
+    @*add*@
+    <link href="~/Content/admin1/css/layout.css" rel="stylesheet" />
+    <link href="~/Content/admin1/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Content/admin1/datatables-responsive/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/admin1/datatables-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="image/png" href="~/Content/image/LogoLap.png" />
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Navbar -->
+        @*@include('admin.layout.menu')*@
+        @*menu*@
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/Home/Statistical" class="nav-link">Trang chủ</a>
+                </li>
+                @*
+                    <li class="nav-item d-none d-sm-inline-block">
+                        <a href="#" class="nav-link">Liên hệ</a>
+                    </li>*@
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="/loginAdmin/login" class="nav-link">Đăng xuất</a>
+                </li>
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Tìm kiếm" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-comments"></i>
+                        <span class="badge badge-danger navbar-badge">0</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <a href="#" class="dropdown-item">
+                            @*<!-- Message Start -->
+                                <div class="media">
+                                    <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Brad Diesel
+                                            <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">Call me whenever you can...</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->*@
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            @*<!-- Message Start -->
+                                <div class="media">
+                                    <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            John Pierce
+                                            <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">I got your message bro</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->*@
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            @*<!-- Message Start -->
+                                <div class="media">
+                                    <img src="" alt="User Avatar" class="img-size-50 img-circle mr-3">
+                                    <div class="media-body">
+                                        <h3 class="dropdown-item-title">
+                                            Nora Silvester
+                                            <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
+                                        </h3>
+                                        <p class="text-sm">The subject goes here</p>
+                                        <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
+                                    </div>
+                                </div>
+                                <!-- Message End -->*@
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </div>
+                </li>
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">0</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-item dropdown-header">15 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 4 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 8 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+                        <i class="fas fa-th-large"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #143446">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="~/Content/image/LogoLap.png" class="brand-image img-circle elevation-3" style="opacity: .8" />
+                <span class="brand-text font-weight-light" align="center">Laptop Tiến Thế</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/Content/image/LogoLap.png" class="img-circle elevation-2" alt="User Image" />
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@Session["name"]</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                        with font-awesome or any other icon font library -->
+                        <li class="nav-header">TRADING</li>
+                        <li class="nav-item has-treeview">
+                            @*<li class="nav-item has-treeview menu-open">*@
+                            <a href="~/Home/Statistical" class="nav-link">
+                                @*<a href="~/test/Index" class="nav-link active">*@
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Thống kê
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Sản phẩm
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/product/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm sản phẩm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/product/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý sản phẩm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/productImage/Image " class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hình ảnh</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/productColor/Color" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Màu sắc</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Khách hàng
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                @*<li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Thêm tài khoản khách</p>
+                                        </a>
+                                    </li>*@
+                                <li class="nav-item">
+                                    <a href="/customert/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý khách hàng</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>
+                                    Hãng
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="~/brand/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm hãng</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="~/brand/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý hãng</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-copy"></i>
+                                <p>
+                                    Slide
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/slide/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm slide</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/slide/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý slide</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/bill/Index" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Hóa đơn
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="/color/Index" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>
+                                    Màu sắc
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-calendar-alt"></i>
+                                <p>
+                                    Tin tức
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/new/Create" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Thêm tin</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/new/Index" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Quản lý tin</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/newImage/Image" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Hình ảnh</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        @*<li class="nav-header">ACCOUNT AND SOURCES</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-calendar-alt"></i>
+                                    <p>
+                                        a
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        a
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p></p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p></p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-header">SOCIAL</li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon far fa-envelope"></i>
+                                    <p>
+                                        a
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>
+                                        a
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>
+                                        a
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="nav-header">APPEARANCE</li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-file"></i>
+                                    <p>a</p>
+                                </a>
+                            </li>
+                            <li class="nav-item has-treeview">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-book"></i>
+                                    <p>
+                                        a
+                                        <i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>a</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>*@
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+        @*end menu*@
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @*@yield('content')*@
+            @RenderBody()
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        @*@include('admin.layout.footer')*@
+    </div>
+    @*<script src="~/Content/admin/complex/jquery/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>*@
+    <script src="~/Scripts/poper.min.js"></script>
+    <script src="~/Scripts/datatables.min.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap4.min.js"></script>
+    @*
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>*@
+    <script>
+        @*$(document).ready(function () {
+            $('#example').DataTable();
+        });*@
+        $(document).ready(function () {
+            $('#example').DataTable({
+                "language": {
+                    "lengthMenu": "Hiển thị _MENU_ bản ghi 1 trang",
+                    "zeroRecords": "Không tìm thấy bản ghi",
+                    "info": "Trang _PAGE_ trên _PAGES_",
+                    "infoEmpty": "Không có bản ghi nào có sẵn",
+                    "infoFiltered": "(Được lọc từ tổng số _MAX_ bản ghi)",
+                    "search": "Tìm kiếm:",
+                    "paginate": {
+                        "first": "Đầu",
+                        "last": "Cuối",
+                        "next": "Sau",
+                        "previous": "Trước"
+                    },
+                },
+                "lengthMenu": [[5, 10, 15, -1], [5,10,15, "All"]]
+            });
+        });
+    </script>
+    <script src="~/Content/admin/complex/bootstrap/js/bootstrap.bundle.min.js"></script>
+    @*<script src="~/Content/admin/complex/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>*@
+    <script src="~/Content/admin/dist/js/adminlte.js"></script>
+    <script src="~/Content/admin/dist/js/demo.js"></script>
+
+    @*<script src="~/Content/admin/complex/jquery-mousewheel/jquery.mousewheel.js"></script>
+        <script src="~/Content/admin/complex/raphael/raphael.min.js"></script>
+        <script src="~/Content/admin/complex/jquery-mapael/jquery.mapael.min.js"></script>
+        <script src="~/Content/admin/complex/jquery-mapael/maps/usa_states.min.js"></script>*@
+    <script src="~/Content/admin/complex/chart.js/Chart.min.js"></script>
+    <script src="~/Content/admin/dist/js/pages/dashboard3.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#changepassword").change(function () {
+                if ($(this).is(":checked")) {
+                    $(".password").removeAttr('disabled');
+                } else {
+                    $(".password").attr('disabled', '');
+                }
+            });
+        });
+    </script>
+    @*thống kê*@
+    <script>
+        $(document).ready(function () {
+            CallAjax();
+        });
+        $('#LastYearBtn').click(function () {
+            var LastYear = (parseInt($('#Year').val()) - 1).toString();
+            $('#Year').val(LastYear);
+            CallAjax();
+        })
+        function renderChart(data1, data2, Year, LastYear) {
+            var label1 = "Tổng bill năm " + Year;
+            var label2 = "Tổng bill năm " + LastYear;
+            debugger;
+            let myChart = $('#sales')[0].getContext('2d');
+            // Global Options
+            Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 14;
+            Chart.defaults.global.defaultFontColor = 'black';
+            let massPopChart = new Chart(myChart, {
+                type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+                data: {
+                    labels: ['Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6', 'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'],
+                    datasets: [{
+                        label: label1,
+                        data: data1,
+                        backgroundColor: 'green',
+                        backgroundColor: [
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)',
+                            'rgba(0, 0, 255, 0.7)'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#777',
+                        hoverBorderWidth: 1,
+                        hoverBorderColor: '#000'
+                    }, {
+                        label: label2,
+                        data: data2,
+                        //backgroundColor:'green',
+                        backgroundColor: [
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)',
+                            'rgba(100, 100, 100, 0.7)'
+                        ],
+                        borderWidth: 1,
+                        borderColor: '#777',
+                        hoverBorderWidth: 1,
+                        hoverBorderColor: '#000'
+                    }],
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'Thống kê bán hàng',
+                        fontSize: 35
+                    },
+                    legend: {
+                        display: true,
+                        position: 'right',
+                        labels: {
+                            fontColor: '#000'
+                        }
+                    },
+                    layout: {
+                        padding: {
+                            left: 50,
+                            right: 0,
+                            bottom: 0,
+                            top: 0
+                        }
+                    },
+                    tooltips: {
+                        enabled: true
+                    }
+                }
+            });
+        }
+        function CallAjax() {
+            var Year = $('#Year').val();
+            var LastYear = (parseInt(Year) - 1).toString();
+            $.ajax({
+                url: $('#UrlChart').val(),
+                type: 'GET',
+                data: {
+                    year: parseInt(Year)
+                },
+                dataType: 'json',
+                success: function (data1) {
+                    $.ajax({
+                        url: $('#UrlChart').val(),
+                        type: 'GET',
+                        data: {
+                            year: parseInt(LastYear)
+                        },
+                        dataType: 'json',
+                        success: function (data2) {
+                            renderChart(data1, data2, Year, LastYear);
+                        }
+                    });
+                }
+            });
+
+        }
+
+
+
+    </script>
+</body>
+</html>

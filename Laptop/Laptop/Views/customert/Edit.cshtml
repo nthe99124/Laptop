@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Form sửa thông tin khách hàng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="card-body pad">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align:center; width:100%">Form sửa thông tin khách hàng</h3>
+                </div>
+                <form role="form" method="post" action="/customert/Edit/@Model.ID"
+                      enctype="multipart/form-data">
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Password</th>
+                                    <th>Tên</th>
+                                    <th>Giới tính</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Ghi chú</th>
+                                    <th>Trạng thái</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="odd gradeX" align="center">
+                                    <td>@Model.ID</td>
+                                    <td>@Model.Email</td>
+                                    <td>@Model.Password</td>
+                                    <td>@Model.Name</td>
+                                    <td>@Model.Gender</td>
+                                    <td>@Model.Address</td>
+                                    <td>@Model.Phone_Number</td>
+                                    <td>
+                                        <textarea type="text" class="form-control" placeholder="Điền ghi chú"
+                                                  name="note" @*value="@Model.Note"*@>@Model.Note</textarea>
+                                    </td>
+                                    <td>
+                                        @*<input required="" type="text" name="sta" list="dl1" value="@Model.Status">*@
+                                        @{ if (@Model.Status == "Active")
+                                            {
+                                                <select name="sta">
+                                                    <option value="Active">Active</option>
+                                                    <option value="Lock">Lock</option>
+                                                </select>
+                                            }
+                                            else
+                                            {
+                                                <select name="sta">
+                                                    <option value="Lock">Lock</option>
+                                                    <option value="Active">Active</option>                                                    
+                                                </select>
+                                            }
+                                        }
+
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Sửa</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+

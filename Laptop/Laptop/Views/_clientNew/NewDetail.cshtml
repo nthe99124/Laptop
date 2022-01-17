@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<link href="~/Content/client/css/style_goi_y.css" rel="stylesheet" />
+<style>
+    #img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+    }
+
+        #img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+</style>
+<div style="margin-bottom:50px;text-align:center">
+    <a href="Index" style="font-size: 35px;text-align:center; font-weight: bolder">Tin tức: </a>
+    @foreach (var item in Model)
+    {
+        <r style="font-size: 30px;text-align:center; font-weight: bolder; color: black">@item.Title!</r>
+    }
+</div>
+<hr />
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="row" style="text-align:center">
+            <a style="margin-left:14%;margin-bottom:30px;margin-top:30px"><img src="@item.Image" width="800" height="500" alt="Lỗi ảnh"/></a>
+        </div>
+        <div class="row">
+            @{
+                string myEncodedString = HttpUtility.HtmlEncode(@item.Content);
+            }
+            <a style="font-size: 20px; color:black">@Html.Raw(HttpUtility.HtmlDecode(@item.Content))</a>
+        </div>
+    </div>
+}
+<div class="home-blog">
+    <h2 class="title"> <span style="font-size:35px">Xem thêm</span></h2>
+    <div class="row" style="text-align:center">
+        @foreach (var item in ViewBag.n)
+        {
+            <div class="col-4" style="text-align:center">
+                <!-- new item -->
+                <div class="item" style="text-align:center">
+                    <div class="article">
+                        <a href="/_clientNew/NewDetail?key=@item.ID" id="image">
+                            <img src="@item.Image" style="height:200px;margin-left:10%" alt="@item.Title" title="@item.Title" class="img-responsive" id="img">
+                        </a>
+                        <div class="info">
+                            <h3><a class="text3line" href="/_clientNew/NewDetail?key=@item.ID" style="font-weight: bold;">@item.Title</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /news item -->
+        }
+    </div>
+</div>
+

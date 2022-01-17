@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "notification";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<div style="margin-bottom:50px; text-align:center">
+    <r style="font-size: 30px; font-weight: bolder; color: red">
+        Đăng ký thành công tài khoản<br />
+        @foreach (var item in Model)
+        {
+            <r style=" color: darkturquoise">@item.Email</r><br />
+        }
+    </r>
+</div>
+<hr />
+<div style="margin-bottom:20px; text-align:center">
+    <r style="font-size: 25px; font-weight: bolder; color: black">
+        Thông tin tài khoản!
+    </r>
+</div>
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-6" style="">
+            <div class="row">
+                <div class="col-5">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Họ và tên: </a> <r style="font-size:17px;">@item.Name</r>
+                </div>
+            </div><br /><br />
+            @*<div class="row">
+                <div class="col-5">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Giới tính: </a> <r style="font-size:17px;">@item.Gender</r>
+                </div>
+            </div><br /><br />*@
+            <div class="row">
+                <div class="col-5">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Địa chỉ: </a> <r style="font-size:17px;">@item.Address</r>
+                </div>
+            </div>
+        </div>
+        <div class="col-6" style="">
+            <div class="row">
+                <div class="col-2">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Số điện thoại: </a> <r style="font-size:17px;">@item.Phone_Number</r>
+                </div>
+            </div><br /><br />
+            <div class="row">
+                <div class="col-2">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Email: </a> <r style="font-size:17px;">@item.Email</r>
+                </div>
+            </div><br /><br />
+            @*<div class="row">
+                <div class="col-2">
+
+                </div>
+                <div class="col">
+                    <a style="font-size:20px;font-weight:bold">Mật khẩu: </a> <r style="font-size:17px;">@item.Password</r>
+                </div>
+            </div>*@
+        </div>
+    </div>
+    <hr />
+    <div class="row" style="text-align:center;font-size:20px">
+        <div class="col">
+            <a href="/_clientLogin/Index">===>Đăng nhập ngay<===</a>
+        </div>
+    </div>
+}

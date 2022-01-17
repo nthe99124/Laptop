@@ -1,0 +1,18 @@
+﻿.slider {
+    background: red;
+    color: white;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    overflow-x: auto;
+}
+
+.slide {
+    width: 300px;
+    flex-shrink: 0;
+    height: 100%;
+}
+.slider {
+    ... -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+}

@@ -1,0 +1,202 @@
+﻿@model IPagedList<Laptop.Models.Product_Image>
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Hình ảnh</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Hình ảnh</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<br>
+<div class="row">
+    <div class="col-1">
+
+    </div>
+    <div class="col-4">
+        <div>
+            <br />
+            <br />
+            <br />
+        </div>
+        <div class="card card-primary" style="margin-top: 10px">
+            <div class="card-header">
+                <h3 class="card-title" style="text-align:center; width:100%">Form thêm hình ảnh</h3>
+            </div>
+            <form method="post" action="/productImage/Image">
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr align="center">
+                                <th>ID Product</th>
+                                <th>Hình ảnh</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr class="odd gradeX" align="center">
+                                <td>
+                                    @*
+                                        <input type="text" class="form-control" placeholder="Điền tên hình ảnh" name="Mau">*@
+                                    <input required="" type="text" name="ID_SP" list="dl">
+                                    <datalist id="dl">
+                                        @foreach (var item in ViewBag.product)
+                                        {
+                                            <option value="@item.ID">@item.Name</option>
+                                        }
+                                    </datalist>
+                                </td>
+                                <td>
+                                    <input required="" type="text" class="form-control" placeholder="Điền link ảnh" name="Anh">
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-primary">Thêm</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <b style="color:red; text-align:center">@ViewBag.test</b>
+        </div>
+        <div>
+            <br />
+            <br />
+        </div>
+        <div class="card card-primary" style="">
+            <div class="card-header" style="background-color:sandybrown">
+                <h3 class="card-title" style=" text-align:center; width:100%">Thông tin 3 hình ảnh được thêm gần nhất</h3>
+            </div>
+            <div class="card-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr align="center">
+                            <th>ID Product</th>
+                            <th>Hình ảnh</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.image)
+                        {
+                            <tr class="odd gradeX" align="center">
+                                <td>@item.ID_Product<br />
+                                    (@item.Name)</td>
+                                <td><img style="width:70px; height:70px" src="@item.Image" /></td>
+                                <td>
+                                    @Html.ActionLink("Xóa", "Delete_img", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-1">
+
+    </div>
+    <div class="col-5">
+        @*<form class="form-inline ml-3" method="post" action="/productImage/Search">
+            <div class="container h-100">
+                <div class="d-flex justify-content-center h-100">
+                    <div class="searchbar">
+                        <input required="" type="text" name="key" list="dl" placeholder="Tìm kiếm">
+                        <datalist id="dl">
+                            @foreach (var item in ViewBag.product)
+                            {
+                                <option value="@item.ID">@item.Name </option>
+                            }
+                        </datalist>
+                        <button type="submit" class="btn btn-primary" style="background-color:white; border-color:white; color:blue">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>*@
+        <br />
+        <section class="content">
+            <div class="card-body pad">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title" style="text-align:center; width:100%">Bảng hình ảnh</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <table id="example" class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr align="center">
+                                            <th>ID Product</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in ViewBag.img)
+                                        {
+                                            <tr class="odd gradeX" align="center">
+                                                <td>@item.ID_Product<br />
+                                                    (@item.Name)
+                                                </td>
+                                                <td><img style="width:70px; height:70px" src="@item.Image" /></td>
+                                                <td>
+                                                    @Html.ActionLink("Xóa", "Delete_img", new { id = item.ID })
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                    <tfoot>
+                                        <tr align="center">
+                                            <th>ID Product</th>
+                                            <th>Hình ảnh</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                                @*<div style="margin-left:0px" class="paginate">
+                                    @Html.PagedListPager(Model, page => Url.Action("Image", "productImage", new { page }))
+                                </div>*@
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+    </div>
+    <div class="col-1">
+
+    </div>
+</div>
+
+
+
+

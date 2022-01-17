@@ -1,0 +1,96 @@
+﻿@model IPagedList<Laptop.Models.Product>
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "product";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+
+<div class="container">
+    <div style="font-size:30px;font-weight:bolder;color:red;margin-bottom:10px">
+        @ViewBag.tb: @ViewBag.count!
+        <hr />
+    </div>
+    <div class="row" style="font-size:20px; background-color:#f7f7f7">
+        <div class="col-2" style="text-align:center">
+            <select id="loctheogia" onchange="loctheogia()" style="border-radius:5px">
+                <option value="md">Mặc định</option>
+                <option value="tang">Tăng dần</option>
+                <option value="tang">Giảm dần</option>
+                <option value="15tr">Dưới 15tr</option>
+                <option value="15-20tr">Từ 15 đến 20tr</option>
+                <option value="20-25tr">Từ 20 đến 25tr</option>
+                <option value="25-30tr">Từ 25 đến 30tr</option>
+                <option value="30tr">Trên 30tr</option>
+
+            </select>
+        </div>
+        <div class="col-2" style="text-align:center">
+            <select id="loctheochip" onchange="loctheochip()" style="border-radius:5px">
+                <option value="md">Mặc định</option>
+                <option value="I5">Intel core I5</option>
+                <option value="I7">Intel core I7</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+<div class="container" id="Danh_Sach_San_Pham">
+    <div class="row" style="margin:0px;margin-top:10px">
+        @foreach (var item in Model)
+        {
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" /></a>
+                </div>
+                <div style="height:55px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
+                </div>
+                <div style="height:130px">
+                    <p style=" font-size:14px">@item.Description</p><br />
+                </div>
+                <div style="height:70px">
+                    <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
+                    <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div style="margin-left: 46%" class="paginate">
+        @Html.PagedListPager(Model, page => Url.Action("Dell", "_clientProductDetail", new { page }))
+    </div>
+</div>
+
+<script>
+    function loctheogia() {
+
+        var key = $("#loctheogia").val();
+
+        $.ajax({
+            url: "/_clientProductDetail/loctheogia?sortOrder=" + key,
+            success: function (result) {
+                $("#Danh_Sach_San_Pham").empty();
+                $("#Danh_Sach_San_Pham").append(result);
+            }
+        })
+    }
+</script>
+<script>
+    function loctheochip() {
+
+        var key = $("#loctheochip").val();
+
+        $.ajax({
+            url: "/_clientProductDetail/loctheogia?sortOrder=" + key,
+            success: function (result) {
+                $("#Danh_Sach_San_Pham").empty();
+                $("#Danh_Sach_San_Pham").append(result);
+            }
+        })
+    }
+</script>

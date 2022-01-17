@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Form sửa tin</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="card-body pad">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align:center; width:100%">Form sửa tin</h3>
+                </div>
+                <form role="form" method="post" action="/new/Edit/@Model.ID"
+                      enctype="multipart/form-data">
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Nội dung</th>
+                                    <th>Avatar</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="odd gradeX" align="center">
+                                    <td>
+                                        @Model.ID
+                                    </td>
+                                    <td>
+                                        <textarea type="text" class="form-control" placeholder="Điền tiêu đề"
+                                                  name="Title" @*value="@Model.Title"*@>@Model.Title</textarea>
+                                    </td>
+                                    <td>
+                                        <textarea type="text" class="form-control" placeholder="Điền mô tả"
+                                                  name="Content" @*value="@Model.Content"*@>@Model.Content</textarea>
+                                    </td>
+                                    <td>
+                                        <textarea required="" type="text" class="form-control" placeholder="Điền link ảnh"
+                                                  name="Anh" @*value="@Model.Image"*@>@Model.Image</textarea>
+                                    </td>
+                                    <td>
+
+                                        <button type="submit" class="btn btn-primary">Sửa</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+

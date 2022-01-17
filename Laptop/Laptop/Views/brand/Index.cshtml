@@ -1,0 +1,105 @@
+﻿@*@model IPagedList<Laptop.Models.Brand>
+
+@using PagedList.Mvc;
+@using PagedList;*@
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<style>
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Hãng</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Hãng</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@*<form class="form-inline ml-3" method="post" action="/brand/Index">
+        <div class="container h-100">
+            <div class="d-flex justify-content-center h-100">
+                <div class="searchbar">
+                    <input class="search_input" type="text" name="key" placeholder="Tìm kiếm">
+                    <button type="submit" class="btn btn-primary" style="background-color:white; border-color:white; color:blue">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>*@
+
+<!-- Main content -->
+<section class="content">
+    <div class="card-body pad">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title" style="text-align:center; width:100%">Bảng hãng</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example" class="table table-bordered table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>Tên hãng</th>
+                                    <th>Mô tả</th>
+                                    <th>Logo</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.brand)
+                                {
+                                    <tr class="odd gradeX" align="center">
+                                        <td>@item.ID</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.Description</td>
+                                        <td><img src="@item.Image" width="70" height="70" alt="Lỗi ảnh"/></td>
+                                        <td>
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+                                            @*<i class="fa fa-trash-o" fa-fw></i>@Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+                            <i class="fa fa-pencil fa-fw"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.ID })*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>Tên hãng</th>
+                                    <th>Mô tả</th>
+                                    <th>Logo</th>
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @*<div style="margin-left: 50%;" class="paginate">
+                            Html.PagedListPager(Model, page => Url.Action("Index", "brand", new { page }))
+                        </div>*@
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+<!-- /.content -->
+
+

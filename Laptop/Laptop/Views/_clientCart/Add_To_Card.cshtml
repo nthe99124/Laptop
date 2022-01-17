@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<div class="container">
+    <div class="row" style="text-align:center">
+        <div class="col" style="text-align:center; margin-bottom:50px">
+            <b style="font-size:50px;color:red">Giỏ hàng</b>
+        </div>
+    </div>
+</div>
+@if (Session["user"] == null)
+{
+    <div class="container">
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center; margin-bottom:20px">
+                <b style="font-size:30px;color:red">Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng!</b>
+            </div>
+        </div>
+        
+        <div class="row" style="text-align:center;margin-bottom:50px">
+            <div class="col" style="text-align:center;font-size:25px">
+                <a href="/_clientLogin/Index">===>Đăng nhập ngay<===</a>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Buy";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<div class="container">
+    @if (Session["ID_cus"]==null)
+    {
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center"><b style="font-size:35px;color:red">Bạn cần đăng nhập để mua hàng!</b></div><br /><br />
+        </div>
+        <div class="row" style="text-align:center;margin-top:20px">
+            <div class="col" style="text-align:center;font-size:25px">
+                <a href="/_clientLogin/Index">===>Đăng nhập ngay<===</a>
+            </div>
+        </div>
+    }
+    else
+    {
+    <form action="/_clientBill/pay/@Session["key"]" method="post">
+        <div class="row" style="font-size:35px;height:70px">
+            <b style="">Thông tin khách hàng</b><br />
+        </div>
+        <div style="font-size:17px">
+            @foreach (var item in ViewBag.cus)
+            {
+                <div class="row" style="height:35px">
+                    <div class="col-2">
+                        <b>Tên khách hàng:</b>
+                    </div>
+                    <div class="col">
+                        @item.Name
+                    </div>
+                </div>
+                <div class="row" style="height:35px">
+                    <div class="col-2">
+                        <b>Email:</b>
+                    </div>
+                    <div class="col">
+                        @item.Email
+                    </div>
+                </div>
+                <div class="row" style="height:40px">
+                    <div class="col-2">
+                        <b>Số điện thoại: </b>
+                    </div>
+                    <div class="col">
+                        <input type="text" pattern="^[0][0-9]{9}" title="Số điện thoại cần bắt đầu bằng 0 và có 10 số" value="@item.Phone_Number" name="phone" />
+                    </div>
+                </div>
+                <div class="row" style="height:40px">
+                    <div class="col-2">
+                        <b>Địa chỉ nhận hàng:</b>
+                    </div>
+                    <div class="col">
+                        <input type="text" value="@item.Address" name="add" />
+
+                    </div>
+                </div>
+            }
+        </div>
+        <hr />
+        <div class="row" style="height:100px">
+            <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                <br /> Ảnh sản phẩm
+            </div>
+            <div class="col-4" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                <br />Tên sản phẩm
+            </div>
+            <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                <br /> Màu sắc
+            </div>
+            <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue;">
+                <br /> Số lượng
+            </div>
+            <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                <br /> Đơn giá
+            </div>
+
+        </div>
+
+        <div class="row" style="height:110px">
+            @foreach (var item in @ViewBag.pro)
+            {
+                <div class="col-2" style="text-align:center; font-size:20px;border-left:1px solid white;background-color:aliceblue ">
+                    <a href="/_clientProductDetail/Index?key=@item.Pro_ID" style="color:black">
+                        <img src="@item.Pro_Image" style="height:110px;width:110px" alt="Lỗi ảnh"/>
+                    </a>
+                </div>
+                <div class="col-4" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+                    <br /><a href="/_clientProductDetail/Index?key=@item.Pro_ID" style="color:black"> @item.Pro_Name</a>
+                </div>
+            }
+            <div class="col-2" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+                <br />
+                <select name="Pro_Color" style="width:90px">
+                    @foreach (var i in ViewBag.color)
+                    {
+                        <option value="@i.ID_Pro_Co">@i.Pro_Color</option>
+                    }
+                </select>
+            </div>
+            @foreach (var item in @ViewBag.pro)
+            {
+                <div class="col-2" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                    <br />
+                    <input type="number" name="quan" min="1"
+                           value="1" required="" style="width:80px">
+                </div>
+                <div class="col-2" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                    <br /> @string.Format("{0:#,##0}",@item.Pro_Price)đ
+                </div>
+            }
+        </div>
+        <br />
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-2" style="font-size:20px;text-align:center">
+                <input type="submit" style="color:white;background-color:orange;
+                border:5px solid orange;border-radius:10px" value="Đặt hàng" />
+            </div>
+        </div>
+    </form>
+    }
+</div>

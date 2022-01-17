@@ -1,0 +1,158 @@
+﻿@*@model IPagedList<Laptop.Models.Product>
+
+    @using PagedList.Mvc;
+    @using PagedList;*@
+@{
+    ViewBag.Title = "product";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sản phẩm</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Sản phẩm</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+@*<form class="form-inline ml-3" method="post" action="/product/Index">
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="searchbar">
+                <input class="search_input" type="text" name="key" placeholder="Tìm kiếm">
+                <button type="submit" class="btn btn-primary" style="background-color:white; border-color:white; color:blue">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
+<br>-->*@
+
+<!-- Main content -->
+<section class="content">
+    <div class="card-body pad">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title" style="text-align:center; width:100%">Bảng sản phẩm</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="example" class="table table-bordered table-hover">@*table-responsive-xl*@
+                            <thead>
+                                <tr align="center">
+                                    <th style="width:20px">ID</th>
+                                    <th style="width:10%">Tên</th>
+                                    <th>ID hãng</th>
+                                    <th>Phân loại</th>
+                                    <th style="width:10%">Mô tả</th>
+                                    <th>Giá gốc</th>
+                                    <th>Giá khuyến mại</th>
+                                    <th>Avatar</th>
+                                    @*<th>CPU</th>
+                                    <th>GPU</th>
+                                    <th>RAM</th>
+                                    <th>ROM</th>
+                                    <th>Màn hình</th>
+                                    <th>Hệ điều hành</th>
+                                    <th>Bảo hành</th>
+                                    <th>Pin</th>
+                                    <th>Kích thước</th>
+                                    <th>Cân nặng</th>*@
+                                    <th>Thông số kỹ thuật</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in @ViewBag.product)
+                                {
+                                    <tr class="odd gradeX" align="center">
+                                        <td>@item.ID</td>
+                                        <td>@item.Name</td>
+                                        <td>@item.ID_Brand</td>
+                                        <td>@item.Group_Pro</td>
+                                        <td>@item.Description</td>
+                                        <td>@string.Format("{0:#,##0}", @item.Price)đ</td>
+                                        <td>@string.Format("{0:#,##0}", @item.Promotion_Price)đ</td>
+                                        <td><img src="@item.Image" width="70" height="70" alt="Lỗi ảnh" /></td>
+                                        @*<td>@item.CPU</td>
+                                        <td>@item.GPU</td>
+                                        <td>@item.RAM</td>
+                                        <td>@item.ROM</td>
+                                        <td>@item.Monitor</td>
+                                        <td>@item.Operating</td>
+                                        <td>@item.Warranty</td>
+                                        <td>@item.Pin</td>
+                                        <td>@item.Size</td>
+                                        <td>@item.Weight</td>*@
+                                        <td>
+                                            <b>CPU: </b>@item.CPU,
+                                            <b>GPU:</b> @item.GPU<br />
+                                            <b>RAM: </b>@item.RAM,
+                                            <b>ROM: </b>@item.ROM <br />
+                                            <b>Màn hình: </b>@item.Monitor<br />
+                                            <b>Hệ điều hành: </b>@item.Operating<br />
+                                            <b>Bảo hành: </b>@item.Warranty, 
+                                            <b>Pin: </b>@item.Pin <br />
+                                            <b>Kích thước: </b>@item.Size<br />                                       
+                                            <b>Cân nặng: </b>@item.Weight
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+                                            @*<i class="fa fa-trash-o" fa-fw></i>@Html.ActionLink("Sửa", "Edit", new { id = item.ID })
+                            <i class="fa fa-pencil fa-fw"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.ID })*@
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>Tên</th>
+                                    <th>ID hãng</th>
+                                    <th>Phân loại</th>
+                                    <th>Mô tả</th>
+                                    <th>Giá gốc</th>
+                                    <th>Giá khuyến mại</th>
+                                    <th>Avatar</th>
+                                    @*<th>CPU</th>
+                                    <th>GPU</th>
+                                    <th>RAM</th>
+                                    <th>ROM</th>
+                                    <th>Màn hình</th>
+                                    <th>Hệ điều hành</th>
+                                    <th>Bảo hành</th>
+                                    <th>Pin</th>
+                                    <th>Kích thước</th>
+                                    <th>Cân nặng</th>*@
+                                    <th>Action</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @*<div style="margin-left: 50%;" class="paginate">
+                            @Html.PagedListPager(Model, page => Url.Action("Index", "product", new { page }))
+                        </div>*@
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
+

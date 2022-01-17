@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Form thêm slide</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="card-body pad">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align:center; width:100%">Form thêm slide</h3>
+                </div>
+                <form method="post" action="/slide/Create">
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th>Tiêu đề</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Nội dung</th>
+                                    <th>Hoạt động</th>
+                                    <th>Giảm giá</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="odd gradeX" align="center">
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Điền tiêu đề" name="Ten">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Điền link ảnh" name="Anh">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Điền nội dung" name="content">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Điền hoạt động" name="action">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" placeholder="Điền giảm giá" name="discount">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="btn btn-primary">Thêm</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+                <h3 style="text-align:center; color:red">@ViewBag.test</h3>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header" style="background-color:sandybrown">
+                    <h3 class="card-title" style="text-align:center; width:100%">Thông tin 3 slide được thêm gần nhất</h3>
+                </div>
+                <div class="card-body">
+
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr align="center">
+                                <th>Tiêu đề</th>
+                                <th>Hình ảnh</th>
+                                <th>Nội dung</th>
+                                <th>Hoạt động</th>
+                                <th>Giảm giá</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                            <tr class="odd gradeX" align="center">
+                                <td>@item.Title</td>
+                                <td><img src="@item.Image" width="70" height="70" /></td>
+                                <td>@item.Content</td>
+                                <td>@item.Action</td>
+                                <td>@item.Discount</td>
+                                <td>
+                                    <i class="fa fa-trash-o" fa-fw></i>@Html.ActionLink("Sửa", "Edit_cre", new { id = item.ID })
+                                    <i class="fa fa-pencil fa-fw"></i>@Html.ActionLink("Xóa", "Delete_cre", new { id = item.ID })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

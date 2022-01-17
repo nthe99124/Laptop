@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Admin.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Form cập nhật thông tin hóa đơn</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<div class="card-body pad">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align:center; width:100%">Form sửa thông tin hãng</h3>
+                </div>
+                <form role="form" method="post" action="/bill/Edit/@Model.ID"
+                      enctype="multipart/form-data">
+                    <div class="card-body">
+                        <table id="example2" class="table table-bordered table-hover">
+                            <thead>
+                                <tr align="center">
+                                    <th>ID</th>
+                                    <th>ID khách hàng</th>
+                                    <th>Ngày đặt hàng</th>
+                                    <th>Địa chỉ nhận hàng</th>
+                                    <th>Giao hàng</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr class="odd gradeX" align="center">
+                                    <td>
+                                        @Model.ID
+                                    </td>
+                                    <td>
+                                        @Model.ID_Customer
+                                    </td>
+                                    <td>
+                                        @Model.Date_order
+                                    </td>
+                                    <td>
+                                        @Model.Address
+                                    </td>
+                                    <td>
+                                        @if (Model.Confirm == "Đã nhận được hàng")
+                                        {
+                                            @Model.Confirm
+                                        }
+                                        else if(Model.Confirm == "Đã xác nhận")
+                                        {
+                                            <select name="confirm" style="width:250px;height:25px">
+                                                <option value="Đang giao hàng">Đang giao hàng</option>
+                                            </select>
+                                        }
+                                        else if(Model.Confirm == "Đang giao hàng")
+                                        {
+                                            <select name="confirm" style="width:250px;height:25px">
+                                                <option value="Đã giao hàng">Đã giao hàng</option>
+                                            </select>
+                                        }
+                                        else if (Model.Confirm == "Chờ xác nhận")
+                                        {
+                                            <select name="confirm" style="width:250px;height:25px">
+                                                <option value="Đã xác nhận">Đã xác nhận</option>
+                                                <option value="Đang giao hàng">Đang giao hàng</option>
+                                            </select>
+                                        }
+
+                                    </td>
+
+                                    <td>
+
+                                        <button type="submit" class="btn btn-primary">Sửa</button>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+</div>
+

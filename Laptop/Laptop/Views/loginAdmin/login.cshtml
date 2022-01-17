@@ -1,0 +1,91 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Thế Kỷ - Cửa hàng buôn bán Laptop uy tín</title>
+
+    <link rel="shortcut icon" type="image/png" href="~/Content/image/LogoLap.png" />
+    <link href="~/Content/admin1/css/login.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/a949dd9bc5.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+    <style>
+        span {
+            display: block;
+            position: absolute;
+            top: -10px;
+            right: 27px;
+        }
+
+        div {
+            position: relative;
+        }
+    </style>
+    <script>
+        isBool = true;
+        function showpass() {
+            if (isBool) {
+                document.getElementById("password").setAttribute("type", "text");
+                isBool = false;
+            }
+            else {
+                document.getElementById("password").setAttribute("type", "password");
+                isBool = true;
+            }
+        }
+
+    </script>
+</head>
+<body class="text-center" style="background-image:url(/Content/image/neen.jpg); background-repeat:no-repeat ; background-size:100%">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6"></div>
+            <div class="col-6" style="margin-left:-12%">
+                <form @*class="form-signin"*@ role="form" action="/loginAdmin/Index" method="post" style="width:400px;border:3px solid orange; border-radius:15px;background-color:orange;opacity:0.85">
+                    <div>
+                        <img class="mb-4" src="~/Content/image/LogoLap.png" width=200 height=150>
+                        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                        <input type="text" class="form-control" style="width:350px;margin-left:5%" placeholder="Email" autofocus name="Email">
+                        <div>
+                            <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" style="width:350px;margin-left:5%;margin-top:5px" class="form-control" placeholder="Password" name="PassWord">
+                            <span>
+                                <img src="~/Content/image/mắt.png" width="35" onclick="showpass()" />
+                            </span>
+                        </div>
+                        <div class="checkbox mb-3">
+
+                            <p style="color:red">@ViewBag.error</p>
+                        </div>
+
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:200px;margin-left:25%">Sign in</button>
+                        <p>-----LaptopTienThe.com-----</p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
+
+
+

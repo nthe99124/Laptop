@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
+using System.Data;
+using System.Data.Entity;
 
 namespace Laptop.Controllers
 {
     public class productColorController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: productColor
         public ActionResult Index()
         {
@@ -26,9 +28,9 @@ namespace Laptop.Controllers
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var color = from p in db.Product_Colors
+            var color = from p in db.Product_Color
                         select p;
-            ViewBag.c = from p in db.Product_Colors
+            ViewBag.c = from p in db.Product_Color
                         join pro in db.Products on p.ID_Product equals pro.ID
                         join co in db.Colorrs on p.ID_Color equals co.ID
                         select new mau
@@ -44,7 +46,7 @@ namespace Laptop.Controllers
                               select b;
             ViewBag.co = from b in db.Colorrs
                          select b;
-            ViewBag.color = (from p in db.Product_Colors
+            ViewBag.color = (from p in db.Product_Color
                              join pro in db.Products on p.ID_Product equals pro.ID
                              join co in db.Colorrs on p.ID_Color equals co.ID
                              orderby p.ID descending
@@ -66,9 +68,9 @@ namespace Laptop.Controllers
                               select b;
             ViewBag.co = from b in db.Colorrs
                          select b;
-            var color = from p in db.Product_Colors
+            var color = from p in db.Product_Color
                         select p;
-            ViewBag.c = from p in db.Product_Colors
+            ViewBag.c = from p in db.Product_Color
                         join pro in db.Products on p.ID_Product equals pro.ID
                         join co in db.Colorrs on p.ID_Color equals co.ID
                         select new mau
@@ -78,9 +80,9 @@ namespace Laptop.Controllers
                             ID_Product = (int)p.ID_Product,
                             Quantity = (int)p.Quantity,
                             Color = co.Color,
-                            Name=pro.Name,
+                            Name = pro.Name,
                         };
-            ViewBag.color = (from p in db.Product_Colors
+            ViewBag.color = (from p in db.Product_Color
                              join pro in db.Products on p.ID_Product equals pro.ID
                              join co in db.Colorrs on p.ID_Color equals co.ID
                              orderby p.ID descending
@@ -93,15 +95,15 @@ namespace Laptop.Controllers
                                  Color = co.Color,
                                  Name = pro.Name,
                              }).Take(3);
-            Product_Color test = db.Product_Colors.Where(p => p.ID_Product == Convert.ToInt32(Request["ID_SP"])
+            Product_Color test = db.Product_Color.Where(p => p.ID_Product == Convert.ToInt32(Request["ID_SP"])
                                                         && p.ID_Color == Convert.ToInt32(Request["Mau"])).FirstOrDefault();
             ViewBag.date = DateTime.Now;
             if (test != null)
             {
                 /*ViewBag.test = "Sản phẩm có ID màu= " + Request["Mau"] + " đã tồn tại!";*/
                 test.Quantity += Convert.ToInt32(Request["SL"]);
-                UpdateModel(test);
-                db.SubmitChanges();
+                db.Entry(test).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Color", "productColor");
             }
             else
@@ -110,8 +112,8 @@ namespace Laptop.Controllers
                 ccolor.ID_Color = Convert.ToInt32(Request["Mau"]);
                 ccolor.Quantity = Convert.ToInt32(Request["SL"]);
                 ccolor.created_at = ViewBag.date;
-                db.Product_Colors.InsertOnSubmit(ccolor);
-                db.SubmitChanges();
+                db.Product_Color.Add(ccolor);
+                db.SaveChanges();
                 return RedirectToAction("Color", "productColor");
             }
 
@@ -154,9 +156,9 @@ namespace Laptop.Controllers
         }*/
         public ActionResult Delete_co(int id)
         {
-            var color = db.Product_Colors.Where(b => b.ID == id).SingleOrDefault();
-            db.Product_Colors.DeleteOnSubmit(color);
-            db.SubmitChanges();
+            var color = db.Product_Color.Where(b => b.ID == id).SingleOrDefault();
+            db.Product_Color.Remove(color);
+            db.SaveChanges();
             return RedirectToAction("Color");
         }
     }

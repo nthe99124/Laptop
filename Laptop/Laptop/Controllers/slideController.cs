@@ -5,14 +5,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
+using System.Data;
+using System.Data.Entity;
 
 namespace Laptop.Controllers
 {
     public class slideController : Controller
     {
         // GET: slide
-        laptopDataContext db = new laptopDataContext();
-        
+        LaptopNTT db = new LaptopNTT();
+
         public ActionResult Index(int? page)
         {
             if (Session["admin"] == null)
@@ -62,8 +64,8 @@ namespace Laptop.Controllers
                 slide.Discount = Convert.ToInt32(Request["discount"]);
                 slide.Image = Request["Anh"];
                 slide.created_at = ViewBag.date;
-                db.Slides.InsertOnSubmit(slide);
-                db.SubmitChanges();
+                db.Slides.Add(slide);
+                db.SaveChanges();
             }
 
             return this.Create();
@@ -87,8 +89,8 @@ namespace Laptop.Controllers
             slide.updated_at = ViewBag.date;
             /*
             slide.Image = "/Content/slide/Image/" + GetFileName(file.FileName);*/
-            UpdateModel(slide);
-            db.SubmitChanges();
+            db.Entry(slide).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
 
             return this.Edit(id);
@@ -96,8 +98,8 @@ namespace Laptop.Controllers
         public ActionResult Delete(int id)
         {
             var slide = db.Slides.Where(b => b.ID == id).SingleOrDefault();
-            db.Slides.DeleteOnSubmit(slide);
-            db.SubmitChanges();
+            db.Slides.Remove(slide);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -118,8 +120,8 @@ namespace Laptop.Controllers
             slide.Discount = Convert.ToInt32(Request["discount"]);
             slide.Image = Request["Anh"];
             slide.updated_at = ViewBag.date;
-            UpdateModel(slide);
-            db.SubmitChanges();
+            db.Entry(slide).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Create");
 
             return this.Edit(id);
@@ -127,8 +129,8 @@ namespace Laptop.Controllers
         public ActionResult Delete_cre(int id)
         {
             var slide = db.Slides.Where(b => b.ID == id).SingleOrDefault();
-            db.Slides.DeleteOnSubmit(slide);
-            db.SubmitChanges();
+            db.Slides.Remove(slide);
+            db.SaveChanges();
             return RedirectToAction("Create");
         }
     }

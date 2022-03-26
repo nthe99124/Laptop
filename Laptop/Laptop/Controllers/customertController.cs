@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
+using System.Data;
+using System.Data.Entity;
 
 namespace Laptop.Controllers
 {
     public class customertController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: customert
         public ActionResult Index(int? page)
         {
@@ -19,7 +21,7 @@ namespace Laptop.Controllers
                 return RedirectToAction("Index", "loginAdmin");
             }
             var cus = (from b in db.Customers
-                        select b).ToList();
+                       select b).ToList();
             ViewBag.cus = cus;
             return View(cus.ToPagedList(page ?? 1, 5));
         }/*
@@ -46,16 +48,15 @@ namespace Laptop.Controllers
             cus.Status = Request["sta"];
             cus.Note = Request["note"];
             cus.updated_at = ViewBag.date;
-            UpdateModel(cus);
-            db.SubmitChanges();
+            db.Entry(cus).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
-            return this.Edit(id);
         }
         public ActionResult Delete(int id)
         {
             var cus = db.Customers.Where(b => b.ID == id).SingleOrDefault();
-            db.Customers.DeleteOnSubmit(cus);
-            db.SubmitChanges();
+            db.Customers.Remove(cus);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
     }

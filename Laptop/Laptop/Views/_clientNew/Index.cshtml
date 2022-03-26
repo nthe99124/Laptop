@@ -1,4 +1,4 @@
-﻿@model IPagedList<Laptop.Models.New>
+﻿@model IPagedList<Laptop.Models.News>
 
 @using PagedList.Mvc;
 @using PagedList;
@@ -24,10 +24,11 @@
 <hr />
 @foreach (var item in Model)
 {
+    
     <div class="row">
         <div class="col-1"></div>
         <div class="col-3">
-            <a href="/_clientNew/NewDetail?key=@item.ID"><img src="@item.Image" width="250" height="250"  id="img" /></a>
+            <a href="/_clientNew/NewDetail?key=@item.ID"><img src="@item.Image" width="250" height="250" id="img" /></a>
         </div>
         <div class="col">
             <a href="/_clientNew/NewDetail?key=@item.ID" style="font-size: 28px; font-weight: bolder; color:black">@item.Title !</a>
@@ -46,3 +47,6 @@
     <div class="col-5"></div>
 </div>
 
+<script>
+    
+</script>

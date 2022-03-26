@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LaptopNTTModelStoreContainer" CdmEntityContainer="LaptopNTT">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bill_Detail">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Bill_Detail">
+        <MappingFragment StoreEntitySet="Bill_Detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Bill" ColumnName="ID_Bill" />
+          <ScalarProperty Name="ID_Product_Color" ColumnName="ID_Product_Color" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="rate" ColumnName="rate" />
+          <ScalarProperty Name="comment" ColumnName="comment" />
+          <ScalarProperty Name="ratetime" ColumnName="ratetime" />
+          <ScalarProperty Name="order_price" ColumnName="order_price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bills">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Bill">
+        <MappingFragment StoreEntitySet="Bills">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="Date_order" ColumnName="Date_order" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Confirm" ColumnName="Confirm" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Brands">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Brand">
+        <MappingFragment StoreEntitySet="Brand">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Product_Color" ColumnName="ID_Product_Color" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="Quantity_Purchased" ColumnName="Quantity_Purchased" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Colorrs">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Colorr">
+        <MappingFragment StoreEntitySet="Colorr">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Favorites_list">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Favorites_list">
+        <MappingFragment StoreEntitySet="Favorites_list">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+          <ScalarProperty Name="ID_Customer" ColumnName="ID_Customer" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="New_Image">
+      <EntityTypeMapping TypeName="LaptopNTTModel.New_Image">
+        <MappingFragment StoreEntitySet="New_Image">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_New" ColumnName="ID_New" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="LaptopNTTModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID_Brand" ColumnName="ID_Brand" />
+          <ScalarProperty Name="Group_Pro" ColumnName="Group_Pro" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Promotion_Price" ColumnName="Promotion_Price" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CPU" ColumnName="CPU" />
+          <ScalarProperty Name="GPU" ColumnName="GPU" />
+          <ScalarProperty Name="RAM" ColumnName="RAM" />
+          <ScalarProperty Name="ROM" ColumnName="ROM" />
+          <ScalarProperty Name="Monitor" ColumnName="Monitor" />
+          <ScalarProperty Name="Operating" ColumnName="Operating" />
+          <ScalarProperty Name="Warranty" ColumnName="Warranty" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="Pin" ColumnName="Pin" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Color">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Product_Color">
+        <MappingFragment StoreEntitySet="Product_Color">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Color" ColumnName="ID_Color" />
+          <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Image">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Product_Image">
+        <MappingFragment StoreEntitySet="Product_Image">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Slides">
+      <EntityTypeMapping TypeName="LaptopNTTModel.Slide">
+        <MappingFragment StoreEntitySet="Slide">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Action" ColumnName="Action" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

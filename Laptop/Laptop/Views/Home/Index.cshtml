@@ -5,55 +5,54 @@
 }
 
 <div id="main">
-  <div class="container">
-    <div id="carousel-simple" class="carousel slide col-md-10 col-md-offset-1" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#carousel-simple" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-simple" data-slide-to="1"></li>
-        <li data-target="#carousel-simple" data-slide-to="2"></li>
-      </ol>
+    <div class="container">
+        <div id="carousel-simple" class="carousel slide col-md-10 col-md-offset-1" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-simple" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-simple" data-slide-to="1"></li>
+                <li data-target="#carousel-simple" data-slide-to="2"></li>
+            </ol>
 
-      <!-- Wrapper for slides -->
-      <div class="carousel-inner" role="listbox">
-          <div class="item active">
-              <img src="~/Content/image/09_Dec190cdd16734a1a7230c91ba376f0f270.png" />
-              
-          </div>
-          <div class="item">
-              <img src="~/Content/image/12_Jan025c099a6aeb3480835c70cdf07b58f1.png" />
-          </div>
-          <div class="item">
-              <img src="~/Content/image/31_Oct03b9eebfffecffd0c0e2fd7739963c11.jpg" />
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
-<!-- Slider -->
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="~/Content/image/09_Dec190cdd16734a1a7230c91ba376f0f270.png" />
 
-<!-- New Products -->
-
-<div class="row" style="background-color:#f3e7d0;margin-top:50px">
-    <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
-        <h1 style="color:white">Laptop mới</h1>
-    </div>
-</div>
-<div class="row" >
-    @foreach (var item in ViewBag.product)
-    {
-
-        <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
-            <div style="height:240px">
-                <a href="/_clientProductDetail/Index?key=@item.ID" ><img src="@item.Image" style="width:250px; height:230px"  class="image" /></a>
-                <div class="middle" href="/_clientProductDetail/Index?key=@item.ID">
-                    <b style="font-size:17px"> CPU:  @item.CPU</b><br />
-                    <b style="font-size:17px"> RAM:  @item.RAM</b><br />
-                    <b style="font-size:17px"> GPU:  @item.GPU</b><br />
-                    <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                </div>
+                <div class="item">
+                    <img src="~/Content/image/12_Jan025c099a6aeb3480835c70cdf07b58f1.png" />
+                </div>
+                <div class="item">
+                    <img src="~/Content/image/31_Oct03b9eebfffecffd0c0e2fd7739963c11.jpg" />
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <!-- Slider -->
+    <!-- New Products -->
+
+    <div class="row" style="background-color:#f3e7d0;margin-top:50px">
+        <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
+            <h1 style="color:white">Laptop mới</h1>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.product)
+        {
+
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
+                    <div class="middle" href="/_clientProductDetail/Index?key=@item.ID">
+                        <b style="font-size:17px"> CPU:  @item.CPU</b><br />
+                        <b style="font-size:17px"> RAM:  @item.RAM</b><br />
+                        <b style="font-size:17px"> GPU:  @item.GPU</b><br />
+                        <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                    </div>
+                </div>
                 <div style="height:55px">
                     <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
                 </div>
@@ -64,138 +63,138 @@
                     <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
                     <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
                 </div>
-        </div>
-    }
-</div>
+            </div>
+        }
+    </div>
 
-<!-- Học tập Products -->
-<div class="row" style="background-color:#f3e7d0;margin-top:50px">
-    <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
-        <h1 style="color:white">Học tập - Văn phòng</h1>
+    <!-- Học tập Products -->
+    <div class="row" style="background-color:#f3e7d0;margin-top:50px">
+        <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
+            <h1 style="color:white">Học tập - Văn phòng</h1>
+        </div>
     </div>
-</div>
-<div class="row" >
-    @foreach (var item in ViewBag.htvp)
-    {
-        <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
-            <div style="height:240px" >
-                <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
-                <div class="middle">
-                    <b style="font-size:17px"> CPU:  @item.CPU</b><br />
-                    <b style="font-size:17px"> RAM:  @item.RAM</b><br />
-                    <b style="font-size:17px"> GPU:  @item.GPU</b><br />
-                    <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+    <div class="row">
+        @foreach (var item in ViewBag.htvp)
+        {
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
+                    <div class="middle">
+                        <b style="font-size:17px"> CPU:  @item.CPU</b><br />
+                        <b style="font-size:17px"> RAM:  @item.RAM</b><br />
+                        <b style="font-size:17px"> GPU:  @item.GPU</b><br />
+                        <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                    </div>
+                </div>
+                <div style="height:55px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
+                </div>
+                <div style="height:130px">
+                    <p style=" font-size:14px">@item.Description</p><br />
+                </div>
+                <div style="height:70px">
+                    <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
+                    <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
                 </div>
             </div>
-            <div style="height:55px">
-                <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
-            </div>
-            <div style="height:130px">
-                <p style=" font-size:14px">@item.Description</p><br />
-            </div>
-            <div style="height:70px">
-                <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
-                <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
-            </div>
-        </div>
-    }
-</div>
+        }
+    </div>
 
-<!-- Đồ họa Products -->
-<div class="row" style="background-color:#f3e7d0;margin-top:50px">
-    <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
-        <h1 style="color:white">Đồ họa - Kỹ thuật</h1>
+    <!-- Đồ họa Products -->
+    <div class="row" style="background-color:#f3e7d0;margin-top:50px">
+        <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
+            <h1 style="color:white">Đồ họa - Kỹ thuật</h1>
+        </div>
     </div>
-</div>
-<div class="row" >
-    @foreach (var item in ViewBag.dhkt)
-    {
-        <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
-            <div style="height:240px" >
-                <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
-                <div class="middle">
-                    <b style="font-size:17px"> CPU:  @item.CPU</b><br />
-                    <b style="font-size:17px"> RAM:  @item.RAM</b><br />
-                    <b style="font-size:17px"> GPU:  @item.GPU</b><br />
-                    <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+    <div class="row">
+        @foreach (var item in ViewBag.dhkt)
+        {
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
+                    <div class="middle">
+                        <b style="font-size:17px"> CPU:  @item.CPU</b><br />
+                        <b style="font-size:17px"> RAM:  @item.RAM</b><br />
+                        <b style="font-size:17px"> GPU:  @item.GPU</b><br />
+                        <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                    </div>
+                </div>
+                <div style="height:55px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
+                </div>
+                <div style="height:130px">
+                    <p style=" font-size:14px">@item.Description</p><br />
+                </div>
+                <div style="height:70px">
+                    <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
+                    <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
                 </div>
             </div>
-            <div style="height:55px">
-                <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
-            </div>
-            <div style="height:130px">
-                <p style=" font-size:14px">@item.Description</p><br />
-            </div>
-            <div style="height:70px">
-                <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
-                <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
-            </div>
-        </div>
-    }
-</div>     
+        }
+    </div>
 
-<!-- Gaming Products -->
-<div class="row" style="background-color:#f3e7d0;margin-top:50px">
-    <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
-        <h1 style="color:white">Laptop Gaming</h1>
+    <!-- Gaming Products -->
+    <div class="row" style="background-color:#f3e7d0;margin-top:50px">
+        <div class="col-3" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
+            <h1 style="color:white">Laptop Gaming</h1>
+        </div>
     </div>
-</div>
-<div class="row" >
-    @foreach (var item in ViewBag.gaming)
-    {
-        <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test" >
-            <div style="height:240px" >
-                <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image"/></a>
-                <div class="middle">
-                    <b style="font-size:17px"> CPU:  @item.CPU</b><br />
-                    <b style="font-size:17px"> RAM:  @item.RAM</b><br />
-                    <b style="font-size:17px"> GPU:  @item.GPU</b><br />
-                    <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+    <div class="row">
+        @foreach (var item in ViewBag.gaming)
+        {
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
+                    <div class="middle">
+                        <b style="font-size:17px"> CPU:  @item.CPU</b><br />
+                        <b style="font-size:17px"> RAM:  @item.RAM</b><br />
+                        <b style="font-size:17px"> GPU:  @item.GPU</b><br />
+                        <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                    </div>
+                </div>
+                <div style="height:55px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
+                </div>
+                <div style="height:130px">
+                    <p style=" font-size:14px">@item.Description</p><br />
+                </div>
+                <div style="height:70px">
+                    <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
+                    <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
                 </div>
             </div>
-            <div style="height:55px">
-                <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
-            </div>
-            <div style="height:130px">
-                <p style=" font-size:14px">@item.Description</p><br />
-            </div>
-            <div style="height:70px">
-                <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
-                <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
-            </div>
-        </div>
-    }
-</div>
-<!-- cc Products -->
-<div class="row" style="background-color:#f3e7d0;margin-top:50px">
-    <div class="col-4" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
-        <h1 style="color:white">Cao cấp - Sang trọng</h1>
+        }
     </div>
-</div>
-<div class="row" >
-    @foreach (var item in ViewBag.ccst)
-    {
-        <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
-            <div style="height:240px" >
-                <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
-                <div class="middle">
-                    <b style="font-size:17px"> CPU:  @item.CPU</b><br />
-                    <b style="font-size:17px"> RAM:  @item.RAM</b><br />
-                    <b style="font-size:17px"> GPU:  @item.GPU</b><br />
-                    <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+    <!-- cc Products -->
+    <div class="row" style="background-color:#f3e7d0;margin-top:50px">
+        <div class="col-4" style="background-color: orange;border-top-right-radius:1000px;border-bottom-right-radius:1000px;border-right-style:inset">
+            <h1 style="color:white">Cao cấp - Sang trọng</h1>
+        </div>
+    </div>
+    <div class="row">
+        @foreach (var item in ViewBag.ccst)
+        {
+            <div class="col-3" style="border: 5px solid #f7f7f7;text-align:center" id="test">
+                <div style="height:240px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><img src="@item.Image" style="width:250px; height:230px" class="image" /></a>
+                    <div class="middle">
+                        <b style="font-size:17px"> CPU:  @item.CPU</b><br />
+                        <b style="font-size:17px"> RAM:  @item.RAM</b><br />
+                        <b style="font-size:17px"> GPU:  @item.GPU</b><br />
+                        <b style="font-size:17px"> Ổ cứng:  @item.ROM</b><br />
+                    </div>
+                </div>
+                <div style="height:55px">
+                    <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
+                </div>
+                <div style="height:130px">
+                    <p style=" font-size:14px">@item.Description</p><br />
+                </div>
+                <div style="height:70px">
+                    <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
+                    <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
                 </div>
             </div>
-            <div style="height:55px">
-                <a href="/_clientProductDetail/Index?key=@item.ID"><p><b>@item.Name</b></p></a>
-            </div>
-            <div style="height:130px">
-                <p style=" font-size:14px">@item.Description</p><br />
-            </div>
-            <div style="height:70px">
-                <p><b style="text-decoration:line-through; font-size:15px;font-weight:bold">@string.Format("{0:#,##0}", @item.Price)đ</b></p>
-                <b style="color:white; background-color:orange;font-size:18px; border-radius:15px; padding:4px;font-weight:bold">@string.Format("{0:#,##0}", @item.Promotion_Price)đ</b>
-            </div>
-        </div>
-    }
-</div>    
+        }
+    </div>
 </div>

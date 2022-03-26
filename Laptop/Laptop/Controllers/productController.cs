@@ -5,11 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
+using System.Data;
+using System.Data.Entity;
+
 namespace Laptop.Controllers
 {
     public class productController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: product
         public ActionResult Index(int? page)
         {
@@ -17,7 +20,8 @@ namespace Laptop.Controllers
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var pro = from p in db.Products 
+            var pro = from p in db.Products
+                      orderby p.Name descending
                       select p;
             ViewBag.product = from b in db.Products
                               select b;
@@ -41,21 +45,22 @@ namespace Laptop.Controllers
                 return RedirectToAction("Index", "loginAdmin");
             }
             var pro = (from p in db.Products
-                      orderby p.ID descending
-                      select p).Take(3);
+                       orderby p.ID descending
+                       select p).Take(3);
             ViewBag.brand = from p in db.Brands
-                  select p;
+                            select p;
             return View(pro);
         }
         [HttpPost]
-        public ActionResult Create( Product pro)
+        public ActionResult Create(Product pro)
         {
             if (Session["admin"] == null)
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
             ViewBag.date = DateTime.Now;
-            Product test = db.Products.Where(p => p.Name == Request["Ten"]).FirstOrDefault();
+            var name = Request["Ten"];
+            Product test = db.Products.Where(p => p.Name == name).FirstOrDefault();
             if (test != null)
             {
                 ViewBag.test = "Sản phẩm " + Request["Ten"] + " đã tồn tại!";
@@ -80,8 +85,8 @@ namespace Laptop.Controllers
                 pro.Monitor = Request["Moni"];
                 pro.Operating = Request["Ope"];
                 pro.created_at = ViewBag.date;
-                db.Products.InsertOnSubmit(pro);
-                db.SubmitChanges();
+                db.Products.Add(pro);
+                db.SaveChanges();
             }
 
             return this.Create();
@@ -118,8 +123,8 @@ namespace Laptop.Controllers
             pro.Monitor = Request["Moni"];
             pro.Operating = Request["Ope"];
             pro.updated_at = ViewBag.date;
-            UpdateModel(pro);
-            db.SubmitChanges();
+            db.Entry(pro).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
 
             return this.Edit(id);
@@ -129,8 +134,8 @@ namespace Laptop.Controllers
         public ActionResult Delete(int id)
         {
             var pro = db.Products.Where(b => b.ID == id).SingleOrDefault();
-            db.Products.DeleteOnSubmit(pro);
-            db.SubmitChanges();
+            db.Products.Remove(pro);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -165,8 +170,8 @@ namespace Laptop.Controllers
             pro.Monitor = Request["Moni"];
             pro.Operating = Request["Ope"];
             pro.updated_at = ViewBag.date;
-            UpdateModel(pro);
-            db.SubmitChanges();
+            db.Entry(pro).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Create");
 
             return this.Edit_cre(id);
@@ -176,8 +181,8 @@ namespace Laptop.Controllers
         public ActionResult Delete_cre(int id)
         {
             var pro = db.Products.Where(b => b.ID == id).SingleOrDefault();
-            db.Products.DeleteOnSubmit(pro);
-            db.SubmitChanges();
+            db.Products.Remove(pro);
+            db.SaveChanges();
             return RedirectToAction("Create");
         }
         public ActionResult test()

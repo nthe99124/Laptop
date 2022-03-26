@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LaptopNTTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Bill_Detail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Bill" Type="int" />
+    <Property Name="ID_Product_Color" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="rate" Type="int" />
+    <Property Name="comment" Type="nvarchar" MaxLength="300" />
+    <Property Name="ratetime" Type="datetime" />
+    <Property Name="order_price" Type="money" />
+  </EntityType>
+  <EntityType Name="Bills">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Customer" Type="int" />
+    <Property Name="Date_order" Type="datetime" />
+    <Property Name="Address" Type="nvarchar" MaxLength="200" />
+    <Property Name="Confirm" Type="nvarchar" MaxLength="50" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="Phone_Number" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Brand">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="30" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Product_Color" Type="int" />
+    <Property Name="ID_Customer" Type="int" />
+    <Property Name="Quantity_Purchased" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Colorr">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Color" Type="nvarchar" MaxLength="20" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="4" />
+    <Property Name="Address" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone_Number" Type="char" MaxLength="10" />
+    <Property Name="Note" Type="nvarchar" MaxLength="200" />
+    <Property Name="Status" Type="varchar" MaxLength="6" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Favorites_list">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Product" Type="int" />
+    <Property Name="ID_Customer" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="New_Image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_New" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="300" />
+    <Property Name="Content" Type="ntext" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Brand" Type="int" />
+    <Property Name="Group_Pro" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="200" />
+    <Property Name="Price" Type="money" />
+    <Property Name="Promotion_Price" Type="money" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="CPU" Type="nvarchar" MaxLength="25" />
+    <Property Name="GPU" Type="nvarchar" MaxLength="25" />
+    <Property Name="RAM" Type="nvarchar" MaxLength="25" />
+    <Property Name="ROM" Type="nvarchar" MaxLength="25" />
+    <Property Name="Monitor" Type="nvarchar" MaxLength="25" />
+    <Property Name="Operating" Type="varchar" MaxLength="15" />
+    <Property Name="Warranty" Type="nvarchar" MaxLength="10" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+    <Property Name="Pin" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size" Type="nvarchar" MaxLength="50" />
+    <Property Name="Weight" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Product_Color">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Color" Type="int" />
+    <Property Name="ID_Product" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Product_Image">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Product" Type="int" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Slide">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" />
+    <Property Name="Content" Type="nvarchar" MaxLength="500" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" />
+    <Property Name="Discount" Type="int" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="updated_at" Type="datetime" />
+  </EntityType>
+  <Association Name="fk_Bill_BD">
+    <End Role="Bills" Type="Self.Bills" Multiplicity="0..1" />
+    <End Role="Bill_Detail" Type="Self.Bill_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bills">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Detail">
+        <PropertyRef Name="ID_Bill" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_br_pro">
+    <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Brand">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_Brand" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Co_CoD">
+    <End Role="Colorr" Type="Self.Colorr" Multiplicity="0..1" />
+    <End Role="Product_Color" Type="Self.Product_Color" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Colorr">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_Color">
+        <PropertyRef Name="ID_Color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_cus_bill">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bills">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cus_c">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Cus_F">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Favorites_list" Type="Self.Favorites_list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Favorites_list">
+        <PropertyRef Name="ID_Customer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_img_new">
+    <End Role="News" Type="Self.News" Multiplicity="0..1" />
+    <End Role="New_Image" Type="Self.New_Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="New_Image">
+        <PropertyRef Name="ID_New" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pro_BD">
+    <End Role="Product_Color" Type="Self.Product_Color" Multiplicity="0..1" />
+    <End Role="Bill_Detail" Type="Self.Bill_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Color">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Bill_Detail">
+        <PropertyRef Name="ID_Product_Color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pro_C">
+    <End Role="Product_Color" Type="Self.Product_Color" Multiplicity="0..1" />
+    <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_Color">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Cart">
+        <PropertyRef Name="ID_Product_Color" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pro_CoD">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Product_Color" Type="Self.Product_Color" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_Color">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pro_F">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Favorites_list" Type="Self.Favorites_list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Favorites_list">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Pro_Ima">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Product_Image" Type="Self.Product_Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product_Image">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LaptopNTTModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bill_Detail" EntityType="Self.Bill_Detail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Colorr" EntityType="Self.Colorr" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Favorites_list" EntityType="Self.Favorites_list" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="New_Image" EntityType="Self.New_Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Color" EntityType="Self.Product_Color" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product_Image" EntityType="Self.Product_Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Slide" EntityType="Self.Slide" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_Bill_BD" Association="Self.fk_Bill_BD">
+      <End Role="Bills" EntitySet="Bills" />
+      <End Role="Bill_Detail" EntitySet="Bill_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_br_pro" Association="Self.fk_br_pro">
+      <End Role="Brand" EntitySet="Brand" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Co_CoD" Association="Self.fk_Co_CoD">
+      <End Role="Colorr" EntitySet="Colorr" />
+      <End Role="Product_Color" EntitySet="Product_Color" />
+    </AssociationSet>
+    <AssociationSet Name="fk_cus_bill" Association="Self.fk_cus_bill">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Bills" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cus_c" Association="Self.fk_Cus_c">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Cus_F" Association="Self.fk_Cus_F">
+      <End Role="Customer" EntitySet="Customer" />
+      <End Role="Favorites_list" EntitySet="Favorites_list" />
+    </AssociationSet>
+    <AssociationSet Name="fk_img_new" Association="Self.fk_img_new">
+      <End Role="News" EntitySet="News" />
+      <End Role="New_Image" EntitySet="New_Image" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pro_BD" Association="Self.fk_Pro_BD">
+      <End Role="Product_Color" EntitySet="Product_Color" />
+      <End Role="Bill_Detail" EntitySet="Bill_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pro_C" Association="Self.fk_Pro_C">
+      <End Role="Product_Color" EntitySet="Product_Color" />
+      <End Role="Cart" EntitySet="Cart" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pro_CoD" Association="Self.fk_Pro_CoD">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Color" EntitySet="Product_Color" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pro_F" Association="Self.fk_Pro_F">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Favorites_list" EntitySet="Favorites_list" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Pro_Ima" Association="Self.fk_Pro_Ima">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Product_Image" EntitySet="Product_Image" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

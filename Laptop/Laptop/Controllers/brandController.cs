@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
-
+using System.Data;
+using System.Data.Entity;
 
 namespace Laptop.Controllers
 {
     public class brandController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: brand
         public ActionResult Index(int? page)
         {
@@ -19,7 +20,8 @@ namespace Laptop.Controllers
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var brand = from b in db.Brands 
+            var brand = from b in db.Brands
+                        orderby b.Name descending
                         select b;
             ViewBag.brand = brand;
             return View(brand.ToPagedList(page ?? 1, 5));
@@ -40,14 +42,14 @@ namespace Laptop.Controllers
                 return RedirectToAction("Index", "loginAdmin");
             }
             var brand = (from b in db.Brands
-                        orderby b.ID descending
-                        select b).Take(3);
+                         orderby b.ID descending
+                         select b).Take(3);
             return View(brand);
         }
         [HttpPost]
         public ActionResult Create(Brand brand)
         {
-            
+
             Brand test = db.Brands.Where(p => p.Name == Request["Ten"]).FirstOrDefault();
             ViewBag.date = DateTime.Now;
             if (test != null)
@@ -60,8 +62,8 @@ namespace Laptop.Controllers
                 brand.Description = Request["MoTa"];
                 brand.Image = Request["Anh"];
                 brand.created_at = ViewBag.date;
-                db.Brands.InsertOnSubmit(brand);
-                db.SubmitChanges();
+                db.Brands.Add(brand);
+                db.SaveChanges();
             }
 
             return this.Create();
@@ -83,15 +85,15 @@ namespace Laptop.Controllers
             brand.updated_at = ViewBag.date;
             /*
             brand.Image = "/Content/Brand/Image/" + GetFileName(file.FileName);*/
-            UpdateModel(brand);
-            db.SubmitChanges();
+            db.Entry(brand).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Delete(int id)
         {
             var brand = db.Brands.Where(b => b.ID == id).SingleOrDefault();
-            db.Brands.DeleteOnSubmit(brand);
-            db.SubmitChanges();
+            db.Brands.Remove(brand);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -112,11 +114,10 @@ namespace Laptop.Controllers
             brand.updated_at = ViewBag.date;
             /*
             brand.Image = "/Content/Brand/Image/" + GetFileName(file.FileName);*/
-            UpdateModel(brand);
-            db.SubmitChanges();
+            db.Entry(brand).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Create");
 
-            return this.Edit(id);
         }
     }
 }

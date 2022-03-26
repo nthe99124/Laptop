@@ -10,7 +10,7 @@ namespace Laptop.Controllers
 {
     public class newImageController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: newImage
         public ActionResult Index()
         {
@@ -26,14 +26,14 @@ namespace Laptop.Controllers
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var image = from p in db.New_Images
+            var image = from p in db.New_Image
                         orderby p.ID_New
                         select p;
             ViewBag.ni = image;
 
             ViewBag.news = from b in db.News
-                              select b;
-            ViewBag.image = (from p in db.New_Images
+                           select b;
+            ViewBag.image = (from p in db.New_Image
                              orderby p.ID descending
                              select p).Take(3);
             return View(image.ToPagedList(page ?? 1, 5));
@@ -42,15 +42,15 @@ namespace Laptop.Controllers
         public ActionResult Image(int? page, New_Image iimgae)
         {
 
-            var image = from p in db.New_Images
+            var image = from p in db.New_Image
                         orderby p.ID_New
                         select p;
             ViewBag.news = from b in db.News
-                              select b;
-            ViewBag.image = (from p in db.New_Images
+                           select b;
+            ViewBag.image = (from p in db.New_Image
                              orderby p.ID descending
                              select p).Take(3);
-            New test = db.News.Where(p => p.ID == Convert.ToInt32(Request["ID_Tin"])).FirstOrDefault();
+            News test = db.News.Where(p => p.ID == Convert.ToInt32(Request["ID_Tin"])).FirstOrDefault();
             ViewBag.date = DateTime.Now;
             if (test == null)
             {
@@ -61,8 +61,8 @@ namespace Laptop.Controllers
                 iimgae.ID_New = Convert.ToInt32(Request["ID_Tin"]);
                 iimgae.Image = Request["Anh"];
                 iimgae.created_at = ViewBag.date;
-                db.New_Images.InsertOnSubmit(iimgae);
-                db.SubmitChanges();
+                db.New_Image.Add(iimgae);
+                db.SaveChanges();
             }
             return View(image.ToPagedList(page ?? 1, 5));
         }
@@ -101,9 +101,9 @@ namespace Laptop.Controllers
 
         public ActionResult Delete_img(int id)
         {
-            var img = db.New_Images.Where(b => b.ID == id).SingleOrDefault();
-            db.New_Images.DeleteOnSubmit(img);
-            db.SubmitChanges();
+            var img = db.New_Image.Where(b => b.ID == id).SingleOrDefault();
+            db.New_Image.Remove(img);
+            db.SaveChanges();
             return RedirectToAction("Image");
         }
     }

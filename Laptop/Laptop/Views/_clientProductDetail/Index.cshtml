@@ -199,15 +199,16 @@
                 @{
                     double rate = 0;
                     double ps = Convert.ToDouble(ViewBag.com_count);
-                    
+                    var numberRate = 0;
                     double rate1 = 0;
                 }
                 @foreach (var item in ViewBag.comment)
                 {
                     int res = Convert.ToInt32(item.rate);
-                    rate = rate + res;
+                    rate += res;
+                    numberRate += 1;
                 }
-                @{ rate1 = rate / ps; }
+                @{ rate1 = rate / numberRate; }
                 <p style="font-size:35px">Đánh giá sản phẩm:</p>
                 <div class="card card-primary" style=" background-color:#b3f1f1">
                     <div class="row">

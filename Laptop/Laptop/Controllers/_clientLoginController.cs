@@ -10,7 +10,8 @@ namespace Laptop.Controllers
 {
     public class _clientLoginController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
+
         // GET: _clientLogin
         public static string EncodePassword(string originalPassword)
         {
@@ -38,7 +39,7 @@ namespace Laptop.Controllers
             string Encode = Request["PassWord"];
             string password = EncodePassword(Encode);
             tk = db.Customers.Where(m => m.Email == email && m.Password == password).FirstOrDefault();
-            if(tk != null&&tk.Status== "Active")
+            if (tk != null && tk.Status == "Active")
             {
                 Session["user"] = tk;
                 Session["Name"] = tk.Name;
@@ -71,7 +72,7 @@ namespace Laptop.Controllers
             Customer tk1 = db.Customers.Where(m => m.Email == email).FirstOrDefault();
             if (tk1 != null)
             {
-                ViewBag.error ="Đã tồn tại tài khoản có Email: " +email;
+                ViewBag.error = "Đã tồn tại tài khoản có Email: " + email;
             }
             else
             {
@@ -83,29 +84,29 @@ namespace Laptop.Controllers
                 tk.Password = password;
                 tk.Status = "Active";
                 tk.created_at = DateTime.Now;
-                db.Customers.InsertOnSubmit(tk);
-                db.SubmitChanges();
+                db.Customers.Add(tk);
+                db.SaveChanges();
                 Session["ID_cus"] = tk.ID;
                 return RedirectToAction("notification", "_clientLogin");
-            }    
+            }
             return View();
         }
         public ActionResult notification()
         {
             var tb = from c in db.Customers
                      where c.ID == Convert.ToInt32(Session["ID_cus"])
-                      select c;
+                     select c;
             return View(tb);
         }
         public ActionResult logout()
         {
-            if(Session["user"] !=null)
+            if (Session["user"] != null)
             {
                 Session["user"] = null;
                 Session["Name"] = null;
                 Session["ID_cus"] = null;
                 return RedirectToAction("Index", "Home");
-            }    
+            }
             return View();
         }
     }

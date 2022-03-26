@@ -9,9 +9,9 @@ namespace Laptop.Controllers
 {
     public class _clientNewController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: _clientNew
-        public ActionResult Index(int ?page)
+        public ActionResult Index(int? page)
         {
             var news = from n in db.News
                        orderby n.ID descending
@@ -22,9 +22,9 @@ namespace Laptop.Controllers
         {
             int key = Convert.ToInt32(Request["key"]);
             var news = from n in db.News
-                       where n.ID ==key
+                       where n.ID == key
                        select n;
-            ViewBag.n= db.News.OrderByDescending(tbl => tbl.ID).Skip(0).Take(6).ToList();
+            ViewBag.n = db.News.OrderByDescending(tbl => tbl.ID).Skip(0).Take(6).ToList();
             return View(news);
         }
     }

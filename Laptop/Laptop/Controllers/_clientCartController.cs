@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -8,7 +10,7 @@ namespace Laptop.Controllers
 {
     public class _clientCartController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: _clientCart
         public ActionResult Index()
         {
@@ -18,17 +20,18 @@ namespace Laptop.Controllers
             }
             else
             {
+                var Id_Cus = Convert.ToInt32(Session["ID_cus"]);
                 ViewBag.Cart = from c in db.Carts
-                               join pr in db.Product_Colors on c.ID_Product_Color equals pr.ID
+                               join pr in db.Product_Color on c.ID_Product_Color equals pr.ID
                                join pro in db.Products on pr.ID_Product equals pro.ID
                                join co in db.Colorrs on pr.ID_Color equals co.ID
-                               where c.ID_Customer.Equals(Session["ID_cus"])
+                               where c.ID_Customer == Id_Cus
                                orderby c.created_at descending
                                select new GioHang
                                {
                                    Image = pro.Image,
                                    Name = pro.Name,
-                                   Color= co.Color,
+                                   Color = co.Color,
                                    Price = (int)pro.Promotion_Price,
                                    ID = (int)c.ID,
                                    ID_pro = (int)pro.ID,
@@ -40,30 +43,30 @@ namespace Laptop.Controllers
             return View();
         }
         public ActionResult Add_To_Card(Cart ca)
-        {            
-            
-            int key= Convert.ToInt32(Request["key"]);
+        {
+
+            int key = Convert.ToInt32(Request["key"]);
             ViewBag.date = DateTime.Now;
-            Cart c = db.Carts.Where(a => a.ID_Product_Color==key).SingleOrDefault();
-            if (Session["user"]==null)
+            Cart c = db.Carts.Where(a => a.ID_Product_Color == key).SingleOrDefault();
+            if (Session["user"] == null)
             {
                 ViewBag.test = "Bạn cần đăng nhập!";
             }
-            else if(c != null)
-            {                
-                c.Quantity_Purchased = c.Quantity_Purchased+1;
+            else if (c != null)
+            {
+                c.Quantity_Purchased = c.Quantity_Purchased + 1;
                 c.created_at = ViewBag.date;
-                UpdateModel(c);
-                db.SubmitChanges();
+                db.Entry(c).State = EntityState.Modified;
+                db.SaveChanges();
             }
             else
-            {                
-                ca.ID_Product_Color= key;
+            {
+                ca.ID_Product_Color = key;
                 ca.ID_Customer = Convert.ToInt32(Session["ID_cus"]);
                 ca.Quantity_Purchased = 1;
                 ca.created_at = ViewBag.date;
-                db.Carts.InsertOnSubmit(ca);
-                db.SubmitChanges();
+                db.Carts.Add(ca);
+                db.SaveChanges();
             }
             return RedirectToAction("Index", "_clientProductDetail", new { key = Convert.ToInt32(Session["load"]) });
         }
@@ -71,16 +74,16 @@ namespace Laptop.Controllers
         {
             int key = Convert.ToInt32(Request["key"]);
             ca = db.Carts.Where(c => c.ID == key).SingleOrDefault();
-            db.Carts.DeleteOnSubmit(ca);
-            db.SubmitChanges();
+            db.Carts.Remove(ca);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Update()
         {
             return View();
         }
-            [HttpPost]
-        public ActionResult Update(Cart c,int id)
+        [HttpPost]
+        public ActionResult Update(Cart c, int id)
         {
             var ca = from a in db.Carts
                      select a.ID;
@@ -90,8 +93,8 @@ namespace Laptop.Controllers
                 int update = Convert.ToInt32(Request["quan"]);
                 ViewBag.date = DateTime.Now;
                 c.Quantity_Purchased = update + 1;
-                UpdateModel(c);
-                db.SubmitChanges();
+                db.Entry(c).State = EntityState.Modified;
+                db.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -99,8 +102,8 @@ namespace Laptop.Controllers
         {
             return View();
         }
-            [HttpPost]
-        public ActionResult Updatet(Cart c,int id)
+        [HttpPost]
+        public ActionResult Updatet(Cart c, int id)
         {
             var ca = from a in db.Carts
                      select a.ID;
@@ -110,8 +113,8 @@ namespace Laptop.Controllers
                 int update = Convert.ToInt32(Request["quan"]);
                 ViewBag.date = DateTime.Now;
                 c.Quantity_Purchased = update - 1;
-                UpdateModel(c);
-                db.SubmitChanges();
+                db.Entry(c).State = EntityState.Modified;
+                db.SaveChanges();
             }
             return RedirectToAction("Index");
         }
@@ -124,7 +127,7 @@ namespace Laptop.Controllers
         {
 
             ViewBag.Cart = from c in db.Carts
-                           join pr in db.Product_Colors on c.ID_Product_Color equals pr.ID
+                           join pr in db.Product_Color on c.ID_Product_Color equals pr.ID
                            join pro in db.Products on pr.ID_Product equals pro.ID
                            join co in db.Colorrs on pr.ID_Color equals co.ID
                            where c.ID_Customer.Equals(Session["ID_cus"])
@@ -152,23 +155,23 @@ namespace Laptop.Controllers
             b.Address = Convert.ToString(Session["add"]);
             b.Phone_Number = Convert.ToString(Session["sdt"]);
             b.Confirm = "Chờ xác nhận";
-            db.Bills.InsertOnSubmit(b);
-            db.SubmitChanges();
+            db.Bills.Add(b);
+            db.SaveChanges();
             Bill bill = db.Bills.OrderByDescending(m => m.Date_order).Take(1).SingleOrDefault();
             var ca = from a in db.Carts
                      select a;
             var pr = from a in db.Products
                      select a;
             var ca_pr = from a in db.Carts
-                        join pro_co in db.Product_Colors on a.ID_Product_Color equals pro_co.ID
+                        join pro_co in db.Product_Color on a.ID_Product_Color equals pro_co.ID
                         join pro in db.Products on pro_co.ID_Product equals pro.ID
                         select new GioHang
                         {
-                            ID= a.ID,
+                            ID = a.ID,
                             Order_Price = (int)pro.Promotion_Price
                         };
 
-            ViewBag.Cus_Detail = (from bd in db.Bill_Details
+            ViewBag.Cus_Detail = (from bd in db.Bill_Detail
                                   join bc in db.Bills on bd.ID_Bill equals bc.ID
                                   join cus in db.Customers on b.ID_Customer equals cus.ID
                                   where bd.ID_Bill == bill.ID
@@ -180,10 +183,10 @@ namespace Laptop.Controllers
                                       Cus_Phone = bc.Phone_Number,
                                       Bill_Add = bc.Address
                                   }).Distinct();
-            ViewBag.bill_detail = (from bd in db.Bill_Details
+            ViewBag.bill_detail = (from bd in db.Bill_Detail
                                    join bc in db.Bills on bd.ID_Bill equals b.ID
                                    join cus in db.Customers on b.ID_Customer equals cus.ID
-                                   join pro_co in db.Product_Colors on bd.ID_Product_Color equals pro_co.ID
+                                   join pro_co in db.Product_Color on bd.ID_Product_Color equals pro_co.ID
                                    join pro in db.Products on pro_co.ID_Product equals pro.ID
                                    join bra in db.Brands on pro.ID_Brand equals bra.ID
                                    join co in db.Colorrs on pro_co.ID_Color equals co.ID
@@ -210,14 +213,14 @@ namespace Laptop.Controllers
                 bi.ID_Product_Color = item.ID_Product_Color;
                 foreach (var it in ca_pr)
                 {
-                    if(it.ID==item.ID)
-                    bi.order_price = it.Order_Price;
-                            
-                 }
+                    if (it.ID == item.ID)
+                        bi.order_price = it.Order_Price;
+
+                }
                 bi.Quantity = item.Quantity_Purchased;
-                db.Bill_Details.InsertOnSubmit(bi);
-                db.Carts.DeleteOnSubmit(item);
-                db.SubmitChanges();
+                db.Bill_Detail.Add(bi);
+                db.Carts.Remove(item);
+                db.SaveChanges();
             }
             return View();
 
@@ -227,7 +230,7 @@ namespace Laptop.Controllers
             int key = Convert.ToInt32(Request["key"]);
             Session["key"] = Convert.ToInt32(Request["key"]);
             ViewBag.Cart = from c in db.Carts
-                           join pr in db.Product_Colors on c.ID_Product_Color equals pr.ID
+                           join pr in db.Product_Color on c.ID_Product_Color equals pr.ID
                            join pro in db.Products on pr.ID_Product equals pro.ID
                            join co in db.Colorrs on pr.ID_Color equals co.ID
                            where c.ID_Customer.Equals(Session["ID_cus"])
@@ -250,6 +253,6 @@ namespace Laptop.Controllers
 
             return View();
         }
-        
+
     }
 }

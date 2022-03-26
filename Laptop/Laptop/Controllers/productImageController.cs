@@ -10,7 +10,7 @@ namespace Laptop.Controllers
 {
     public class productImageController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: imageProduct
         public ActionResult Index()
         {
@@ -26,9 +26,9 @@ namespace Laptop.Controllers
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var image = from p in db.Product_Images
+            var image = from p in db.Product_Image
                         select p;
-            ViewBag.img = from p in db.Product_Images
+            ViewBag.img = from p in db.Product_Image
                           join pro in db.Products on p.ID_Product equals pro.ID
                           select new mau
                           {
@@ -39,7 +39,7 @@ namespace Laptop.Controllers
                           };
             ViewBag.product = from b in db.Products
                               select b;
-            ViewBag.image = (from p in db.Product_Images                             
+            ViewBag.image = (from p in db.Product_Image
                              join pro in db.Products on p.ID_Product equals pro.ID
                              orderby p.ID descending
                              select new mau
@@ -55,9 +55,9 @@ namespace Laptop.Controllers
         public ActionResult Image(int? page, Product_Image iimgae)
         {
 
-            var image = from p in db.Product_Images
+            var image = from p in db.Product_Image
                         select p;
-            ViewBag.img = from p in db.Product_Images
+            ViewBag.img = from p in db.Product_Image
                           join pro in db.Products on p.ID_Product equals pro.ID
                           select new mau
                           {
@@ -68,7 +68,7 @@ namespace Laptop.Controllers
                           };
             ViewBag.product = from b in db.Products
                               select b;
-            ViewBag.image = (from p in db.Product_Images
+            ViewBag.image = (from p in db.Product_Image
                              join pro in db.Products on p.ID_Product equals pro.ID
                              orderby p.ID descending
                              select new mau
@@ -89,8 +89,8 @@ namespace Laptop.Controllers
                 iimgae.ID_Product = Convert.ToInt32(Request["ID_SP"]);
                 iimgae.Image = Request["Anh"];
                 iimgae.created_at = ViewBag.date;
-                db.Product_Images.InsertOnSubmit(iimgae);
-                db.SubmitChanges();
+                db.Product_Image.Add(iimgae);
+                db.SaveChanges();
                 ViewBag.test = "Success!";
             }
             return View(image.ToPagedList(page ?? 1, 5));
@@ -129,9 +129,9 @@ namespace Laptop.Controllers
 
         public ActionResult Delete_img(int id)
         {
-            var img = db.Product_Images.Where(b => b.ID == id).SingleOrDefault();
-            db.Product_Images.DeleteOnSubmit(img);
-            db.SubmitChanges();
+            var img = db.Product_Image.Where(b => b.ID == id).SingleOrDefault();
+            db.Product_Image.Remove(img);
+            db.SaveChanges();
             return RedirectToAction("Image");
         }
     }

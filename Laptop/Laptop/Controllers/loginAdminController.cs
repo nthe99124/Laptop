@@ -10,7 +10,7 @@ namespace Laptop.Controllers
 {
     public class loginAdminController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: loginAdmin
         public static string EncodePassword(string originalPassword)
         {
@@ -28,18 +28,18 @@ namespace Laptop.Controllers
             return BitConverter.ToString(encodedBytes);
         }
         public ActionResult Index()
-        {            
-            if(Session["admin"]!=null)
+        {
+            if (Session["admin"] != null)
             {
                 return RedirectToAction("Statistical", "Home");
             }
             else
-            return View();
+                return View();
         }
         [HttpPost]
         public ActionResult Index(Admin tk)
         {
-            
+
             string email = Request["Email"];
             string Encode = Request["PassWord"];
             string password = EncodePassword(Encode);
@@ -56,7 +56,7 @@ namespace Laptop.Controllers
                 ViewBag.error = "Email hoặc Password sai!";
                 return this.Index();
             }
-                
+
             var dn = from a in db.Admins
                      where a.Email.Equals(email) && a.Password.Equals(password)
                      select a;
@@ -67,7 +67,7 @@ namespace Laptop.Controllers
         {
             Session["admin"] = null;
             Session["name"] = null;
-            return View();            
+            return View();
         }
 
     }

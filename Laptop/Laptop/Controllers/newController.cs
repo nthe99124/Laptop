@@ -5,13 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Laptop.Models;
-
+using System.Data;
+using System.Data.Entity;
 
 namespace Laptop.Controllers
 {
     public class newController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: new
         public ActionResult Index(int? page)
         {
@@ -20,7 +21,8 @@ namespace Laptop.Controllers
                 return RedirectToAction("Index", "loginAdmin");
             }
             var tin = from b in db.News
-                        select b;
+                      orderby b.Title descending
+                      select b;
             ViewBag.tin = tin;
             return View(tin.ToPagedList(page ?? 1, 5));
         }
@@ -40,14 +42,14 @@ namespace Laptop.Controllers
                 return RedirectToAction("Index", "loginAdmin");
             }
             var tin = (from b in db.News
-                         orderby b.ID descending
-                         select b).Take(3);
+                       orderby b.ID descending
+                       select b).Take(3);
             return View(tin);
         }
         [HttpPost]
-        public ActionResult Create(New tin)
+        public ActionResult Create(News tin)
         {
-            New test = db.News.Where(p => p.Title == Request["Title"]).FirstOrDefault();
+            News test = db.News.Where(p => p.Title == Request["Title"]).FirstOrDefault();
             ViewBag.date = DateTime.Now;
             if (test != null)
             {
@@ -55,12 +57,12 @@ namespace Laptop.Controllers
             }
             else
             {
-                tin.Title = Request["Title"];                
+                tin.Title = Request["Title"];
                 tin.Content = Request["Content"];
                 tin.Image = Request["Anh"];
                 tin.created_at = ViewBag.date;
-                db.News.InsertOnSubmit(tin);
-                db.SubmitChanges();
+                db.News.Add(tin);
+                db.SaveChanges();
             }
 
             return this.Create();
@@ -71,7 +73,7 @@ namespace Laptop.Controllers
             return View(tin);
         }
         [HttpPost]
-        public ActionResult Edit(int id, New tin)
+        public ActionResult Edit(int id, News tin)
         {
             /*var filename = Request["anh"];*/
             ViewBag.date = DateTime.Now;
@@ -82,8 +84,8 @@ namespace Laptop.Controllers
             tin.updated_at = ViewBag.date;
             /*
             tin.Image = "/Content/tin/Image/" + GetFileName(file.FileName);*/
-            UpdateModel(tin);
-            db.SubmitChanges();
+            db.Entry(tin).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
 
             return this.Edit(id);
@@ -94,7 +96,7 @@ namespace Laptop.Controllers
             return View(tin);
         }
         [HttpPost]
-        public ActionResult Edit_cre(int id, New tin)
+        public ActionResult Edit_cre(int id, News tin)
         {
             /*var filename = Request["anh"];*/
             ViewBag.date = DateTime.Now;
@@ -105,8 +107,8 @@ namespace Laptop.Controllers
             tin.updated_at = ViewBag.date;
             /*
             tin.Image = "/Content/tin/Image/" + GetFileName(file.FileName);*/
-            UpdateModel(tin);
-            db.SubmitChanges();
+            db.Entry(tin).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Create");
 
             return this.Edit(id);
@@ -114,15 +116,15 @@ namespace Laptop.Controllers
         public ActionResult Delete(int id)
         {
             var tin = db.News.Where(b => b.ID == id).SingleOrDefault();
-            db.News.DeleteOnSubmit(tin);
-            db.SubmitChanges();
+            db.News.Remove(tin);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Delete_cre(int id)
         {
             var tin = db.News.Where(b => b.ID == id).SingleOrDefault();
-            db.News.DeleteOnSubmit(tin);
-            db.SubmitChanges();
+            db.News.Remove(tin);
+            db.SaveChanges();
             return RedirectToAction("Create");
         }
     }

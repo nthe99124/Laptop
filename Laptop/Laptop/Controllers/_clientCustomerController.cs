@@ -6,11 +6,14 @@ using System.Web.Mvc;
 using Laptop.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Data;
+using System.Data.Entity;
+
 namespace Laptop.Controllers
 {
     public class _clientCustomerController : Controller
     {
-        laptopDataContext db = new laptopDataContext();
+        LaptopNTT db = new LaptopNTT();
         // GET: _clientCustomer
         public static string EncodePassword(string originalPassword)
         {
@@ -39,8 +42,8 @@ namespace Laptop.Controllers
         {
             int key = @Convert.ToInt32(Session["ID_cus"].ToString());
             var tb = from c in db.Customers
-                      where c.ID == key
-                      select c;
+                     where c.ID == key
+                     select c;
             return View(tb);
         }
         [HttpPost]
@@ -52,8 +55,8 @@ namespace Laptop.Controllers
             string name = Request["name"];
             string add = Request["address"];
             tk = db.Customers.Where(m => m.ID == key).SingleOrDefault();
-            if(tk!=null)
-            { 
+            if (tk != null)
+            {
                 tk.Name = name;
                 tk.Gender = gender;
                 tk.Address = add;
@@ -61,8 +64,8 @@ namespace Laptop.Controllers
                 tk.Email = Session["email"].ToString();
                 tk.Status = "Active";
                 tk.updated_at = DateTime.Now;
-                UpdateModel(tk);
-                db.SubmitChanges();
+                db.Entry(tk).State = EntityState.Modified;
+                db.SaveChanges();
             }
             return RedirectToAction("notification", "_clientCustomer");
         }
@@ -100,15 +103,15 @@ namespace Laptop.Controllers
                     Session["doimk"] = tk;
                     tk.Password = mkmoi1;
                     tk.updated_at = DateTime.Now;
-                    UpdateModel(tk);
-                    db.SubmitChanges();
+                    db.Entry(tk).State = EntityState.Modified;
+                    db.SaveChanges();
                 }
             }
             else
-            {                
+            {
                 return View(tb);
             }
-                
+
             return View(tb);
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,24 +12,24 @@ namespace Laptop.Controllers
     public class colorController : Controller
     {
         // GET: color
-        laptopDataContext db = new laptopDataContext();
-        public ActionResult Index(int ? page)
+        LaptopNTT db = new LaptopNTT();
+        public ActionResult Index(int? page)
         {
             if (Session["admin"] == null)
             {
                 return RedirectToAction("Index", "loginAdmin");
             }
-            var color = from p in db.Colorrs                      
-                      select p;
+            var color = from p in db.Colorrs
+                        select p;
             ViewBag.co = color;
             ViewBag.color = (from p in db.Colorrs
                              orderby p.ID descending
                              select p).Take(3);
-            return View(color.ToPagedList(page??1,5));
+            return View(color.ToPagedList(page ?? 1, 5));
         }
         [HttpPost]
         public ActionResult Index(int? page, Colorr ccolor)
-        {            
+        {
             var color = from p in db.Colorrs
                         select p;
             ViewBag.color = (from p in db.Colorrs
@@ -49,8 +51,8 @@ namespace Laptop.Controllers
                 ccolor.Color = Request["Mau"];
                 ccolor.Image = Request["Anh"];
                 ccolor.created_at = ViewBag.date;
-                db.Colorrs.InsertOnSubmit(ccolor);
-                db.SubmitChanges();
+                db.Colorrs.Add(ccolor);
+                db.SaveChanges();
                 return RedirectToAction("Index", "color");
             }
 
@@ -85,8 +87,8 @@ namespace Laptop.Controllers
         public ActionResult Delete(int id)
         {
             var color = db.Colorrs.Where(b => b.ID == id).SingleOrDefault();
-            db.Colorrs.DeleteOnSubmit(color);
-            db.SubmitChanges();
+            db.Colorrs.Remove(color);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         public ActionResult Edit(int id)
@@ -102,11 +104,9 @@ namespace Laptop.Controllers
             colorr.Color = Request["color"];
             colorr.Image = Request["logo"];
             colorr.updated_at = ViewBag.date;
-            UpdateModel(colorr);
-            db.SubmitChanges();
+            db.Entry(colorr).State = EntityState.Modified;
+            db.SaveChanges();
             return RedirectToAction("Index");
-
-            return this.Edit(id);
         }
     }
 }

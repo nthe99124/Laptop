@@ -1,56 +1,47 @@
-﻿using PagedList;
+﻿using Laptop.Models;
+using PagedList;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Laptop.Models;
-using System.Data;
 using System.Data.Entity;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Laptop.Controllers
 {
-    public class brandController : Controller
+    public class BrandController : Controller
     {
-        LaptopNTT db = new LaptopNTT();
-        // GET: brand
+        private readonly LaptopNTT _db = new LaptopNTT();
+
+        // GET: Brand
         public ActionResult Index(int? page)
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
-            var brand = from b in db.Brands
+            var brand = from b in _db.Brands
                         orderby b.Name descending
                         select b;
             ViewBag.brand = brand;
             return View(brand.ToPagedList(page ?? 1, 5));
-        }/*
-        [HttpPost]
-        public ActionResult Index(int? page, FormCollection a)
-        {
-            string name = Request["key"]; 
-            var brand = from b in db.Brands
-                        where b.Name.Contains(name)
-                        select b;
-            return View(brand.ToPagedList(page ?? 1, 5));
-        }*/
+        }
+
         public ActionResult Create()
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
-            var brand = (from b in db.Brands
+            var brand = (from b in _db.Brands
                          orderby b.ID descending
                          select b).Take(3);
             return View(brand);
         }
+
         [HttpPost]
         public ActionResult Create(Brand brand)
         {
 
-            Brand test = db.Brands.Where(p => p.Name == Request["Ten"]).FirstOrDefault();
+            var test = _db.Brands.FirstOrDefault(p => p.Name == Request["Ten"]);
             ViewBag.date = DateTime.Now;
             if (test != null)
             {
@@ -62,62 +53,66 @@ namespace Laptop.Controllers
                 brand.Description = Request["MoTa"];
                 brand.Image = Request["Anh"];
                 brand.created_at = ViewBag.date;
-                db.Brands.Add(brand);
-                db.SaveChanges();
+                _db.Brands.Add(brand);
+                _db.SaveChanges();
             }
-
             return this.Create();
         }
+
         public ActionResult Edit(int id)
         {
-            var brand = db.Brands.First(b => b.ID == id);
+            var brand = _db.Brands.First(b => b.ID == id);
             return View(brand);
         }
+
         [HttpPost]
         public ActionResult Edit(int id, Brand brand)
         {
-            /*var filename = Request["anh"];*/
             ViewBag.date = DateTime.Now;
-            brand = db.Brands.Where(b => b.ID == id).SingleOrDefault();
-            /*brand.Name = Request["Ten"];*/
-            brand.Description = Request["MoTa"];
-            brand.Image = Request["logo"];
-            brand.updated_at = ViewBag.date;
-            /*
-            brand.Image = "/Content/Brand/Image/" + GetFileName(file.FileName);*/
-            db.Entry(brand).State = EntityState.Modified;
-            db.SaveChanges();
+            brand = _db.Brands.SingleOrDefault(b => b.ID == id);
+            if (brand != null)
+            {
+                brand.Description = Request["MoTa"];
+                brand.Image = Request["logo"];
+                brand.updated_at = ViewBag.date;
+                /*
+            Brand.Image = "/Content/Brand/Image/" + GetFileName(file.FileName);*/
+                _db.Entry(brand).State = EntityState.Modified;
+            }
+
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public ActionResult Delete(int id)
         {
-            var brand = db.Brands.Where(b => b.ID == id).SingleOrDefault();
-            db.Brands.Remove(brand);
-            db.SaveChanges();
+            var brand = _db.Brands.SingleOrDefault(b => b.ID == id);
+            if (brand != null) _db.Brands.Remove(brand);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit_cre(int id)
         {
-            var brand = db.Brands.First(b => b.ID == id);
+            var brand = _db.Brands.First(b => b.ID == id);
             return View(brand);
         }
+
         [HttpPost]
         public ActionResult Edit_cre(int id, Brand brand)
         {
-            /*var filename = Request["anh"];*/
             ViewBag.date = DateTime.Now;
-            brand = db.Brands.Where(b => b.ID == id).SingleOrDefault();
-            /*brand.Name = Request["Ten"];*/
-            brand.Description = Request["MoTa"];
-            brand.Image = Request["logo"];
-            brand.updated_at = ViewBag.date;
-            /*
-            brand.Image = "/Content/Brand/Image/" + GetFileName(file.FileName);*/
-            db.Entry(brand).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Create");
+            brand = _db.Brands.SingleOrDefault(b => b.ID == id);
+            if (brand != null)
+            {
+                brand.Description = Request["MoTa"];
+                brand.Image = Request["logo"];
+                brand.updated_at = ViewBag.date;
+                _db.Entry(brand).State = EntityState.Modified;
+            }
 
+            _db.SaveChanges();
+            return RedirectToAction("Create");
         }
     }
 }

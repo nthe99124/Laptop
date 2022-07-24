@@ -23,7 +23,7 @@ namespace Laptop.Models
         public Nullable<int> ID_Customer { get; set; }
         public Nullable<System.DateTime> Date_order { get; set; }
         public string Address { get; set; }
-        public string Confirm { get; set; }
+        public Nullable<short> Status { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
         public string Phone_Number { get; set; }

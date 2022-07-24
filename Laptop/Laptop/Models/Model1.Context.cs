@@ -30,7 +30,7 @@ namespace Laptop.Models
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<Colorr> Colorrs { get; set; }
+        public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Favorites_list> Favorites_list { get; set; }
         public DbSet<New_Image> New_Image { get; set; }

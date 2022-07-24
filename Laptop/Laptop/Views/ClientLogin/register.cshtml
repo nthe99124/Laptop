@@ -1,0 +1,116 @@
+﻿
+@{
+    ViewBag.Title = "Bill_Detail";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<style>
+    span {
+        display: block;
+        position: absolute;
+        top: -4px;
+        right:-170px;
+    }
+
+    div {
+        position: relative;
+    }
+</style>
+<script>
+    isBool = true;
+    function ShowPass() {
+        if (isBool) {
+            document.getElementById("password").setAttribute("type", "text");
+            isBool = false;
+        }
+        else {
+            document.getElementById("password").setAttribute("type", "password");
+            isBool = true;
+        }
+    }
+
+</script>
+<div class="container">
+    <form role="form" action="/_clientLogin/register" method="post" style="border:1px solid orange;">
+        <div style="text-align:center;">
+            <b style="font-size:50px">Đăng ký</b><br /><br /><br />
+        </div>
+        <div class="row" style="font-size:17px">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="text-align:left;margin-left:30px">
+                        <b>Họ và tên: </b>
+                    </div>
+                    <div class="col-2" style=" margin-top: 3px;margin-left:-30px">
+                        <input type="text" required="" class="form-control" style="width:250px;font-size:17px;height:25px" placeholder="" autofocus name="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="text-align:left;margin-left:30px">
+                        <b>Giới tính: </b>
+                    </div>
+                    <div class="col-3" style=" margin-top: 3px;margin-left:-30px">
+                        @*<input required="" type="text" name="gender" list="dl1" style="width:250px;height:25px">*@
+                        <select name="gender" style="width:250px;height:25px">
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-3" style="text-align:left;margin-left:30px">
+                        <b>Địa chỉ: </b>
+                    </div>
+                    <div class="col-3" style=" margin-top: 3px;margin-left:-30px">
+                        <input type="text" required="" class="form-control" style="width:250px;font-size:17px;height:25px" placeholder="" autofocus name="address">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-4">
+                        <b>Số điện thoại: </b>
+                    </div>
+                    <div class="col-2" style=" margin-top: 3px; margin-left: -45px;">
+                        <input required="" pattern="^[0][0-9]{9}" title="Số điện thoại cần bắt đầu bằng 0 và có 10 số" type="text" class="form-control" style="width:250px;font-size:17px;height:25px" placeholder="" autofocus name="phone">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <b>Email: </b>
+                    </div>
+                    <div class="col-2" style=" margin-top: 3px; margin-left: -45px;">
+                        <input required="" type="email" class="form-control" style="width:250px;font-size:17px;height:25px" placeholder="" autofocus name="email">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <b>Mật khẩu: </b>
+                    </div>
+                    <div class="col-2" style=" margin-top: 3px; margin-left: -45px;">
+                        <input required="" type="password" id="password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" class="form-control" style="width:250px;font-size:17px;height:25px" name="password">
+                        <span>
+                            <img src="~/Content/image/mắt.png" width="35" onclick="ShowPass()" />
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="checkbox mb-3" style="text-align:center">
+            <p style="color:red">@ViewBag.error</p>
+        </div>
+        <div style=" text-align: center">
+            <button style="width:250px;background-color:#007bff;border-radius:20px; border: 1px solid #d1e2ff;font-size:17px;height:35px" type="submit">
+                <b style="color:#fff; font-weight:bold">Đăng ký</b><br />
+            </button>
+        </div>
+        <br />
+    </form>
+</div>
+
+
+
+

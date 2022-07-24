@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "AccountEdit";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+<style>
+    span {
+        display: block;
+        position: absolute;
+        top: -10px;
+        right: 5px;
+    }
+
+    div {
+        position: relative;
+    }
+</style>
+<script>
+        isBool = true;
+        function ShowPass() {
+            if (isBool) {
+                document.getElementById("password").setAttribute("type", "text");
+                isBool = false;
+            }
+            else {
+                document.getElementById("password").setAttribute("type", "password");
+                isBool = true;
+            }
+        }
+
+</script>
+@foreach(var item in Model)
+{
+<body>
+    <div class="container">
+        
+        <form role="form" action="/_clientCustomer/AccountEdit" method="post">
+            <div style="text-align:center; margin-bottom:30px">
+                <b style="font-size:50px">Nhập thông news</b><br />
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-3"></div>
+                        <div class="col-3" style="text-align:right;font-size:20px">
+                            <b>Họ và tên: </b>
+                        </div>
+                        <div class="col-2" style=" margin-top: -4px">
+                            <input type="text" required="" class="form-control" value="@item.Name"
+                                   style="width:250px;height:35px" placeholder="" autofocus name="name">
+                        </div>
+                    </div>
+                    <div class="row" style=" margin-top: 20px">
+                        <div class="col-3"></div>
+                        <div class="col-3" style="text-align:right;font-size:20px">
+                            <b>Giới tính: </b>
+                        </div>
+                        <div class="col-3" style=" margin-top: -4px;">
+                            <input required="" type="text" name="gender" list="dl1" value="@item.Gender" style="width:250px;height:40px">
+                            <datalist id="dl1">
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ">Nữ</option>
+                            </datalist>
+                        </div>
+                    </div>
+                    <div class="row" style=" margin-top: 20px">
+                        <div class="col-3"></div>
+                        <div class="col-3" style="text-align:right;font-size:20px">
+                            <b>Địa chỉ: </b>
+                        </div>
+                        <div class="col-3" style=" margin-top: -4px">
+                            <input type="text" required="" class="form-control" value="@item.Address"
+                                   style="width:250px;height:35px" placeholder="" autofocus name="address">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4" style=" font-size: 20px">
+                            <b>Số điện thoại: </b>
+                        </div>
+                        <div class="col-3" style=" margin-top: -4px; margin-left: -30px;">
+                            <input required="" type="text" class="form-control" value="@item.Phone_Number"
+                                   pattern="^[0][0-9]{9}" title="Số điện thoại cần bắt đầu bằng 0 và có 10 số"
+                                   style="width:250px;height:35px" placeholder="" autofocus name="phone">
+                        </div>
+                    </div>
+                    <div class="row" style=" margin-top: 20px;font-size: 20px">
+                        <div class="col-4">
+                            <b>Email: </b>
+                        </div>
+                        <div class="col-3" style=" margin-top: -4px; margin-left: -30px;">
+                            <a style="font-size:17px;">@item.Email</a>
+                        </div>
+                    </div>
+
+                    <div style=" text-align: center;margin-top: 12px;margin-left: -130px;">
+                        <button style="width:250px;height:40px;background-color:#007bff;border-radius:10px; border: 1px solid #d1e2ff" type="submit">
+                            <b style="color:#fff; font-weight:bold;font-size:17px">Thay đổi</b>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</body>
+}

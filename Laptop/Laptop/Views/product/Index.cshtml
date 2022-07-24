@@ -3,7 +3,7 @@
     @using PagedList.Mvc;
     @using PagedList;*@
 @{
-    ViewBag.Title = "product";
+    ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
 
@@ -23,7 +23,7 @@
     </div><!-- /.container-fluid -->
 </section>
 
-@*<form class="form-inline ml-3" method="post" action="/product/Index">
+@*<form class="form-inline ml-3" method="post" action="/Product/Index">
     <div class="container h-100">
         <div class="d-flex justify-content-center h-100">
             <div class="searchbar">
@@ -90,7 +90,7 @@
                                         <td>@item.RAM</td>
                                         <td>@item.ROM</td>
                                         <td>@item.Monitor</td>
-                                        <td>@item.Operating</td>
+                                        <td>@item.Operanewsg</td>
                                         <td>@item.Warranty</td>
                                         <td>@item.Pin</td>
                                         <td>@item.Size</td>
@@ -140,7 +140,7 @@
                             </tfoot>
                         </table>
                         @*<div style="margin-left: 50%;" class="paginate">
-                            @Html.PagedListPager(Model, page => Url.Action("Index", "product", new { page }))
+                            @Html.PagedListPager(Model, page => Url.Action("Index", "Product", new { page }))
                         </div>*@
                     </div>
                     <!-- /.card-body -->

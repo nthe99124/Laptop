@@ -25,11 +25,11 @@ namespace Laptop.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        public string Gender { get; set; }
+        public Nullable<bool> Gender { get; set; }
         public string Address { get; set; }
         public string Phone_Number { get; set; }
         public string Note { get; set; }
-        public string Status { get; set; }
+        public bool Status { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public Nullable<System.DateTime> updated_at { get; set; }
     

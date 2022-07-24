@@ -1,108 +1,113 @@
-﻿using System;
+﻿using Laptop.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Laptop.Models;
+using Laptop.Common.Constants;
+using Bill = Laptop.Common.DataType.Bill;
+using Customer = Laptop.Common.DataType.Customer;
 
 namespace Laptop.Controllers
 {
     public class HomeController : Controller
     {
-        LaptopNTT db = new LaptopNTT();
+        private readonly LaptopNTT _db = new LaptopNTT();
         public ActionResult Index()
         {
-            ViewBag.product = (from b in db.Products
+            ViewBag.product = (from b in _db.Products
                                orderby b.ID descending
                                select b).Take(4);
-            ViewBag.htvp = (from b in db.Products
-                            where b.Group_Pro == "Học tập - Văn phòng"
+            ViewBag.htvp = (from b in _db.Products
+                            where b.Group_Pro == GroupProductConstant.StudyOffice
                             orderby b.ID descending
                             select b).Take(4);
-            ViewBag.ccst = (from b in db.Products
-                            where b.Group_Pro == "Cao cấp - Sang trọng"
+            ViewBag.ccst = (from b in _db.Products
+                            where b.Group_Pro == GroupProductConstant.Luxury
                             orderby b.ID descending
                             select b).Take(4);
-            ViewBag.dhkt = (from b in db.Products
-                            where b.Group_Pro == "Đồ họa - Kỹ thuật"
+            ViewBag.dhkt = (from b in _db.Products
+                            where b.Group_Pro == GroupProductConstant.GraphicsEngineering
                             orderby b.ID descending
                             select b).Take(4);
-            ViewBag.gaming = (from b in db.Products
-                              where b.Group_Pro == "Laptop Gaming"
+            ViewBag.gaming = (from b in _db.Products
+                              where b.Group_Pro == GroupProductConstant.GamingLaptop
                               orderby b.ID descending
                               select b).Take(4);
 
             return View();
         }
-        public ActionResult layout()
+
+        public ActionResult Layout()
         {
             return View();
         }
+
         public ActionResult Statistical()
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
-            DateTime date = DateTime.Now;
-            ViewBag.billnow = (from b in db.Bills
+            var date = DateTime.Now;
+            ViewBag.billnow = (from b in _db.Bills
                                where b.Date_order.Value.Month.Equals(date.Month)
-                               && b.Confirm == "Đã giao hàng" || b.Date_order.Value.Month.Equals(date.Month) && b.Confirm == "Đã nhận được hàng"
+                               && b.Status.Equals(Bill.Status.Delivered) || b.Date_order.Value.Month.Equals(date.Month) && b.Status.Equals(Bill.Status.Received)
                                select b).Count();
-            ViewBag.user = (from c in db.Customers
-                            where c.Status == "Active"
+            ViewBag.user = (from c in _db.Customers
+                            where c.Status.Equals(Customer.Status.Active)
                             select c).Count();
-            ViewBag.userlock = (from c in db.Customers
+            ViewBag.userlock = (from c in _db.Customers
                                 select c).Count();
-            ViewBag.dt = (from b in db.Bills
-                          join bd in db.Bill_Detail on b.ID equals bd.ID_Bill
-                          join pro_co in db.Product_Color on bd.ID_Product_Color equals pro_co.ID
-                          join pro in db.Products on pro_co.ID_Product equals pro.ID
+            ViewBag.dt = (from b in _db.Bills
+                          join bd in _db.Bill_Detail on b.ID equals bd.ID_Bill
+                          join proCo in _db.Product_Color on bd.ID_Product_Color equals proCo.ID
+                          join pro in _db.Products on proCo.ID_Product equals pro.ID
                           where b.Date_order.Value.Month.Equals(date.Month)
-                          && b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã giao hàng"
-                          || b.Date_order.Value.Month.Equals(date.Month) && b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã nhận được hàng"
+                          && b.Date_order.Value.Year.Equals(date.Year) && b.Status.Equals(Bill.Status.Delivered)
+                          || b.Date_order.Value.Month.Equals(date.Month) && b.Date_order.Value.Year.Equals(date.Year) && b.Status.Equals(Bill.Status.Received)
                           select new Bill_Detaill
                           {
                               Quantity = (int)bd.Quantity,
                               Order_Price = (decimal)bd.order_price
                           });
 
-            ViewBag.dtn = (from b in db.Bills
-                           join bd in db.Bill_Detail on b.ID equals bd.ID_Bill
-                           join pro_co in db.Product_Color on bd.ID_Product_Color equals pro_co.ID
-                           join pro in db.Products on pro_co.ID_Product equals pro.ID
-                           where b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã giao hàng"
-                           || b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã nhận được hàng"
-                           select new Bill_Detaill
-                           {
-                               Quantity = (int)bd.Quantity,
-                               Order_Price = (decimal)bd.order_price
-                           });
-            ViewBag.sl = (from b in db.Bills
-                          join bd in db.Bill_Detail on b.ID equals bd.ID_Bill
-                          join pro_co in db.Product_Color on bd.ID_Product_Color equals pro_co.ID
-                          join pro in db.Products on pro_co.ID_Product equals pro.ID
+            ViewBag.dtn = (_db.Bills.Join(_db.Bill_Detail, b => b.ID, bd => bd.ID_Bill, (b, bd) => new { b, bd })
+                .Join(_db.Product_Color, @t => @t.bd.ID_Product_Color, proCo => proCo.ID,
+                    (@t, proCo) => new { @t, pro_co = proCo })
+                .Join(_db.Products, @t => @t.pro_co.ID_Product, pro => pro.ID, (@t, pro) => new { @t, pro })
+                .Where(@t =>
+                    @t.@t.@t.b.Date_order.Value.Year.Equals(date.Year) && @t.@t.@t.b.Status.Equals(Bill.Status.Delivered) ||
+                    @t.@t.@t.b.Date_order.Value.Year.Equals(date.Year) && @t.@t.@t.b.Status.Equals(Bill.Status.Received))
+                .Select(@t => new Bill_Detaill
+                {
+                    Quantity = (int)@t.@t.@t.bd.Quantity,
+                    Order_Price = (decimal)@t.@t.@t.bd.order_price
+                }));
+            ViewBag.sl = (from b in _db.Bills
+                          join bd in _db.Bill_Detail on b.ID equals bd.ID_Bill
+                          join proCo in _db.Product_Color on bd.ID_Product_Color equals proCo.ID
+                          join pro in _db.Products on proCo.ID_Product equals pro.ID
                           where b.Date_order.Value.Month.Equals(date.Month)
-                          && b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã giao hàng"
-                          || b.Date_order.Value.Month.Equals(date.Month) && b.Date_order.Value.Year.Equals(date.Year) && b.Confirm == "Đã nhận được hàng"
+                          && b.Date_order.Value.Year.Equals(date.Year) && b.Status.Equals(Bill.Status.Delivered)
+                          || b.Date_order.Value.Month.Equals(date.Month) && b.Date_order.Value.Year.Equals(date.Year) && b.Status.Equals(Bill.Status.Received)
                           select new Bill_Detaill
                           {
                               Quantity = (int)bd.Quantity,
                           });
-            ViewBag.slsp = (from pr in db.Products
+            ViewBag.slsp = (from pr in _db.Products
                             select pr).Count();
-            ViewBag.slc = (from pr in db.Product_Color
+            ViewBag.slc = (from pr in _db.Product_Color
                            select pr);
-            ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                            where Bill_Detail.Bill.Date_order.Value.Month.Equals(date.Month) &&
-                              Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                              Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                              Bill_Detail.Bill.Date_order.Value.Month.Equals(date.Month) &&
-                              Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                              Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                            group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
+            ViewBag.spbc = (from billDetail in _db.Bill_Detail
+                            where billDetail.Bill.Date_order.Value.Month.Equals(date.Month) &&
+                              billDetail.Bill.Date_order.Value.Year.Equals(date.Year) &&
+                              billDetail.Bill.Status.Equals(Bill.Status.Received) ||
+                              billDetail.Bill.Date_order.Value.Month.Equals(date.Month) &&
+                              billDetail.Bill.Date_order.Value.Year.Equals(date.Year) &&
+                              billDetail.Bill.Status.Equals(Bill.Status.Delivered)
+                            group new { billDetail.Product_Color.Product, Bill_Detail = billDetail } by new
                             {
-                                Bill_Detail.Product_Color.Product.ID
+                                billDetail.Product_Color.Product.ID
                             } into g
                             orderby
                               g.Sum(p => p.Bill_Detail.Quantity) descending
@@ -111,328 +116,63 @@ namespace Laptop.Controllers
                                 ID = g.Key.ID,
                                 Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
                             }).Take(5);
-            ViewBag.pro = (from pr in db.Products
+            ViewBag.pro = (from pr in _db.Products
                            select pr);
             return View();
         }
+
         public ActionResult Statistical_month(string month)
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
-            DateTime date = DateTime.Now;
-
-            ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                            where
-                              Bill_Detail.Bill.Date_order.Value.Month.Equals(date.Month) &&
-                              Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                              Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                              Bill_Detail.Bill.Date_order.Value.Month.Equals(date.Month) &&
-                              Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                              Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                            group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                            {
-                                Bill_Detail.Product_Color.Product.ID
-                            } into g
-                            orderby
-                              g.Sum(p => p.Bill_Detail.Quantity) descending
-                            select new Bill_Detaill
-                            {
-                                ID = g.Key.ID,
-                                Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                            }).Take(5);
-            ViewBag.pro = (from pr in db.Products
-                           select pr);
-            switch (month)
+            var date = DateTime.Now;
+            if (!int.TryParse(month, out var monthOut) || monthOut > 12 || monthOut < 1)
             {
-                case "1":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 1 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 1 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "2":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 2 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 2 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "3":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 3 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 3 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "4":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 4 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 4 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "5":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 5 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 5 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "6":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 6 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 6 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "7":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 7 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 7 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-
-                    break;
-                case "8":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 8 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 8 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "9":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 9 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 9 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "10":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 10 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 10 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "11":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 11 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 11 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-                    break;
-                case "12":
-                    ViewBag.spbc = (from Bill_Detail in db.Bill_Detail
-                                    where
-                                      Bill_Detail.Bill.Date_order.Value.Month == 12 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã nhận được hàng" ||
-                                      Bill_Detail.Bill.Date_order.Value.Month == 12 &&
-                                      Bill_Detail.Bill.Date_order.Value.Year.Equals(date.Year) &&
-                                      Bill_Detail.Bill.Confirm == "Đã giao hàng"
-                                    group new { Bill_Detail.Product_Color.Product, Bill_Detail } by new
-                                    {
-                                        Bill_Detail.Product_Color.Product.ID
-                                    } into g
-                                    orderby
-                                      g.Sum(p => p.Bill_Detail.Quantity) descending
-                                    select new Bill_Detaill
-                                    {
-                                        ID = g.Key.ID,
-                                        Quantity = (int)g.Sum(p => p.Bill_Detail.Quantity)
-                                    }).Take(5);
-
-                    break;
-                default:
-                    break;
+                monthOut = date.Month;
             }
+            ViewBag.spbc = (_db.Bill_Detail
+                .Where(billDetail =>
+                    billDetail.Bill.Date_order.Value.Month.Equals(monthOut) &&
+                    billDetail.Bill.Date_order.Value.Year.Equals(date.Year) &&
+                    billDetail.Bill.Status.Equals(Bill.Status.Received) ||
+                    billDetail.Bill.Date_order.Value.Month.Equals(monthOut) &&
+                    billDetail.Bill.Date_order.Value.Year.Equals(date.Year) &&
+                    billDetail.Bill.Status.Equals(Bill.Status.Delivered))
+                .GroupBy(billDetail => new { billDetail.Product_Color.Product.ID },
+                    billDetail => new { billDetail.Product_Color.Product, billDetail })
+                .OrderByDescending(g => g.Sum(p => p.billDetail.Quantity))
+                .Select(g => new Bill_Detaill { ID = g.Key.ID, Quantity = (int)g.Sum(p => p.billDetail.Quantity) })).Take(5);
+            ViewBag.pro = (from pr in _db.Products
+                           select pr);
             return View();
         }
+
         public JsonResult AjaxStatistical(int year)
         {
-            List<decimal> dt = new List<decimal>();
-            for (int i = 0; i < 12; i++)
+            var dt = new List<decimal>();
+            for (var i = 0; i < 12; i++)
             {
                 dt.Add(Doanhthuthang(i + 1, year));
             }
             return Json(dt, JsonRequestBehavior.AllowGet);
         }
+
         public decimal Doanhthuthang(int month, int year)
         {
-            var dt = (from b in db.Bills
-                      join bd in db.Bill_Detail on b.ID equals bd.ID_Bill
-                      join pro_co in db.Product_Color on bd.ID_Product_Color equals pro_co.ID
-                      join pro in db.Products on pro_co.ID_Product equals pro.ID
-                      where b.Date_order.Value.Month.Equals(month) && b.Date_order.Value.Year.Equals(year) && b.Confirm == "Đã giao hàng"
-                        || b.Date_order.Value.Month.Equals(month) && b.Date_order.Value.Year.Equals(year) && b.Confirm == "Đã nhận được hàng"
+            var dt = (from b in _db.Bills
+                      join bd in _db.Bill_Detail on b.ID equals bd.ID_Bill
+                      join proCo in _db.Product_Color on bd.ID_Product_Color equals proCo.ID
+                      join pro in _db.Products on proCo.ID_Product equals pro.ID
+                      where b.Date_order.Value.Month.Equals(month) && b.Date_order.Value.Year.Equals(year) && b.Status.Equals(Bill.Status.Delivered)
+                        || b.Date_order.Value.Month.Equals(month) && b.Date_order.Value.Year.Equals(year) && b.Status.Equals(Bill.Status.Received)
                       select new Bill_Detaill
                       {
                           Quantity = (int)bd.Quantity,
                           Order_Price = (decimal)bd.order_price
                       }).ToList();
-            decimal dtt = 0;
-            foreach (var item in dt)
-            {
-                dtt = dtt + item.Order_Price * item.Quantity;
-            }
-            return dtt;
+            return dt.Aggregate<Bill_Detaill, decimal>(0, (current, item) => current + item.Order_Price * item.Quantity);
         }
     }
 }

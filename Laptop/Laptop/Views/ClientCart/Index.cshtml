@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<div class="container">
+    <div class="row" style="text-align:center">
+        <div class="col" style="text-align:center; margin-bottom:50px">
+            <b style="font-size:50px;color:red">Giỏ hàng <i class="fa fa-shopping-cart"></i></b>
+        </div>
+    </div>
+</div>
+@if (ViewBag.Cart == null)
+{
+    <div class="container">
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center">
+                <b style="font-size:30px;color:red">Bạn cần đăng nhập để xem giỏ hàng!</b>
+            </div>
+        </div>
+        <div class="row" style="text-align:center;margin-top:20px; margin-bottom:50px">
+            <div class="col" style="text-align:center;font-size:25px">
+                <a href="/_clientLogin/Index">===>Đăng nhập ngay<===</a>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    if (!((IEnumerable<dynamic>)ViewBag.Cart).Any())
+    {
+        <div class="row" style="text-align:center">
+            <div class="col" style="text-align:center"><b style="font-size:35px;color:red">Chưa có sản phẩm nào trong giỏ hàng</b></div><br /><br />
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row" style="height:100px">
+                <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                    <br /> Ảnh sản phẩm
+                </div>
+                <div class="col-2" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                    <br />Tên sản phẩm
+                </div>
+                <div class="col" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                    <br /> Màu sắc
+                </div>
+                <div class="col" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                    <br /> Đơn giá
+                </div>
+                <div class="col" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue;">
+                    <br />Số lượng
+                </div>
+                <div class="col" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue;">
+                    <br /> Tổng tiền
+                </div>
+                <div class="col" style="text-align:center; font-size:23px; border:1px solid white;background-color:aliceblue">
+                    <br /> Thao tác
+                </div>
+            </div>
+
+            <hr />
+            @foreach (var item in @ViewBag.Cart)
+            {
+
+                <div class="row" style="height:110px">
+
+                    <div class="col-2" style="text-align:center; font-size:20px;border-left:1px solid white;background-color:aliceblue ">
+                        <a href="/_clientProductDetail/Index?key=@item.ID_pro" style="color:black">
+                            <img src="@item.Image" style="height:110px;width:110px" alt="Lỗi ảnh" />
+                        </a>
+                    </div>
+                    <div class="col-2" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+                        <br /><a href="/_clientProductDetail/Index?key=@item.ID_pro" style="color:black"> @item.Name</a>
+                    </div>
+                    <div class="col" style="text-align:center; font-size:20px; border-left:1px solid white;background-color:aliceblue">
+                        <br /> @item.Color
+                    </div>
+                    <div class="col" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                        <br />  @string.Format("{0:#,##0}", @item.Price)đ
+                    </div>
+                    <div class="col" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                        <br />
+                        <div class="row" style="text-align:center">
+                            <form action="/_clientCart/Update/@item.ID" method="post">
+                                <input style="font-size:20px;background-color:aliceblue; border:1px solid black;border-radius:3px; margin-left:15px" type="submit" value="-">
+                                <input type="number" name="quan" min="1" max="@item.Quantity"
+                                       value="@item.Quantity_Purchased" required="" style="width:60px">
+                            </form>
+                            <form action="/_clientCart/Update/@item.ID" method="post">
+                                <input style="font-size:20px;background-color:aliceblue; border:1px solid black;border-radius:3px; margin-right:-40px" type="submit" value="+">
+                                <input type="number" name="quan" min="1" max="@item.Quantity"
+                                       value="@item.Quantity_Purchased" required="" style="width:55px" hidden>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                        <br />   @string.Format("{0:#,##0}", @item.Total_Price)đ
+                    </div>
+                    <div class="col" style="text-align:center; font-size:20px; border:1px solid white;background-color:aliceblue">
+                        <br /><a href="/_clientCart/Delete?key=@item.ID" style="color:black"><i class="fa fa-trash"></i> Xóa</a>
+                        @*<br /> <i class="fa fa-upload"></i><input style="font-size:17px;background-color:aliceblue; border:0px" type="submit"  value="Cập nhật">*@
+                    </div>
+                </div>
+
+                <hr />
+            }
+            @{
+                var total = 0;
+                foreach (var item in @ViewBag.Cart)
+                {
+
+                    total += @item.Total_Price;
+                }
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col" style="font-size:22px; text-align:right"><b>Tổng tiền: </b></div>
+                    <div class="col" style="font-size:22px;text-align:center">  @string.Format("{0:#,##0}", @total)đ</div>
+                    <div class="col">
+                        <a href="/_clientCart/Buy" style="color:white;border:5px solid orange; border-radius:20px;
+                        background-color:orange;font-size:21px">Thanh toán</a>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+}

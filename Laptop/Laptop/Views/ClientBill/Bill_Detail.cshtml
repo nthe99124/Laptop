@@ -1,0 +1,123 @@
+﻿
+@{
+    ViewBag.Title = "Bill_Detail";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+<div class="container">
+    <div class="card-header">
+        <h3 class="card-title" style="text-align:center;font-size:35px;color:red; width:100%">Chi tiết hóa đơn</h3>
+    </div>
+    <div style="font-size:20px;margin-top:20px">
+
+        <!-- /.card-header -->
+        @foreach (var item in ViewBag.Cus_Detail)
+        {
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-3">
+                    <b>Số hóa đơn:</b>
+                </div>
+                <div class="col">
+                    @item.ID_Bill
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1"></div>
+                <div class="col-3">
+                    <b>Ngày đặt hàng:</b>
+                </div>
+                <div class="col">
+                    @item.date
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-3">
+                    <b>Tên khách hàng:</b>
+                </div>
+                <div class="col">
+                    @item.Cus_Name
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-3">
+                    <b>Email:</b>
+                </div>
+                <div class="col">
+                    @item.Cus_Email
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-3">
+                    <b>Số điện thoại: </b>
+                </div>
+                <div class="col">
+                    @item.Cus_Phone
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1">
+                </div>
+                <div class="col-3">
+                    <b>Địa chỉ nhận hàng:</b>
+                </div>
+                <div class="col">
+                    @item.Bill_Add
+                </div>
+            </div>
+        }
+        <div class="card-body" style="margin-top:20px">
+            <table id="example2" class="table table-bordered table-hover" style="font-size:18px">
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Màu sắc</th>
+                        <th>Tên hãng</th>
+                        <th>Số lượng</th>
+                        <th>Đơn giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in ViewBag.bill_detail)
+                    {
+                        <tr class="odd gradeX" align="center">
+                            <td>@item.Pro_Name</td>
+                            <td>@item.Pro_Color</td>
+                            <td>@item.Pro_Brand</td>
+                            <td>@item.Quantity</td>
+                            <td>@string.Format("{0:#,##0}",@item.Order_Price)đ</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div>
+                <br />
+                <div class="row" style="background-color:aqua; border:20px solid aqua;border-bottom:40px solid aqua">
+                    <div style="text-align:right;font-size:20px" class="col-6">$ Tổng tiền : </div>
+                    <div class="col-6" style="text-align:left">
+                        @{
+                            decimal c = 0;
+                            decimal d = 0;
+                            foreach (var item in ViewBag.bill_detail)
+                            {
+                                c = c + item.Order_Price * item.Quantity;
+
+                            }
+                            <p style="font-size:20px">@string.Format("{0:#,##0}",@c)đ</p>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
+

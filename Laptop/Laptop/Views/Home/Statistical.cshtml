@@ -41,9 +41,9 @@
                             </p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-bag"></i>
+                            <i class="ion"></i>
                         </div>
-                        <a href="/bill/Index" class="small-box-footer">Thông tin thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/bill/Index" class="small-box-footer">Thông news thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <div @*class="col-lg-3 col-6"*@ class="col-6" style="height:140px">
@@ -64,7 +64,7 @@
                         <div class="icon">
                             <i class="ion ion-pie-graph"></i>
                         </div>
-                        <a href="/bill/Index" class="small-box-footer">Thông tin thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/bill/Index" class="small-box-footer">Thông news thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                         <div class="icon">
                             <i class="fa fa-laptop"></i>
                         </div>
-                        <a href="/product/Index" class="small-box-footer">Thông tin thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/product/Index" class="small-box-footer">Thông news thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -98,9 +98,9 @@
                             <p>@ViewBag.user tài khoản được phép giao dịch</p>
                         </div>
                         <div class="icon">
-                            <i class="ion ion-person-add"></i>
+                            <i class="ion"></i>
                         </div>
-                        <a href="/customert/Index" class="small-box-footer">Thông tin thêm <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/customert/Index" class="small-box-footer">Thông news thêm <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -246,7 +246,7 @@
                 <div class="card-header border-0" >
                     <h3 class="card-title">
                         Top 5 sản phẩm bán chạy tháng
-                        <select id="loctheothang" onchange="loctheothang()" style="border-radius:5px">
+                        <select id="loctheothang" onchange="Loctheothang()" style="border-radius:5px">
                             @for (int i = @DateTime.Now.Month; i > 0; i--)
                             {
                                 <option value="@i">@i</option>
@@ -350,16 +350,16 @@
     </div>
 </div>
 <script>
-    function loctheothang() {
+    function Loctheothang() {
 
-        var key = $("#loctheothang").val();
+        var key = $("#Loctheothang").val();
         $.ajax({
             url: "/Home/Statistical_month?&month=" + key,
-            success: function (result) {
+            success: function(result) {
                 $("#Danh_Sach").empty();
                 $("#Danh_Sach").append(result);
             }
-        })
+        });
     }
 </script>
 

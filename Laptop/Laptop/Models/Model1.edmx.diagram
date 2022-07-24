@@ -5,32 +5,32 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="5dc63991eced4ac99790ecc5a4dceeac" Name="Diagram1">
-        <EntityTypeShape EntityType="LaptopNTTModel.Admin" Width="1.5" PointX="7.75" PointY="11.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Bill_Detail" Width="1.5" PointX="10.5" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Bill" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Brand" Width="1.5" PointX="0.75" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Cart" Width="1.5" PointX="13.5" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Colorr" Width="1.5" PointX="6" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Customer" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Favorites_list" Width="1.5" PointX="5.25" PointY="7.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.New_Image" Width="1.5" PointX="13" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.News" Width="1.5" PointX="10.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Product" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Product_Color" Width="1.5" PointX="8.25" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Product_Image" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="LaptopNTTModel.Slide" Width="1.5" PointX="9.75" PointY="11.5" IsExpanded="true" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Bill_BD" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Pro_BD" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_cus_bill" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_br_pro" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Cus_c" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Pro_C" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Co_CoD" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Cus_F" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Pro_F" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_img_new" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Pro_CoD" ManuallyRouted="false" />
-        <AssociationConnector Association="LaptopNTTModel.fk_Pro_Ima" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Admin" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Bill_Detail" Width="1.5" PointX="13.5" PointY="7" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Bill" Width="1.5" PointX="11.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Brand" Width="1.5" PointX="0.75" PointY="7.375" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Cart" Width="1.5" PointX="10.5" PointY="7.375" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Color" Width="1.5" PointX="6" PointY="3.5" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Customer" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Favorites_list" Width="1.5" PointX="5.25" PointY="7.375" />
+        <EntityTypeShape EntityType="LaptopNTTModel.New_Image" Width="1.5" PointX="10" PointY="11.875" />
+        <EntityTypeShape EntityType="LaptopNTTModel.News" Width="1.5" PointX="7.75" PointY="11.75" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Product" Width="1.5" PointX="3" PointY="5.75" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Product_Color" Width="1.5" PointX="8.25" PointY="7.125" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Product_Image" Width="1.5" PointX="5.25" PointY="10.625" />
+        <EntityTypeShape EntityType="LaptopNTTModel.Slide" Width="1.5" PointX="2.75" PointY="13.5" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Bill_BD" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Pro_BD" />
+        <AssociationConnector Association="LaptopNTTModel.fk_cus_bill" />
+        <AssociationConnector Association="LaptopNTTModel.fk_br_pro" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Cus_c" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Pro_C" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Co_CoD" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Cus_F" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Pro_F" />
+        <AssociationConnector Association="LaptopNTTModel.fk_img_new" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Pro_CoD" />
+        <AssociationConnector Association="LaptopNTTModel.fk_Pro_Ima" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

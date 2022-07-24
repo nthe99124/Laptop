@@ -1,4 +1,5 @@
-﻿
+﻿@using Laptop.Common.Constants
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Admin.cshtml";
@@ -12,25 +13,25 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/Home/Statistical">Trang chủ</a></li>
-                    <li class="breadcrumb-item active">Form cập nhật thông tin hóa đơn</li>
+                    <li class="breadcrumb-item active">Form cập nhật thông news hóa đơn</li>
                 </ol>
             </div>
         </div>
     </div><!-- /.container-fluid -->
 </section>
-<div class="card-body pad">
+<div class="card-body">
     <div class="row">
         <div class="col-md-12">
             <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title" style="text-align:center; width:100%">Form sửa thông tin hãng</h3>
+                    <h3 class="card-title" style="text-align:center; width:100%">Form sửa thông news hãng</h3>
                 </div>
                 <form role="form" method="post" action="/bill/Edit/@Model.ID"
                       enctype="multipart/form-data">
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
-                                <tr align="center">
+                                <tr>
                                     <th>ID</th>
                                     <th>ID khách hàng</th>
                                     <th>Ngày đặt hàng</th>
@@ -55,23 +56,23 @@
                                         @Model.Address
                                     </td>
                                     <td>
-                                        @if (Model.Confirm == "Đã nhận được hàng")
+                                        @if (Model.Status.Equals(Bill.Status.Received))
                                         {
-                                            @Model.Confirm
+                                            @Model.Status
                                         }
-                                        else if(Model.Confirm == "Đã xác nhận")
+                                        else if(Model.Status == BillStatusConstant.Statused)
                                         {
                                             <select name="confirm" style="width:250px;height:25px">
                                                 <option value="Đang giao hàng">Đang giao hàng</option>
                                             </select>
                                         }
-                                        else if(Model.Confirm == "Đang giao hàng")
+                                        else if(Model.Status.Equals(Bill.Status.Delivered))
                                         {
                                             <select name="confirm" style="width:250px;height:25px">
                                                 <option value="Đã giao hàng">Đã giao hàng</option>
                                             </select>
                                         }
-                                        else if (Model.Confirm == "Chờ xác nhận")
+                                        else if (Model.Status == BillStatusConstant.WaitForConfirmation)
                                         {
                                             <select name="confirm" style="width:250px;height:25px">
                                                 <option value="Đã xác nhận">Đã xác nhận</option>

@@ -1,8 +1,4 @@
-﻿@*@model IPagedList<Laptop.Models.Brand>
-
-@using PagedList.Mvc;
-@using PagedList;*@
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
@@ -24,23 +20,9 @@
     </div><!-- /.container-fluid -->
 </section>
 
-@*<form class="form-inline ml-3" method="post" action="/brand/Index">
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                    <input class="search_input" type="text" name="key" placeholder="Tìm kiếm">
-                    <button type="submit" class="btn btn-primary" style="background-color:white; border-color:white; color:blue">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <br>*@
-
 <!-- Main content -->
 <section class="content">
-    <div class="card-body pad">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -51,7 +33,7 @@
                     <div class="card-body">
                         <table id="example" class="table table-bordered table-hover">
                             <thead>
-                                <tr align="center">
+                                <tr>
                                     <th>ID</th>
                                     <th>Tên hãng</th>
                                     <th>Mô tả</th>
@@ -62,7 +44,7 @@
                             <tbody>
                                 @foreach (var item in @ViewBag.brand)
                                 {
-                                    <tr class="odd gradeX" align="center">
+                                    <tr class="odd">
                                         <td>@item.ID</td>
                                         <td>@item.Name</td>
                                         <td>@item.Description</td>
@@ -85,9 +67,6 @@
                                 </tr>
                             </tfoot>
                         </table>
-                        @*<div style="margin-left: 50%;" class="paginate">
-                            Html.PagedListPager(Model, page => Url.Action("Index", "brand", new { page }))
-                        </div>*@
                     </div>
                     <!-- /.card-body -->
                 </div>

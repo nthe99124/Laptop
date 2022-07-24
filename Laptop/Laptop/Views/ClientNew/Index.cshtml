@@ -1,0 +1,52 @@
+﻿@model IPagedList<Laptop.Models.News>
+
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+<style>
+    #img {
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        padding: 5px;
+        width: 250px;
+    }
+
+        #img:hover {
+            box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+</style>
+<div style="margin-bottom:50px">
+    <r style="font-size: 30px; font-weight: bolder; color: red">Tin tức công nghệ!</r>
+</div>
+<hr />
+@foreach (var item in Model)
+{
+    
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <a href="/_clientNew/NewDetail?key=@item.ID"><img src="@item.Image" width="250" height="250" id="img" /></a>
+        </div>
+        <div class="col">
+            <a href="/_clientNew/NewDetail?key=@item.ID" style="font-size: 28px; font-weight: bolder; color:black">@item.Title !</a>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <hr />
+}
+<div class="row">
+    <div class="col-5"></div>
+    <div class="col">
+        <div class="paginate">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "ClientNew", new { page }))
+        </div>
+    </div>
+    <div class="col-5"></div>
+</div>
+
+<script>
+    
+</script>

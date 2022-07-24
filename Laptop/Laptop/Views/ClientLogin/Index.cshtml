@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Bill_Detail";
+    Layout = "~/Views/Shared/_Client.cshtml";
+}
+
+<style>
+    span {
+        display: block;
+        position: absolute;
+        top: 3px;
+        right: 430px;
+    }
+
+    div {
+        position: relative;
+    }
+    
+</style>
+<script>
+    isBool = true;
+    function ShowPass() {
+        if (isBool) {
+            document.getElementById("password").setAttribute("type", "text");
+            isBool = false;
+        }
+        else {
+            document.getElementById("password").setAttribute("type", "password");
+            isBool = true;
+        }
+    }
+
+</script>
+
+<div class="container">
+
+    <div class="text-center">
+        <form class="form-signin" role="form" action="/_clientLogin/Index" method="post" style="border:1px solid orange">
+            <div style="font-size:20px">
+                <div>
+                    <b style="font-size:50px">Đăng nhập</b><br /><br />
+                </div>
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col" style="margin-left:38px">
+                        <input type="email" required="" style="font-size:17px" class="form-control" placeholder="Email" autofocus name="Email">
+                    </div>
+
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-4"></div>
+                    <div class="col" style="margin-left:38px">
+                        <input type="password" required="" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" style="font-size:17px" id="password" class="form-control" placeholder="Password" name="PassWord">
+                        <span>
+                            <img src="~/Content/image/mắt.png" width="35" onclick="ShowPass()" />
+                        </span>
+                    </div>
+
+                </div>
+                <div class="checkbox mb-3" style="margin-bottom:10px">
+
+                    <p style="color:red">@ViewBag.error</p>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col" style="margin-left:75px">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" style="width:200px;font-size:17px">Đăng nhập</button>
+                    </div>
+                </div>
+                <p style="margin-bottom:-25px">Bạn chưa có tài khoản?</p><br />
+                <a href="/_clientLogin/register">===>Đăng ký ngay<===</a><br /><br />                
+            </div>
+
+        </form>
+    </div>
+</div>
+

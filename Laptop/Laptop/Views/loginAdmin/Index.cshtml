@@ -40,7 +40,7 @@
     </style>
     <script>
         isBool = true;
-        function showpass() {
+        function ShowPass() {
             if (isBool) {
                 document.getElementById("password").setAttribute("type", "text");
                 isBool = false;
@@ -66,7 +66,7 @@
                         <div>
                             <input type="password" id="password" pattern="(?=.*\d)(?=.*[a-z]).{8,}" title="Mật khẩu cần ít nhất 8 ký tự và 1 số" style="width:350px;margin-left:5%;margin-top:5px" class="form-control" placeholder="Password" name="PassWord">
                             <span>
-                                <img src="~/Content/image/mắt.png" width="35" onclick="showpass()" />
+                                <img src="~/Content/image/mắt.png" width="35" onclick="ShowPass()" />
                             </span>
                         </div>
                         <div class="checkbox mb-3">

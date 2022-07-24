@@ -1,56 +1,57 @@
-﻿using System;
+﻿using Laptop.Models;
 using PagedList;
-using System.Collections.Generic;
+using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using Laptop.Models;
 
 namespace Laptop.Controllers
 {
-    public class newImageController : Controller
+    public class NewImageController : Controller
     {
-        LaptopNTT db = new LaptopNTT();
+        private readonly LaptopNTT _db = new LaptopNTT();
+
         // GET: newImage
         public ActionResult Index()
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
             return View();
         }
+
         public ActionResult Image(int? page)
         {
             if (Session["admin"] == null)
             {
-                return RedirectToAction("Index", "loginAdmin");
+                return RedirectToAction("Index", "LoginAdmin");
             }
-            var image = from p in db.New_Image
+            var image = from p in _db.New_Image
                         orderby p.ID_New
                         select p;
             ViewBag.ni = image;
 
-            ViewBag.news = from b in db.News
+            ViewBag.news = from b in _db.News
                            select b;
-            ViewBag.image = (from p in db.New_Image
+            ViewBag.image = (from p in _db.New_Image
                              orderby p.ID descending
                              select p).Take(3);
             return View(image.ToPagedList(page ?? 1, 5));
         }
+
         [HttpPost]
-        public ActionResult Image(int? page, New_Image iimgae)
+        public ActionResult Image(int? page, New_Image newImage)
         {
 
-            var image = from p in db.New_Image
+            var image = from p in _db.New_Image
                         orderby p.ID_New
                         select p;
-            ViewBag.news = from b in db.News
+            ViewBag.news = from b in _db.News
                            select b;
-            ViewBag.image = (from p in db.New_Image
+            ViewBag.image = (from p in _db.New_Image
                              orderby p.ID descending
                              select p).Take(3);
-            News test = db.News.Where(p => p.ID == Convert.ToInt32(Request["ID_Tin"])).FirstOrDefault();
+            var test = _db.News.FirstOrDefault(p => p.ID == Convert.ToInt32(Request["ID_Tin"]));
             ViewBag.date = DateTime.Now;
             if (test == null)
             {
@@ -58,52 +59,20 @@ namespace Laptop.Controllers
             }
             else
             {
-                iimgae.ID_New = Convert.ToInt32(Request["ID_Tin"]);
-                iimgae.Image = Request["Anh"];
-                iimgae.created_at = ViewBag.date;
-                db.New_Image.Add(iimgae);
-                db.SaveChanges();
+                newImage.ID_New = Convert.ToInt32(Request["ID_Tin"]);
+                newImage.Image = Request["Anh"];
+                newImage.created_at = ViewBag.date;
+                _db.New_Image.Add(newImage);
+                _db.SaveChanges();
             }
             return View(image.ToPagedList(page ?? 1, 5));
         }
-        /*public ActionResult Search(int? page)
-        {
-            if (Session["admin"] == null)
-            {
-                return RedirectToAction("Index", "loginAdmin");
-            }
-            var image = from p in db.New_Images
-                        orderby p.ID
-                        select p;
-            ViewBag.news = from b in db.News
-                              select b;
-            ViewBag.image = (from p in db.New_Images
-                             orderby p.ID descending
-                             select p).Take(3);
-            return View(image.ToPagedList(page ?? 1, 5));
-        }
-        [HttpPost]
-        public ActionResult Search(int? page, New_Image a)
-        {
-            int id = Convert.ToInt32(Request["key"]);
-            *//*var image = from p in db.New_Images
-                        select p;*//*
-            ViewBag.news = from b in db.News
-                              select b;
-            ViewBag.image = (from p in db.New_Images
-                             orderby p.ID descending
-                             select p).Take(3);
-            var image = from p in db.New_Images
-                        where p.ID_New == id
-                        select p;
-            return View(image.ToPagedList(page ?? 1, 5));
-        }*/
 
         public ActionResult Delete_img(int id)
         {
-            var img = db.New_Image.Where(b => b.ID == id).SingleOrDefault();
-            db.New_Image.Remove(img);
-            db.SaveChanges();
+            var img = _db.New_Image.Where(b => b.ID == id).SingleOrDefault();
+            if (img != null) _db.New_Image.Remove(img);
+            _db.SaveChanges();
             return RedirectToAction("Image");
         }
     }

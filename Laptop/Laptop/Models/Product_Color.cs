@@ -29,7 +29,7 @@ namespace Laptop.Models
     
         public virtual ICollection<Bill_Detail> Bill_Detail { get; set; }
         public virtual ICollection<Cart> Carts { get; set; }
-        public virtual Colorr Colorr { get; set; }
+        public virtual Color Color { get; set; }
         public virtual Product Product { get; set; }
     }
 }

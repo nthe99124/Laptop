@@ -1,8 +1,4 @@
-﻿@*@model IPagedList<Laptop.Models.Bill_Detail>
-
-    @using PagedList.Mvc;
-    @using PagedList;*@
-@{
+﻿@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Admin.cshtml";
 }
@@ -23,20 +19,6 @@
         </div>
     </div><!-- /.container-fluid -->
 </section>
-
-@*<form class="form-inline ml-3" method="post" action="/bill/Index">
-        <div class="container h-100">
-            <div class="d-flex justify-content-center h-100">
-                <div class="searchbar">
-                    <input class="search_input" type="text" name="key" placeholder="Tìm kiếm">
-                    <button type="submit" class="btn btn-primary" style="background-color:white; border-color:white; color:blue">
-                        <i class="fas fa-search"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </form>
-    <br>*@
 
 <!-- Main content -->
 @foreach (var item in ViewBag.Cus_Detail)
@@ -94,7 +76,7 @@
 }
 
 <section class="content">
-    <div class="card-body pad">
+    <div class="card-body">
         <div class="row">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -105,7 +87,7 @@
                     <div class="card-body">
                         <table id="example2" class="table table-bordered table-hover">
                             <thead>
-                                <tr align="center">
+                                <tr>
                                     <th>Tên sản phẩm</th>
                                     <th>Màu sắc</th>
                                     <th>Tên hãng</th>
@@ -117,17 +99,12 @@
                             <tbody>
                                 @foreach (var item in ViewBag.bill_detail)
                                 {
-                                    <tr class="odd gradeX" align="center">
+                                    <tr class="odd" align="center">
                                         <td>@item.Pro_Name</td>
                                         <td>@item.Pro_Color</td>
                                         <td>@item.Pro_Brand</td>
                                         <td>@item.Quantity</td>
                                         <td>@string.Format("{0:#,##0}",@item.Order_Price)đ</td>
-                                        @*<td>
-                                                @Html.ActionLink("Chi tiết", "Bill_Detail", new { id = item.ID })
-                                                <i class="fa fa-trash-o" fa-fw></i>@Html.ActionLink("Sửa", "Edit", new { id = item.ID })
-                                                    <i class="fa fa-pencil fa-fw"></i>@Html.ActionLink("Xóa", "Delete", new { id = item.ID })
-                                            </td>*@
                                     </tr>
                                 }
                             </tbody>
@@ -148,13 +125,12 @@
                                 <div class="col-6" style="text-align:left">
                                     @{
                                         decimal a = 0;
-                                        decimal b = 0;
                                         foreach (var item in ViewBag.bill_detail)
                                         {
                                             a = a + item.Order_Price * item.Quantity;
                                             
                                         }
-                                        <p>@string.Format("{0:#,##0}",@a)đ</p>
+                                        <p>@($"{@a:#,##0}")đ</p>
                                     }
                                 </div>
                             </div>
